@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
+import '@heetch/flamingo-react/dist/styles.css';
 
 ReactDOM.render(
   <React.StrictMode>
