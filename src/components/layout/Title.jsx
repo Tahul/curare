@@ -11,6 +11,7 @@ const StyledTitle = styled.div`
   align-items: center;
   font-weight: bold;
   font-size: ${theme.fontSize.l};
+  color: ${theme.color.brand.secondary};
 
   span {
     margin-right: 0.5rem;

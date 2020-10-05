@@ -4,12 +4,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--f-color-brandSecondary);
-  color: white;
 }
 
-a {
-  color: inherit;
+a,
+a:hover,
+a:active {
+  text-decoration: none;
 }
 
 blockquote,

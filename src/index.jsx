@@ -2,12 +2,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import 'normalize.css'
-import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 
 // Libraries
 import '@heetch/flamingo-react/dist/styles.css'
+import 'normalize.css'
+import './index.css'
 
 ReactDOM.render(
   <React.StrictMode>
