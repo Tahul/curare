@@ -2,7 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 
 // Components
-import { Button, IconButton } from '@heetch/flamingo-react'
+import { Button, IconButton, theme } from '@heetch/flamingo-react'
+import { Link } from 'react-router-dom'
 
 const StyledActions = styled.div`
   height: 100%;
@@ -12,14 +13,22 @@ const StyledActions = styled.div`
   div {
     display: flex;
     align-items: center;
+
+    a {
+      margin-left: ${theme.space.m};
+    }
   }
 `
 
 const GuestActions = () => (
   <div>
-    <Button>Login</Button>
+    <Link to="/login">
+      <Button>Login</Button>
+    </Link>
 
-    <Button>Register</Button>
+    <Link to="/register">
+      <Button>Register</Button>
+    </Link>
   </div>
 )
 

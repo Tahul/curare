@@ -4,6 +4,7 @@ import { theme } from '@heetch/flamingo-react'
 
 // Assets
 import Logo from '../../assets/images/logo.svg'
+import { Link } from 'react-router-dom'
 
 const StyledTitle = styled.div`
   display: flex;
@@ -21,12 +22,14 @@ const StyledTitle = styled.div`
 `
 
 const Title = () => (
-  <StyledTitle>
-    <span alt="logo" role="img">
-      <img src={Logo} />
-    </span>
-    Curare
-  </StyledTitle>
+  <Link to="/">
+    <StyledTitle>
+      <span alt="logo" role="img">
+        <img src={Logo} />
+      </span>
+      Curare
+    </StyledTitle>
+  </Link>
 )
 
 export default Title
