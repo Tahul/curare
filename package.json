@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "@heetch/flamingo-react": "^2.3.1",
+    "@lemoncode/fonk": "^1.4.0",
+    "@lemoncode/fonk-final-form": "^2.3.4",
     "axios": "^0.20.0",
     "final-form": "^4.20.1",
     "normalize.css": "^8.0.1",

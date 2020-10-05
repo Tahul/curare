@@ -2,10 +2,43 @@ import React from 'react'
 import styled from 'styled-components'
 
 // Components
-import { Field, Form } from 'react-final-form'
 import { Button, InputField } from '@heetch/flamingo-react'
+import { Field, Form } from 'react-final-form'
+
+// Form validation
+import { Validators } from '@lemoncode/fonk'
+import { createFinalFormValidation } from '@lemoncode/fonk-final-form'
+
+const passwordConfirmationValidator = ({ values }) => {
+  if (values.passwordConfirmation !== values.password) {
+    return {
+      type: 'PASSWORD_CONFIRMATION',
+      succeeded: false,
+      message:
+        'The password confirmation must be the same as the password field.',
+    }
+  }
+
+  return {
+    type: 'PASSWORD_CONFIRMATION',
+    succeeded: true,
+  }
+}
+
+const validationSchema = {
+  field: {
+    email: [Validators.required.validator, Validators.email.validator],
+    password: [Validators.required.validator],
+    passwordConfirmation: [
+      Validators.required.validator,
+      passwordConfirmationValidator,
+    ],
+  },
+}
 
 const StyledRegister = styled.div``
+
+const validator = createFinalFormValidation(validationSchema)
 
 const Register = () => {
   const initialValues = {
@@ -18,9 +51,7 @@ const Register = () => {
     console.log(event)
   }
 
-  const validate = ({ email, password, passwordConfirmation }) => {
-    console.log({ email, password, passwordConfirmation })
-  }
+  const validate = (values) => validator.validateForm(values)
 
   return (
     <StyledRegister>
@@ -31,37 +62,47 @@ const Register = () => {
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>
             <Field name="email">
-              {(props) => (
+              {({ input, meta }) => (
                 <InputField
-                  helper="Your email address"
+                  helper={
+                    meta.error && meta.touched
+                      ? meta.error
+                      : 'Your email address'
+                  }
+                  invalid={!!(meta.error && meta.touched)}
                   label="Email"
-                  id={props.input.name}
-                  onChange={props.input.onChange}
-                  name={props.input.name}
+                  id={input.name}
+                  {...input}
                 />
               )}
             </Field>
 
-            <Field name="password">
-              {(props) => (
+            <Field name="password" type="password">
+              {({ input, meta }) => (
                 <InputField
-                  helper="Your password"
+                  helper={
+                    meta.error && meta.touched ? meta.error : 'Your password'
+                  }
+                  invalid={!!(meta.error && meta.touched)}
                   label="Password"
-                  id={props.input.name}
-                  onChange={props.input.onChange}
-                  name={props.input.name}
+                  id={input.name}
+                  {...input}
                 />
               )}
             </Field>
 
-            <Field name="passwordConfirmation">
-              {(props) => (
+            <Field name="passwordConfirmation" type="password">
+              {({ input, meta }) => (
                 <InputField
-                  helper="Your password confirmation"
+                  helper={
+                    meta.error && meta.touched
+                      ? meta.error
+                      : 'Your email address'
+                  }
+                  invalid={!!(meta.error && meta.touched)}
                   label="Password confirmation"
-                  id={props.input.name}
-                  onChange={props.input.onChange}
-                  name={props.input.name}
+                  id={input.name}
+                  {...input}
                 />
               )}
             </Field>

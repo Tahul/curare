@@ -1280,6 +1280,16 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@lemoncode/fonk-final-form@^2.3.4":
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/@lemoncode/fonk-final-form/-/fonk-final-form-2.3.4.tgz#f66e8506a40575165db76c2676b7c7c5d20f154f"
+  integrity sha512-oGtsTaI45NvvNZP/4XcyeFbb9U2JLuKZhIpqr0zhRf+0nsb7DjR2LYQ5L+gMHgzhjqWfPoG5TFbQ/ShgDjNnbA==
+
+"@lemoncode/fonk@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@lemoncode/fonk/-/fonk-1.4.0.tgz#43c351cb6b1261cad6f18d40593d009d4545c3f7"
+  integrity sha512-xtLxKmpvqB8w2AIWJSo/1KJaQ6dn4ZRDe68xg20G84f26hitQMXTINmeWfHt73ufR6Y+uV9HqWLsj4WG6OcS1w==
+
 "@npmcli/move-file@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@npmcli/move-file/-/move-file-1.0.1.tgz#de103070dac0f48ce49cf6693c23af59c0f70464"

@@ -16,7 +16,10 @@ export const initialize = async () => {
 export const login = async ({ email, password }) => {
   await initialize()
 
-  const request = await API().post('/auth/login')
+  const request = await API().post('/auth/login', {
+    email,
+    password,
+  })
 
   return request.data
 }
@@ -27,7 +30,10 @@ export const login = async ({ email, password }) => {
  * @param {email, password}
  */
 export const register = async ({ email, password }) => {
-  const request = await API().post('/auth/register')
+  const request = await API().post('/auth/register', {
+    email,
+    password,
+  })
 
   return request.data
 }

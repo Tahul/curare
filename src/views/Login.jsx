@@ -5,6 +5,19 @@ import styled from 'styled-components'
 import { Button, InputField } from '@heetch/flamingo-react'
 import { Field, Form } from 'react-final-form'
 
+// Form validation
+import { Validators } from '@lemoncode/fonk'
+import { createFinalFormValidation } from '@lemoncode/fonk-final-form'
+
+const validationSchema = {
+  field: {
+    email: [Validators.required.validator, Validators.email.validator],
+    password: [Validators.required.validator],
+  },
+}
+
+const validator = createFinalFormValidation(validationSchema)
+
 const StyledLogin = styled.div``
 
 const Login = () => {
@@ -17,9 +30,7 @@ const Login = () => {
     console.log(event)
   }
 
-  const validate = ({ email, password }) => {
-    console.log({ email, password })
-  }
+  const validate = (values) => validator.validateForm(values)
 
   return (
     <StyledLogin>
@@ -30,25 +41,31 @@ const Login = () => {
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>
             <Field name="email">
-              {(props) => (
+              {({ input, meta }) => (
                 <InputField
-                  helper="Your email address"
+                  helper={
+                    meta.error && meta.touched
+                      ? meta.error
+                      : 'Your email address'
+                  }
+                  invalid={!!(meta.error && meta.touched)}
                   label="Email"
-                  id={props.input.name}
-                  onChange={props.input.onChange}
-                  name={props.input.name}
+                  id={input.name}
+                  {...input}
                 />
               )}
             </Field>
 
-            <Field name="password">
-              {(props) => (
+            <Field name="password" type="password">
+              {({ input, meta }) => (
                 <InputField
-                  helper="Your password"
+                  helper={
+                    meta.error && meta.touched ? meta.error : 'Your password'
+                  }
+                  invalid={!!(meta.error && meta.touched)}
                   label="Password"
-                  id={props.input.name}
-                  onChange={props.input.onChange}
-                  name={props.input.name}
+                  id={input.name}
+                  {...input}
                 />
               )}
             </Field>
