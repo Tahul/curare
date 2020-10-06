@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { loginAction } from '../contexts/auth/actions'
 
 // Components
 import { Button, InputField } from '@heetch/flamingo-react'
@@ -8,6 +9,7 @@ import { Field, Form } from 'react-final-form'
 // Form validation
 import { Validators } from '@lemoncode/fonk'
 import { createFinalFormValidation } from '@lemoncode/fonk-final-form'
+import { useAuthDispatch } from '../contexts/auth'
 
 const validationSchema = {
   field: {
@@ -21,13 +23,15 @@ const validator = createFinalFormValidation(validationSchema)
 const StyledLogin = styled.div``
 
 const Login = () => {
+  const authDispatch = useAuthDispatch()
+
   const initialValues = {
     email: '',
     password: '',
   }
 
-  const onSubmit = (event) => {
-    console.log(event)
+  const onSubmit = async (payload) => {
+    await loginAction(authDispatch, payload)
   }
 
   const validate = (values) => validator.validateForm(values)

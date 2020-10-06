@@ -7,5 +7,3 @@ export const API = (prefix = true) =>
     }`,
     withCredentials: true,
   })
-
-export default API

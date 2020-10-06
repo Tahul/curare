@@ -16,12 +16,22 @@ export const initialize = async () => {
 export const login = async ({ email, password }) => {
   await initialize()
 
+  console.log({ email, password })
+
+  /* 
+  Waiting for backend
   const request = await API().post('/auth/login', {
     email,
     password,
   })
 
   return request.data
+  */
+
+  return {
+    user: email,
+    token: 'test-token',
+  }
 }
 
 /**
@@ -30,10 +40,20 @@ export const login = async ({ email, password }) => {
  * @param {email, password}
  */
 export const register = async ({ email, password }) => {
+  await initialize()
+
+  /* 
+  Waiting for backend
   const request = await API().post('/auth/register', {
     email,
     password,
   })
 
   return request.data
+  */
+
+  return {
+    user: email,
+    token: 'test-token',
+  }
 }

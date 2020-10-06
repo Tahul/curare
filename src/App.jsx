@@ -4,6 +4,7 @@ import styled from 'styled-components'
 // Components
 import { Route, Switch } from 'react-router-dom'
 import Navigation from './components/layout/Navigation'
+import { AuthProvider } from './contexts/auth'
 
 // Views
 import Landing from './views/Landing'
@@ -47,11 +48,13 @@ const Routes = () => (
 // Root app render
 const App = () => {
   return (
-    <StyledApp>
-      <Navigation />
+    <AuthProvider>
+      <StyledApp>
+        <Navigation />
 
-      <Routes />
-    </StyledApp>
+        <Routes />
+      </StyledApp>
+    </AuthProvider>
   )
 }
 

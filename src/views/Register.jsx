@@ -8,6 +8,8 @@ import { Field, Form } from 'react-final-form'
 // Form validation
 import { Validators } from '@lemoncode/fonk'
 import { createFinalFormValidation } from '@lemoncode/fonk-final-form'
+import { useAuthDispatch } from '../contexts/auth'
+import { registerAction } from '../contexts/auth/actions'
 
 const passwordConfirmationValidator = ({ values }) => {
   if (values.passwordConfirmation !== values.password) {
@@ -41,14 +43,19 @@ const StyledRegister = styled.div``
 const validator = createFinalFormValidation(validationSchema)
 
 const Register = () => {
+  const authDispatch = useAuthDispatch()
+
   const initialValues = {
     email: '',
     password: '',
     passwordConfirmation: '',
   }
 
-  const onSubmit = (event) => {
-    console.log(event)
+  const onSubmit = async ({ email, password }) => {
+    await registerAction(authDispatch, {
+      email,
+      password,
+    })
   }
 
   const validate = (values) => validator.validateForm(values)
