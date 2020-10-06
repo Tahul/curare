@@ -1,3 +1,5 @@
+import { defaultState } from './index'
+
 export default (initialState, action) => {
   switch (action.type) {
     case 'START_AUTH':
@@ -24,6 +26,13 @@ export default (initialState, action) => {
         ...initialState,
         ...action.payload,
         loading: false,
+      }
+    case 'RESET_AUTH':
+      localStorage.removeItem('curare_user')
+      localStorage.removeItem('curare_token')
+
+      return {
+        ...defaultState,
       }
     default:
       throw new Error(`Unhandled action type: ${action.type}`)

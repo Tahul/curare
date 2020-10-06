@@ -57,3 +57,16 @@ export const register = async ({ email, password }) => {
     token: 'test-token',
   }
 }
+
+/**
+ * Logout method
+ */
+export const logout = async () => {
+  /* 
+  const request = await API().post('/auth/logout')
+
+  return request.data
+  */
+
+  return {}
+}

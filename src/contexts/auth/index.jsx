@@ -13,7 +13,7 @@ const token = localStorage.getItem('curare_token')
   : ''
 
 // Default state
-export const initialState = {
+export const defaultState = {
   user: null || user,
   token: null || token,
   isLoggedIn: !!(user && token),
@@ -29,7 +29,7 @@ AuthDispatchContext.displayName = 'AuthDispatchContext'
 
 // Provider
 const AuthProvider = ({ children }) => {
-  const [state, dispatch] = React.useReducer(authReducer, initialState)
+  const [state, dispatch] = React.useReducer(authReducer, defaultState)
 
   return (
     <AuthStateContext.Provider value={state}>
