@@ -4,6 +4,7 @@ import styled from 'styled-components'
 // Components
 import { Button, IconButton, theme } from '@heetch/flamingo-react'
 import { Link } from 'react-router-dom'
+import { useAuthState } from '../../contexts/auth'
 
 const StyledActions = styled.div`
   height: 100%;
@@ -34,16 +35,18 @@ const GuestActions = () => (
 
 const LoggedInActions = () => (
   <div>
-    <IconButton icon="IconGear" />
+    <Link to="/settings">
+      <IconButton icon="IconGear" />
+    </Link>
   </div>
 )
 
 const Actions = () => {
-  const loggedIn = false
+  const { isLoggedIn } = useAuthState()
 
   return (
     <StyledActions>
-      {loggedIn ? <LoggedInActions /> : <GuestActions />}
+      {isLoggedIn ? <LoggedInActions /> : <GuestActions />}
     </StyledActions>
   )
 }

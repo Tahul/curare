@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 // Components
-import { Route, Switch } from 'react-router-dom'
+import { Switch } from 'react-router-dom'
 import Navigation from './components/layout/Navigation'
 import { AuthProvider } from './contexts/auth'
 
@@ -11,6 +11,9 @@ import Landing from './views/Landing'
 import Register from './views/Register'
 import Login from './views/Login'
 import Profile from './views/Profile'
+import Settings from './views/Settings'
+import PublicRoute from './components/utils/PrivateRoute'
+import PrivateRoute from './components/utils/PublicRoute'
 
 const StyledApp = styled.div`
   display: flex;
@@ -23,25 +26,15 @@ const StyledApp = styled.div`
 // Router switch
 const Routes = () => (
   <Switch>
-    <Route path="/login">
-      <Login />
-    </Route>
+    <PublicRoute restricted={true} path="/login" component={Login} />
 
-    <Route path="/register">
-      <Register />
-    </Route>
+    <PublicRoute restricted={true} path="/register" component={Register} />
 
-    <Route path="/profile">
-      <Profile />
-    </Route>
+    <PrivateRoute path="/profile" component={Profile} />
 
-    <Route path="/settings">
-      <Profile />
-    </Route>
+    <PrivateRoute path="/settings" component={Settings} />
 
-    <Route path="/">
-      <Landing />
-    </Route>
+    <PublicRoute path="/" component={Landing} />
   </Switch>
 )
 
