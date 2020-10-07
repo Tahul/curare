@@ -1,5 +1,12 @@
 import { login, logout, register } from '../../api/auth'
+import Toast from '../../plugins/toasts'
 
+/**
+ * Login action.
+ *
+ * @param {*} dispatch
+ * @param { email, password } payload
+ */
 export const loginAction = async (dispatch, { email, password }) => {
   dispatch({
     type: 'START_AUTH',
@@ -13,8 +20,6 @@ export const loginAction = async (dispatch, { email, password }) => {
       payload,
     })
   } catch (error) {
-    console.log(error)
-
     dispatch({
       type: 'FAILED_AUTH',
       payload: {
@@ -24,21 +29,25 @@ export const loginAction = async (dispatch, { email, password }) => {
   }
 }
 
-export const registerAction = async (dispatch, { email, password }) => {
+/**
+ * Register action.
+ *
+ * @param {*} dispatch
+ * @param { name, email, password } payload
+ */
+export const registerAction = async (dispatch, { name, email, password }) => {
   dispatch({
     type: 'START_AUTH',
   })
 
   try {
-    const payload = await register({ email, password })
+    const payload = await register({ name, email, password })
 
     dispatch({
       type: 'SUCCESS_AUTH',
       payload,
     })
   } catch (error) {
-    console.log(error)
-
     dispatch({
       type: 'FAILED_AUTH',
       payload: {
@@ -48,6 +57,11 @@ export const registerAction = async (dispatch, { email, password }) => {
   }
 }
 
+/**
+ * Logout action.
+ *
+ * @param {*} dispatch
+ */
 export const logoutAction = async (dispatch) => {
   dispatch({
     type: 'START_AUTH',
@@ -60,8 +74,6 @@ export const logoutAction = async (dispatch) => {
       type: 'RESET_AUTH',
     })
   } catch (error) {
-    console.log(error)
-
     dispatch({
       type: 'FAILED_AUTH',
       payload: {

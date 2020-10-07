@@ -14,6 +14,7 @@ import Profile from './views/Profile'
 import Settings from './views/Settings'
 import PublicRoute from './components/utils/PrivateRoute'
 import PrivateRoute from './components/utils/PublicRoute'
+import Toast from './plugins/toasts'
 
 const StyledApp = styled.div`
   display: flex;

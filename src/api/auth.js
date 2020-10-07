@@ -1,11 +1,11 @@
-import { API } from './index'
+import API from './index'
 
 /**
  * Initialize the session token
  */
 export const initialize = async () => {
   // Empty prefix as the sanctum route isn't under /api prefix
-  await API(false).get('/sanctum/csrf-cookie')
+  await API.get('/sanctum/csrf-cookie')
 }
 
 /**
@@ -16,22 +16,13 @@ export const initialize = async () => {
 export const login = async ({ email, password }) => {
   await initialize()
 
-  console.log({ email, password })
-
-  /* 
-  Waiting for backend
-  const request = await API().post('/auth/login', {
+  const request = await API.post('/api/auth/login', {
+    name,
     email,
     password,
   })
 
   return request.data
-  */
-
-  return {
-    user: email,
-    token: 'test-token',
-  }
 }
 
 /**
@@ -39,34 +30,23 @@ export const login = async ({ email, password }) => {
  *
  * @param {email, password}
  */
-export const register = async ({ email, password }) => {
+export const register = async ({ name, email, password }) => {
   await initialize()
 
-  /* 
-  Waiting for backend
-  const request = await API().post('/auth/register', {
+  const request = await API.post('/api/auth/register', {
+    name,
     email,
     password,
   })
 
   return request.data
-  */
-
-  return {
-    user: email,
-    token: 'test-token',
-  }
 }
 
 /**
  * Logout method
  */
 export const logout = async () => {
-  /* 
-  const request = await API().post('/auth/logout')
+  const request = await API.post('/api/auth/logout')
 
   return request.data
-  */
-
-  return {}
 }

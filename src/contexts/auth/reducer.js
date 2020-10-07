@@ -1,5 +1,15 @@
 import { defaultState } from './index'
 
+const fillLocalStorage = (name, email) => {
+  localStorage.setItem('curare_name', name)
+  localStorage.setItem('curare_email', email)
+}
+
+const resetLocalStorage = () => {
+  localStorage.removeItem('curare_name')
+  localStorage.removeItem('curare_email')
+}
+
 export default (initialState, action) => {
   switch (action.type) {
     case 'START_AUTH':
@@ -9,8 +19,7 @@ export default (initialState, action) => {
         error: false,
       }
     case 'SUCCESS_AUTH':
-      localStorage.setItem('curare_user', action.payload.user)
-      localStorage.setItem('curare_token', action.payload.token)
+      fillLocalStorage(action.payload.name, action.payload.email)
 
       return {
         ...initialState,
@@ -19,8 +28,7 @@ export default (initialState, action) => {
         isLoggedIn: true,
       }
     case 'FAILED_AUTH':
-      localStorage.removeItem('curare_user')
-      localStorage.removeItem('curare_token')
+      resetLocalStorage()
 
       return {
         ...initialState,
@@ -28,8 +36,7 @@ export default (initialState, action) => {
         loading: false,
       }
     case 'RESET_AUTH':
-      localStorage.removeItem('curare_user')
-      localStorage.removeItem('curare_token')
+      resetLocalStorage()
 
       return {
         ...defaultState,

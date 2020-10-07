@@ -1,4 +1,11 @@
 {
+  "name": "curare",
+  "version": "1.0.0",
+  "author": "Yaël GUILLOUX <yael.guilloux@gmail.com>",
+  "license": {
+    "url": "https://github.com/Tahul/vue-my-toasts/raw/master/LICENSE",
+    "type": "MIT"
+  },
   "scripts": {
     "start": "snowpack dev",
     "build": "snowpack build",
@@ -17,7 +24,9 @@
     "react-dom": "^16.13.1",
     "react-final-form": "^6.5.1",
     "react-router-dom": "^5.2.0",
-    "styled-components": "^5.2.0"
+    "react-spring": "^8.0.27",
+    "styled-components": "^5.2.0",
+    "toasted-notes": "^3.2.0"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.10.4",

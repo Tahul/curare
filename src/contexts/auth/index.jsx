@@ -4,19 +4,19 @@ import React from 'react'
 import authReducer from './reducer'
 
 // Data from localStorage
-const user = localStorage.getItem('curare_user')
-  ? localStorage.getItem('curare_user')
+const name = localStorage.getItem('curare_name')
+  ? localStorage.getItem('curare_name')
   : ''
 
-const token = localStorage.getItem('curare_token')
-  ? localStorage.getItem('curare_token')
+const email = localStorage.getItem('curare_email')
+  ? localStorage.getItem('curare_email')
   : ''
 
 // Default state
 export const defaultState = {
-  user: null || user,
-  token: null || token,
-  isLoggedIn: !!(user && token),
+  name: null || name,
+  email: null || email,
+  isLoggedIn: !!(name && email),
   loading: false,
   error: false,
 }

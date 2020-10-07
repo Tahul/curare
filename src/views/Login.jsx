@@ -1,5 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
+
+// Contexts
+import { useAuthDispatch, useAuthState } from '../contexts/auth'
 import { loginAction } from '../contexts/auth/actions'
 
 // Components
@@ -9,12 +12,17 @@ import { Field, Form } from 'react-final-form'
 // Form validation
 import { Validators } from '@lemoncode/fonk'
 import { createFinalFormValidation } from '@lemoncode/fonk-final-form'
-import { useAuthDispatch } from '../contexts/auth'
 
 const validationSchema = {
   field: {
     email: [Validators.required.validator, Validators.email.validator],
-    password: [Validators.required.validator],
+    password: [
+      Validators.required.validator,
+      {
+        validator: Validators.minLength,
+        customArgs: { length: 6 },
+      },
+    ],
   },
 }
 
@@ -23,6 +31,7 @@ const validator = createFinalFormValidation(validationSchema)
 const StyledLogin = styled.div``
 
 const Login = () => {
+  const { isLoggedIn } = useAuthState()
   const authDispatch = useAuthDispatch()
 
   const initialValues = {
@@ -38,6 +47,8 @@ const Login = () => {
 
   return (
     <StyledLogin>
+      {isLoggedIn ? <Redirect to="/profile" /> : null}
+
       <Form
         onSubmit={onSubmit}
         validate={validate}
@@ -74,7 +85,9 @@ const Login = () => {
               )}
             </Field>
 
-            <Button type="submit">Submit</Button>
+            <Button style={{ width: '100%' }} type="submit">
+              Login
+            </Button>
           </form>
         )}
       ></Form>
