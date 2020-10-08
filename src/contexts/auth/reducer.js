@@ -1,10 +1,18 @@
 import { defaultState } from './index'
 
+/**
+ * Fill the localStorage with auth parameters
+ * @param {*} name
+ * @param {*} email
+ */
 const fillLocalStorage = (name, email) => {
   localStorage.setItem('curare_name', name)
   localStorage.setItem('curare_email', email)
 }
 
+/**
+ * Clean the localStorage auth parameters
+ */
 const resetLocalStorage = () => {
   localStorage.removeItem('curare_name')
   localStorage.removeItem('curare_email')

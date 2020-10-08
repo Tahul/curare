@@ -35,6 +35,10 @@ const GuestActions = () => (
 
 const LoggedInActions = () => (
   <div>
+    <Link to="/profile">
+      <IconButton icon="IconUser" />
+    </Link>
+
     <Link to="/settings">
       <IconButton icon="IconGear" />
     </Link>
