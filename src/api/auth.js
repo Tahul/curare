@@ -3,10 +3,7 @@ import API from './index'
 /**
  * Initialize the session token
  */
-export const initialize = async () => {
-  // Empty prefix as the sanctum route isn't under /api prefix
-  await API.get('/sanctum/csrf-cookie')
-}
+export const initialize = async () => await API.get('/csrf-cookie')
 
 /**
  * Login method
@@ -16,8 +13,7 @@ export const initialize = async () => {
 export const login = async ({ email, password }) => {
   await initialize()
 
-  const request = await API.post('/api/auth/login', {
-    name,
+  const request = await API.post('/auth/login', {
     email,
     password,
   })
@@ -33,7 +29,7 @@ export const login = async ({ email, password }) => {
 export const register = async ({ name, email, password }) => {
   await initialize()
 
-  const request = await API.post('/api/auth/register', {
+  const request = await API.post('/auth/register', {
     name,
     email,
     password,
@@ -46,7 +42,7 @@ export const register = async ({ name, email, password }) => {
  * Logout method
  */
 export const logout = async () => {
-  const request = await API.post('/api/auth/logout')
+  const request = await API.post('/auth/logout')
 
   return request.data
 }
