@@ -1,9 +1,8 @@
 import axios from 'axios'
 import Toasts from '../plugins/toasts'
-import { register } from './auth'
 
 const API = axios.create({
-  baseURL: import.meta.env.SNOWPACK_PUBLIC_API_URL,
+  baseURL: '/api',
   withCredentials: true,
 })
 
