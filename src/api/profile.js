@@ -6,7 +6,7 @@ import API from './index'
  * @param {number | null} id
  */
 export const getProfile = async (id = null) => {
-  const request = await API.get(`/api/profiles${id ? `/${id}` : ``}`)
+  const request = await API.get(`/profiles${id ? `/${id}` : ``}`)
 
   return request.data
 }
@@ -22,7 +22,7 @@ export const updateProfile = async ({
   description,
   url,
 }) => {
-  const request = await API.patch(`/api/profiles`, {
+  const request = await API.patch(`/profiles`, {
     first_name,
     last_name,
     description,
@@ -38,9 +38,21 @@ export const updateProfile = async ({
  * @param {File | null} avatar
  */
 export const updateAvatar = async (avatar) => {
-  const request = await API.patch(`/api/profiles/avatar`, {
-    avatar,
-  })
+  if (avatar) {
+    // Avatar isn't null, try to update the avatar accordingly
+    if (!(avatar instanceof File)) {
+      throw new Error('The avatar must be valid image!')
+    }
 
-  return request.data
+    const request = await API.patch(`/profiles/avatar`, {
+      avatar,
+    })
+
+    return request.data
+  } else {
+    // Avatar is null; remove the current avatar
+    const request = await API.delete(`/profiles/avatar`)
+
+    return request.data
+  }
 }
