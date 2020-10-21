@@ -7,6 +7,7 @@ import { useAuthState } from '../contexts/auth'
 
 // Components
 import LoginForm from '../components/auth/LoginForm'
+import Page from '../components/layout/Page'
 
 const StyledLogin = styled.div``
 
@@ -19,9 +20,11 @@ const Login = () => {
   }
 
   return (
-    <StyledLogin>
-      <LoginForm />
-    </StyledLogin>
+    <Page>
+      <StyledLogin>
+        <LoginForm />
+      </StyledLogin>
+    </Page>
   )
 }
 

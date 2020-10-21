@@ -23,11 +23,11 @@ const StyledActions = styled.div`
 
 const GuestActions = () => (
   <div>
-    <Link to="/login">
+    <Link to="/login" tabIndex={0}>
       <Button>Login</Button>
     </Link>
 
-    <Link to="/register">
+    <Link to="/register" tabIndex={1}>
       <Button>Register</Button>
     </Link>
   </div>
@@ -35,11 +35,11 @@ const GuestActions = () => (
 
 const LoggedInActions = () => (
   <div>
-    <Link to="/profile">
+    <Link to="/profile" tabIndex={0}>
       <IconButton icon="IconUser" />
     </Link>
 
-    <Link to="/settings">
+    <Link to="/settings" tabIndex={1}>
       <IconButton icon="IconGear" />
     </Link>
   </div>

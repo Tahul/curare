@@ -7,6 +7,7 @@ import { useAuthState } from '../contexts/auth'
 // Components
 import { Redirect } from 'react-router-dom'
 import LogoutButton from '../components/auth/LogoutButton'
+import Page from '../components/layout/Page'
 
 const StyledSettings = styled.div``
 
@@ -14,11 +15,13 @@ const Settings = () => {
   const { isLoggedIn } = useAuthState()
 
   return (
-    <StyledSettings>
-      {!isLoggedIn ? <Redirect to="/login" /> : null}
+    <Page>
+      <StyledSettings>
+        {!isLoggedIn ? <Redirect to="/login" /> : null}
 
-      <LogoutButton />
-    </StyledSettings>
+        <LogoutButton />
+      </StyledSettings>
+    </Page>
   )
 }
 

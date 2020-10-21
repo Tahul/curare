@@ -7,6 +7,7 @@ import { useAuthState } from '../contexts/auth'
 // Components
 import { Redirect } from 'react-router-dom'
 import RegisterForm from '../components/auth/RegisterForm'
+import Page from '../components/layout/Page'
 
 const StyledRegister = styled.div``
 
@@ -14,11 +15,13 @@ const Register = () => {
   const { isLoggedIn } = useAuthState()
 
   return (
-    <StyledRegister>
-      {isLoggedIn ? <Redirect to="/profile" /> : null}
+    <Page>
+      <StyledRegister>
+        {isLoggedIn ? <Redirect to="/profile" /> : null}
 
-      <RegisterForm />
-    </StyledRegister>
+        <RegisterForm />
+      </StyledRegister>
+    </Page>
   )
 }
 
