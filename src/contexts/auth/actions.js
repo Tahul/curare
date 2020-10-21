@@ -1,5 +1,4 @@
 import { login, logout, register } from '../../api/auth'
-import Toast from '../../plugins/toasts'
 
 /**
  * Login action.
@@ -69,16 +68,16 @@ export const logoutAction = async (dispatch) => {
 
   try {
     await logout()
-
-    dispatch({
-      type: 'RESET_AUTH',
-    })
   } catch (error) {
     dispatch({
       type: 'FAILED_AUTH',
       payload: {
         error: true,
       },
+    })
+  } finally {
+    dispatch({
+      type: 'RESET_AUTH',
     })
   }
 }
