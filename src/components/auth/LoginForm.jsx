@@ -68,6 +68,7 @@ export default () => {
                 invalid={!!(meta.error && meta.touched)}
                 label="Email"
                 id={input.name}
+                disabled={loading}
                 {...input}
               />
             )}
@@ -82,6 +83,7 @@ export default () => {
                 invalid={!!(meta.error && meta.touched)}
                 label="Password"
                 id={input.name}
+                disabled={loading}
                 {...input}
               />
             )}
@@ -92,6 +94,6 @@ export default () => {
           </Button>
         </form>
       )}
-    ></Form>
+    />
   )
 }

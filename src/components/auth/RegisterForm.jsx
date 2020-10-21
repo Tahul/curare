@@ -109,6 +109,7 @@ export default () => {
                 invalid={!!(meta.error && meta.touched)}
                 label="Username"
                 id={input.name}
+                disabled={loading}
                 {...input}
               />
             )}
@@ -123,6 +124,7 @@ export default () => {
                 invalid={!!(meta.error && meta.touched)}
                 label="Email"
                 id={input.name}
+                disabled={loading}
                 {...input}
               />
             )}
@@ -137,6 +139,7 @@ export default () => {
                 invalid={!!(meta.error && meta.touched)}
                 label="Password"
                 id={input.name}
+                disabled={loading}
                 {...input}
               />
             )}
@@ -151,6 +154,7 @@ export default () => {
                 invalid={!!(meta.error && meta.touched)}
                 label="Password confirmation"
                 id={input.name}
+                disabled={loading}
                 {...input}
               />
             )}
