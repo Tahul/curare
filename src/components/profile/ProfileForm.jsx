@@ -1,4 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { toDataURL, base64MimeType } from '../../plugins/file'
+
+// Form validation
+import { Validators } from '@lemoncode/fonk'
+import { createFinalFormValidation } from '@lemoncode/fonk-final-form'
+
+// Hooks
+import useProfile from '../../hooks/useProfile'
 
 // Components
 import {
@@ -8,10 +16,6 @@ import {
   UploaderField,
 } from '@heetch/flamingo-react'
 import { Field, Form } from 'react-final-form'
-
-// Form validation
-import { Validators } from '@lemoncode/fonk'
-import { createFinalFormValidation } from '@lemoncode/fonk-final-form'
 
 const validationSchema = {
   field: {
@@ -39,6 +43,7 @@ const validationSchema = {
 const validator = createFinalFormValidation(validationSchema)
 
 const defaultState = {
+  avatar_url: '',
   first_name: '',
   last_name: '',
   description: '',
@@ -46,23 +51,42 @@ const defaultState = {
 }
 
 export default () => {
-  const loading = false
-
-  const [avatar, setAvatar] = useState([])
+  const { profile, loading, updateProfile, updateAvatar } = useProfile()
+  const [avatar, setAvatar] = React.useState([])
 
   const initialValues = {
     ...defaultState,
+    ...profile,
   }
 
   const onSubmit = async (payload) => {
-    console.log(payload)
+    await updateProfile(payload)
   }
 
-  const handleImageUpload = async (event) => {
-    console.log(event)
+  const handleAvatarUpload = async (payload) => {
+    await updateAvatar(payload[0])
   }
 
   const validate = (values) => validator.validateForm(values)
+
+  React.useEffect(() => {
+    const fetchAvatar = async () => {
+      if (profile.avatar_url) {
+        const file = await toDataURL(profile.avatar_url)
+        const mimeType = base64MimeType(file)
+
+        setAvatar([
+          {
+            type: mimeType,
+            name: `avatar.${mimeType.split('/')[1]}`,
+            preview: file,
+          },
+        ])
+      }
+    }
+
+    fetchAvatar()
+  }, [profile])
 
   return (
     <Form
@@ -72,12 +96,12 @@ export default () => {
       render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
           <UploaderField
-            accept="image/jpeg,image.png"
-            id="image-uploader"
-            onChange={handleImageUpload}
+            accept="image/jpg,jpeg,png"
+            onChange={handleAvatarUpload}
             id="avatar"
             label="Avatar"
             value={avatar}
+            disabled={loading}
           />
 
           <Field name="first_name">
@@ -90,6 +114,7 @@ export default () => {
                 label="First name"
                 id={input.name}
                 {...input}
+                disabled={loading}
               />
             )}
           </Field>
@@ -104,6 +129,7 @@ export default () => {
                 label="Last name"
                 id={input.name}
                 {...input}
+                disabled={loading}
               />
             )}
           </Field>
@@ -118,6 +144,7 @@ export default () => {
                 label="Description"
                 id={input.name}
                 {...input}
+                disabled={loading}
               />
             )}
           </Field>
@@ -132,6 +159,7 @@ export default () => {
                 label="Website"
                 id={input.name}
                 {...input}
+                disabled={loading}
               />
             )}
           </Field>
