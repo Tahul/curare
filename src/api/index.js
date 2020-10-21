@@ -3,7 +3,7 @@ import Toasts from '../plugins/toasts'
 
 const API = axios.create({
   baseURL:
-    process.env.NODE_ENV === 'development'
+    import.meta.env.NODE_ENV === 'development'
       ? '/api'
       : import.meta.env.SNOWPACK_PUBLIC_API_URL,
   withCredentials: true,
