@@ -19,6 +19,7 @@
     "@lemoncode/fonk-final-form": "^2.3.4",
     "axios": "^0.20.0",
     "final-form": "^4.20.1",
+    "framer-motion": "^2.9.3",
     "normalize.css": "^8.0.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
