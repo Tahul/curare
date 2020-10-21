@@ -14,6 +14,7 @@ import Profile from './views/Profile'
 import Settings from './views/Settings'
 import PublicRoute from './components/utils/PrivateRoute'
 import PrivateRoute from './components/utils/PublicRoute'
+import { AnimatePresence } from 'framer-motion'
 
 const StyledApp = styled.div`
   display: flex;
@@ -25,17 +26,19 @@ const StyledApp = styled.div`
 
 // Router switch
 const Routes = () => (
-  <Switch>
-    <PublicRoute restricted={true} path="/login" component={Login} />
+  <AnimatePresence>
+    <Switch>
+      <PublicRoute restricted={true} path="/login" component={Login} />
 
-    <PublicRoute restricted={true} path="/register" component={Register} />
+      <PublicRoute restricted={true} path="/register" component={Register} />
 
-    <PrivateRoute path="/profile" component={Profile} />
+      <PrivateRoute path="/profile" component={Profile} />
 
-    <PrivateRoute path="/settings" component={Settings} />
+      <PrivateRoute path="/settings" component={Settings} />
 
-    <PublicRoute path="/" component={Landing} />
-  </Switch>
+      <PublicRoute path="/" component={Landing} />
+    </Switch>
+  </AnimatePresence>
 )
 
 // Root app render
