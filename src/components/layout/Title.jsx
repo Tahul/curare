@@ -28,7 +28,7 @@ const Title = () => (
   <Link to="/">
     <StyledTitle>
       <span alt="logo" role="img">
-        <img src={Logo} />
+        <img src={Logo} alt="Curare Logo" />
       </span>
       Curare
     </StyledTitle>
