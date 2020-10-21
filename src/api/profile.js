@@ -44,8 +44,14 @@ export const updateAvatar = async (avatar) => {
       throw new Error('The avatar must be valid image!')
     }
 
-    const request = await API.patch(`/profiles/avatar`, {
-      avatar,
+    const formData = new FormData()
+
+    formData.append('avatar', avatar)
+
+    const request = await API.post(`/profiles/avatar`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
     })
 
     return request.data
