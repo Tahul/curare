@@ -73,7 +73,7 @@ const defaultState =
         passwordConfirmation: '',
       }
 
-export default () => {
+const RegisterForm = () => {
   const { loading } = useAuthState()
   const authDispatch = useAuthDispatch()
 
@@ -168,3 +168,5 @@ export default () => {
     ></Form>
   )
 }
+
+export default RegisterForm

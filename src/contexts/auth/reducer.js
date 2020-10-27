@@ -18,7 +18,7 @@ const resetLocalStorage = () => {
   localStorage.removeItem('curare_email')
 }
 
-export default (initialState, action) => {
+const AuthReducer = (initialState, action) => {
   switch (action.type) {
     case 'START_AUTH':
       return {
@@ -53,3 +53,5 @@ export default (initialState, action) => {
       throw new Error(`Unhandled action type: ${action.type}`)
   }
 }
+
+export default AuthReducer

@@ -38,7 +38,7 @@ const defaultState =
         password: '',
       }
 
-export default () => {
+const LoginForm = () => {
   const { loading } = useAuthState()
   const authDispatch = useAuthDispatch()
 
@@ -97,3 +97,5 @@ export default () => {
     />
   )
 }
+
+export default LoginForm
