@@ -21,9 +21,10 @@ const useProfile = (id = null) => {
    * Get a remote profile for the hook context
    *
    * @param {*} id
+   * @param {boolean} isMounted
    */
-  const getProfile = useCallback(async (id) => {
-    setLoading(true)
+  const getProfile = useCallback(async (id, isMounted = true) => {
+    if (isMounted) setLoading(true)
 
     try {
       const remoteProfile = await getRemoteProfile(id)
@@ -33,7 +34,7 @@ const useProfile = (id = null) => {
       // Mitigate this case
     }
 
-    setLoading(false)
+    if (isMounted) setLoading(false)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -82,11 +83,15 @@ const useProfile = (id = null) => {
   }
 
   useEffect(() => {
+    let isMounted = true
+
     const fetchProfile = async () => {
-      await getProfile(id)
+      await getProfile(id, isMounted)
     }
 
     fetchProfile()
+
+    return () => (isMounted = false)
   }, [id, getProfile])
 
   return {

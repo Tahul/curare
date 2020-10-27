@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { Switch } from 'react-router-dom'
 import Navigation from './components/layout/Navigation'
 import { AuthProvider } from './contexts/auth'
+import { AnimatePresence } from 'framer-motion'
 
 // Views
 import Landing from './views/Landing'
@@ -14,7 +15,7 @@ import Profile from './views/Profile'
 import Settings from './views/Settings'
 import PublicRoute from './components/utils/PrivateRoute'
 import PrivateRoute from './components/utils/PublicRoute'
-import { AnimatePresence } from 'framer-motion'
+import useQueryLogout from './hooks/useQueryLogout'
 
 const StyledApp = styled.div`
   display: flex;
@@ -25,21 +26,25 @@ const StyledApp = styled.div`
 `
 
 // Router switch
-const Routes = () => (
-  <AnimatePresence>
-    <Switch>
-      <PublicRoute restricted={true} path="/login" component={Login} />
+const Routes = () => {
+  useQueryLogout()
 
-      <PublicRoute restricted={true} path="/register" component={Register} />
+  return (
+    <AnimatePresence>
+      <Switch>
+        <PublicRoute restricted={true} path="/login" component={Login} />
 
-      <PrivateRoute path="/profile" component={Profile} />
+        <PublicRoute restricted={true} path="/register" component={Register} />
 
-      <PrivateRoute path="/settings" component={Settings} />
+        <PrivateRoute path="/profile" component={Profile} />
 
-      <PublicRoute path="/" component={Landing} />
-    </Switch>
-  </AnimatePresence>
-)
+        <PrivateRoute path="/settings" component={Settings} />
+
+        <PublicRoute path="/" component={Landing} />
+      </Switch>
+    </AnimatePresence>
+  )
+}
 
 // Root app render
 const App = () => {

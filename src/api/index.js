@@ -1,5 +1,6 @@
 import axios from 'axios'
 import Toasts from '../plugins/toasts'
+import { history } from '../index'
 
 const API = axios.create({
   baseURL:
@@ -29,7 +30,11 @@ API.interceptors.response.use(
   // Error
   (error) => {
     if (error && error.response && error.response.data) {
-      const { data } = error.response
+      const { data, status } = error.response
+
+      if (status === 401) {
+        history.push('/?logout=true')
+      }
 
       // Default message key on server errors
       if (data.message) {
@@ -45,6 +50,8 @@ API.interceptors.response.use(
         })
       }
     }
+
+    return error
   },
 )
 

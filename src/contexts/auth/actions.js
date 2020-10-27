@@ -81,3 +81,14 @@ export const logoutAction = async (dispatch) => {
     })
   }
 }
+
+/**
+ * Force logout action, without API call.
+ *
+ * @param {*} dispatch
+ */
+export const forceLogout = async (dispatch) => {
+  dispatch({
+    type: 'RESET_AUTH',
+  })
+}

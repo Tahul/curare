@@ -10,7 +10,7 @@ import { logoutAction } from '../../contexts/auth/actions'
 // Components
 import { Button } from '@heetch/flamingo-react'
 
-export default () => {
+const LogoutButton = () => {
   const authDispatch = useAuthDispatch()
   const history = useHistory()
 
@@ -27,3 +27,5 @@ export default () => {
     </Button>
   )
 }
+
+export default LogoutButton

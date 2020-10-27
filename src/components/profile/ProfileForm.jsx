@@ -50,7 +50,7 @@ const defaultState = {
   url: '',
 }
 
-export default () => {
+const ProfileForm = () => {
   const { profile, loading, updateProfile, updateAvatar } = useProfile()
   const [avatar, setAvatar] = React.useState([])
 
@@ -70,22 +70,28 @@ export default () => {
   const validate = (values) => validator.validateForm(values)
 
   React.useEffect(() => {
+    let isMounted = true
+
     const fetchAvatar = async () => {
       if (profile.avatar_url) {
         const file = await toDataURL(profile.avatar_url)
         const mimeType = base64MimeType(file)
 
-        setAvatar([
-          {
-            type: mimeType,
-            name: `avatar.${mimeType.split('/')[1]}`,
-            preview: file,
-          },
-        ])
+        if (isMounted) {
+          setAvatar([
+            {
+              type: mimeType,
+              name: `avatar.${mimeType.split('/')[1]}`,
+              preview: file,
+            },
+          ])
+        }
       }
     }
 
     fetchAvatar()
+
+    return () => (isMounted = false)
   }, [profile])
 
   return (
@@ -172,3 +178,5 @@ export default () => {
     ></Form>
   )
 }
+
+export default ProfileForm
