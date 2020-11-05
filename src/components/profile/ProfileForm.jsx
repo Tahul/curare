@@ -60,7 +60,10 @@ const ProfileForm = ({ onSave }) => {
   }
 
   const onSubmit = async (payload) => {
-    await updateProfile(payload)
+    await updateProfile({
+      ...defaultState,
+      ...payload,
+    })
 
     if (onSave) onSave(payload)
   }

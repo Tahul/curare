@@ -8,9 +8,9 @@ import Logo from '../../assets/images/logo.svg'
 const StyledHeader = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  flex-wrap: wrap;
 
   .avatar {
     position: relative;
@@ -37,17 +37,32 @@ const StyledHeader = styled.div`
         height: 3rem;
       }
     }
+
+    .edit-button {
+      margin-top: ${theme.space.l};
+      position: absolute;
+      bottom: -0.5rem;
+      right: -0.5rem;
+    }
   }
 
-  .fullname {
-    font-weight: ${theme.fontWeight.bold};
-    padding: ${theme.space.m};
+  .infos {
+    margin-left: ${theme.space.l};
+
+    .fullname {
+      font-weight: ${theme.fontWeight.bold};
+    }
+
+    .followers,
+    .following {
+      span {
+        font-weight: ${theme.fontWeight.bold};
+      }
+    }
   }
 
-  .edit-button {
-    position: absolute;
-    bottom: -0.5rem;
-    right: -0.5rem;
+  .description {
+    margin-top: ${theme.space.l};
   }
 `
 
@@ -57,6 +72,8 @@ const Header = ({ id, profile, loading, editable, onEdit }) => {
   }`
 
   const name = `${profile.name}`
+
+  const description = profile.description
 
   return (
     <StyledHeader>
@@ -72,15 +89,41 @@ const Header = ({ id, profile, loading, editable, onEdit }) => {
         )}
 
         {editable ? (
-          <IconButton className="edit-button" icon="IconPen" onClick={onEdit} />
+          <IconButton
+            className="edit-button"
+            icon="IconPen"
+            onClick={onEdit}
+            variant="MINIMAL"
+            intent="PRIMARY"
+          />
         ) : null}
       </div>
 
-      {fullName !== '' ? (
-        <UiText className="fullname">{fullName}</UiText>
-      ) : null}
+      <div className="infos">
+        {fullName !== '' ? (
+          <UiText className="fullname" alt="Full name" title={fullName}>
+            {fullName}
+          </UiText>
+        ) : null}
 
-      <Text className="name">@{name}</Text>
+        <Text className="name" alt="Username" title={name}>
+          @{name}
+        </Text>
+
+        <Text className="following" alt="Following" title="Following">
+          <span>{profile.following}</span> following
+        </Text>
+
+        <Text className="followers" alt="Followers" title="Followers">
+          <span>{profile.followers}</span> followers
+        </Text>
+      </div>
+
+      <div className="description">
+        <Text alt="Description" title={description}>
+          {description}
+        </Text>
+      </div>
     </StyledHeader>
   )
 }
