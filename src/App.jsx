@@ -1,11 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
 
+// Hooks
+import useQueryLogout from './hooks/useQueryLogout'
+
 // Components
 import { Switch } from 'react-router-dom'
 import Navigation from './components/layout/Navigation'
 import { AuthProvider } from './contexts/auth'
 import { AnimatePresence } from 'framer-motion'
+import PublicRoute from './components/utils/PrivateRoute'
+import PrivateRoute from './components/utils/PublicRoute'
 
 // Views
 import Landing from './views/Landing'
@@ -13,9 +18,6 @@ import Register from './views/Register'
 import Login from './views/Login'
 import Profile from './views/Profile'
 import Settings from './views/Settings'
-import PublicRoute from './components/utils/PrivateRoute'
-import PrivateRoute from './components/utils/PublicRoute'
-import useQueryLogout from './hooks/useQueryLogout'
 
 const StyledApp = styled.div`
   display: flex;
@@ -36,7 +38,7 @@ const Routes = () => {
 
         <PublicRoute restricted={true} path="/register" component={Register} />
 
-        <PrivateRoute path="/profile" component={Profile} />
+        <PrivateRoute path="/profile/:id" component={Profile} />
 
         <PrivateRoute path="/settings" component={Settings} />
 

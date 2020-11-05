@@ -50,7 +50,7 @@ const defaultState = {
   url: '',
 }
 
-const ProfileForm = () => {
+const ProfileForm = ({ onSave }) => {
   const { profile, loading, updateProfile, updateAvatar } = useProfile()
   const [avatar, setAvatar] = React.useState([])
 
@@ -61,6 +61,8 @@ const ProfileForm = () => {
 
   const onSubmit = async (payload) => {
     await updateProfile(payload)
+
+    if (onSave) onSave(payload)
   }
 
   const handleAvatarUpload = async (payload) => {

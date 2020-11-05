@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import { theme } from '@heetch/flamingo-react'
+import { Link } from 'react-router-dom'
 
 // Assets
 import Logo from '../../assets/images/logo.svg'
-import { Link } from 'react-router-dom'
 
 const StyledTitle = styled.div`
   display: flex;
@@ -28,7 +28,7 @@ const Title = () => (
   <Link to="/">
     <StyledTitle>
       <span alt="logo" role="img">
-        <img src={Logo} alt="Curare Logo" />
+        <img src={Logo} alt="Curare logo" />
       </span>
       Curare
     </StyledTitle>

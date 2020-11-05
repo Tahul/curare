@@ -48,6 +48,7 @@ const AuthReducer = (initialState, action) => {
 
       return {
         ...defaultState,
+        isLoggedIn: false,
       }
     default:
       throw new Error(`Unhandled action type: ${action.type}`)
