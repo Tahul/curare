@@ -63,7 +63,7 @@ const StyledHeader = styled.div`
 
   .description {
     width: 100%;
-    margin-top: ${theme.space.l};
+    margin-top: ${theme.space.m};
   }
 `
 

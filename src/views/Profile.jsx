@@ -9,7 +9,6 @@ import { useAuth } from '../contexts/auth'
 import ProfileForm from '../components/profile/ProfileForm'
 import Page from '../components/layout/Page'
 import Header from '../components/feed/Header'
-import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion'
 
 const StyledProfile = styled.div``
 

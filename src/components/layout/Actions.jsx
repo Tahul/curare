@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { Button, IconButton, theme } from '@heetch/flamingo-react'
 import { Link } from 'react-router-dom'
 import { useAuth, useAuthState } from '../../contexts/auth'
+import { motion } from 'framer-motion'
 
 const StyledActions = styled.div`
   height: 100%;
@@ -21,8 +22,18 @@ const StyledActions = styled.div`
   }
 `
 
+const AnimateActions = ({ children }) => (
+  <motion.div
+    initial={{ opacity: 0.25, x: 50 }}
+    animate={{ opacity: 1, x: 0 }}
+    exit={{ opacity: 0, x: 50 }}
+  >
+    {children}
+  </motion.div>
+)
+
 const GuestActions = () => (
-  <div>
+  <AnimateActions>
     <Link to="/login" tabIndex={0}>
       <Button>Login</Button>
     </Link>
@@ -30,14 +41,14 @@ const GuestActions = () => (
     <Link to="/register" tabIndex={1}>
       <Button>Register</Button>
     </Link>
-  </div>
+  </AnimateActions>
 )
 
 const LoggedInActions = () => {
   const [auth] = useAuth()
 
   return (
-    <div>
+    <AnimateActions>
       <Link to={`/profile/${auth.name}`} tabIndex={0}>
         <IconButton icon="IconUser" />
       </Link>
@@ -45,7 +56,7 @@ const LoggedInActions = () => {
       <Link to="/settings" tabIndex={1}>
         <IconButton icon="IconGear" />
       </Link>
-    </div>
+    </AnimateActions>
   )
 }
 

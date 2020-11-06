@@ -16,7 +16,6 @@ import {
   UploaderField,
 } from '@heetch/flamingo-react'
 import { Field, Form } from 'react-final-form'
-import { motion } from 'framer-motion'
 
 const validationSchema = {
   field: {
