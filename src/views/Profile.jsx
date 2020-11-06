@@ -9,6 +9,7 @@ import { useAuth } from '../contexts/auth'
 import ProfileForm from '../components/profile/ProfileForm'
 import Page from '../components/layout/Page'
 import Header from '../components/feed/Header'
+import { motion } from 'framer-motion'
 
 const StyledProfile = styled.div``
 
@@ -30,17 +31,29 @@ const Profile = ({ match }) => {
   }
 
   return (
-    <Page>
+    <Page animated={false}>
       <StyledProfile>
-        {edit && <ProfileForm onSave={onProfileSave} />}
-
-        {!edit && (
-          <Header
-            id={id}
-            profile={profile}
-            editable={editable}
-            onEdit={onToggleEdit}
-          />
+        {edit ? (
+          <motion.div
+            key="form"
+            initial={{ opacity: 0.25, rotateY: -90 }}
+            animate={{ opacity: 1, rotateY: 0 }}
+          >
+            <ProfileForm onSave={onProfileSave}></ProfileForm>
+          </motion.div>
+        ) : (
+          <motion.div
+            key="profile"
+            initial={{ opacity: 0.25, rotateY: 90 }}
+            animate={{ opacity: 1, rotateY: 0 }}
+          >
+            <Header
+              id={id}
+              profile={profile}
+              editable={editable}
+              onEdit={onToggleEdit}
+            />
+          </motion.div>
         )}
       </StyledProfile>
     </Page>
