@@ -9,6 +9,7 @@ import { useAuth } from '../contexts/auth'
 import ProfileForm from '../components/profile/ProfileForm'
 import Page from '../components/layout/Page'
 import Header from '../components/feed/Header'
+import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion'
 
 const StyledProfile = styled.div``
 
@@ -32,9 +33,9 @@ const Profile = ({ match }) => {
   return (
     <Page>
       <StyledProfile>
-        {edit ? (
-          <ProfileForm onSave={onProfileSave} />
-        ) : (
+        {edit && <ProfileForm onSave={onProfileSave} />}
+
+        {!edit && (
           <Header
             id={id}
             profile={profile}

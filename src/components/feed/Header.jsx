@@ -1,4 +1,4 @@
-import { IconButton, Text, theme, UiText } from '@heetch/flamingo-react'
+import { Card, IconButton, Text, theme, UiText } from '@heetch/flamingo-react'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -62,6 +62,7 @@ const StyledHeader = styled.div`
   }
 
   .description {
+    width: 100%;
     margin-top: ${theme.space.l};
   }
 `
@@ -119,11 +120,11 @@ const Header = ({ id, profile, loading, editable, onEdit }) => {
         </Text>
       </div>
 
-      <div className="description">
+      <Card className="description" size="s">
         <Text alt="Description" title={description}>
           {description}
         </Text>
-      </div>
+      </Card>
     </StyledHeader>
   )
 }
