@@ -38,6 +38,8 @@ const Routes = () => {
 
         <PublicRoute restricted={true} path="/register" component={Register} />
 
+        <PrivateRoute path="/profile/:id/:collectionId" component={Profile} />
+
         <PrivateRoute path="/profile/:id" component={Profile} />
 
         <PrivateRoute path="/settings" component={Settings} />

@@ -50,8 +50,6 @@ API.interceptors.response.use(
         })
       }
     }
-
-    return error
   },
 )
 

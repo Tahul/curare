@@ -63,7 +63,7 @@ const StyledHeader = styled.div`
 
   .description {
     width: 100%;
-    margin-top: ${theme.space.m};
+    margin-top: ${theme.space.xl};
   }
 `
 
@@ -94,8 +94,8 @@ const Header = ({ id, profile, loading, editable, onEdit }) => {
             className="edit-button"
             icon="IconPen"
             onClick={onEdit}
-            variant="MINIMAL"
-            intent="PRIMARY"
+            variant="minimal"
+            intent="primary"
           />
         ) : null}
       </div>

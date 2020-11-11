@@ -6,16 +6,16 @@ import authReducer from './reducer'
 // Data from localStorage
 const name = localStorage.getItem('curare_name')
   ? localStorage.getItem('curare_name')
-  : ''
+  : null
 
 const email = localStorage.getItem('curare_email')
   ? localStorage.getItem('curare_email')
-  : ''
+  : null
 
 // Default state
 export const defaultState = {
-  name: null || name,
-  email: null || email,
+  name,
+  email,
   isLoggedIn: !!(name && email),
   loading: false,
   error: false,
