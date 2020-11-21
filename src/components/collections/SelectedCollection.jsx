@@ -1,33 +1,25 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
+import { theme } from '@heetch/flamingo-react'
 
 // Components
-import { Item, theme, UiText } from '@heetch/flamingo-react'
-import { LazyImageFull } from 'react-lazy-images'
-
-// Assets
-import Fill from '../../assets/images/fill.png'
+import CollectionItem from './CollectionItem'
+import useLinks from '../../hooks/useLinks'
+import LinkItem from '../links/LinkItem'
 
 const StyledSelectedCollection = styled.div`
-  margin-top: ${theme.space.l};
-
-  .itemContent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    img {
-      margin-right: ${theme.space.l};
-      width: 3rem;
-      height: 3rem;
-      object-fit: cover;
-      border-radius: 50%;
-    }
-  }
+  margin-bottom: ${theme.space.l};
 `
 
+const list = {
+  visible: { opacity: 1 },
+  hidden: { opacity: 0 },
+}
+
 const SelectedCollection = ({ collection, onClose, onClick }) => {
+  const [links] = useLinks()
+
   const handleClose = () => {
     onClose()
   }
@@ -40,29 +32,19 @@ const SelectedCollection = ({ collection, onClose, onClick }) => {
       transition={{ duration: 0.2 }}
     >
       <StyledSelectedCollection>
-        <Item onClick={onClick}>
-          <div className="itemContent">
-            <LazyImageFull
-              src="https://source.unsplash.com/random/48x48"
-              alt={`${collection.title}`}
-              title={`${collection.title}`}
-            >
-              {({ imageProps, imageState, ref }) => (
-                <img // eslint-disable-line
-                  {...imageProps}
-                  ref={ref}
-                  src={
-                    imageState === imageState.LoadSuccess
-                      ? imageProps.src
-                      : Fill
-                  }
-                />
-              )}
-            </LazyImageFull>
+        <motion.ul initial="hidden" animate="visible" variants={list}>
+          <CollectionItem
+            collection={collection}
+            i={0}
+            icon={'IconArrowLeft'}
+            onClick={handleClose}
+            valueText={'Back'}
+          />
 
-            <UiText>{collection.title}</UiText>
-          </div>
-        </Item>
+          {links.map((link, i) => (
+            <LinkItem key={link.id} link={link} i={i} />
+          ))}
+        </motion.ul>
       </StyledSelectedCollection>
     </motion.div>
   )

@@ -33,9 +33,17 @@ const Profile = ({ match }) => {
   const [collections, setCollections] = useCollections(id || undefined)
   const [selectedCollection, setSelectedCollection] = React.useState(null)
 
-  if (!collectionId && selectedCollection) {
-    setSelectedCollection(null)
-  }
+  React.useEffect(() => {
+    if (!collectionId && selectedCollection) {
+      setSelectedCollection(null)
+    }
+
+    if (collectionId && !selectedCollection) {
+      setSelectedCollection(
+        collections.find((item) => item.slug === collectionId),
+      )
+    }
+  }, [selectedCollection, collectionId, collections])
 
   /**
    * Toggle form
@@ -73,7 +81,9 @@ const Profile = ({ match }) => {
     setSelectedCollection(collection)
 
     history.push(
-      `/profile/${profile.name}${collection?.id ? '/' + collection.id : ''}`,
+      `/profile/${profile.name}${
+        collection?.slug ? '/' + collection.slug : ''
+      }`,
     )
   }
 

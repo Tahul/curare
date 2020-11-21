@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
 // Components
-import { Item, theme, UiText } from '@heetch/flamingo-react'
+import { Item, Text, theme, UiText } from '@heetch/flamingo-react'
 import { LazyImageFull, ImageState } from 'react-lazy-images'
 
 // Assets
@@ -37,9 +37,17 @@ const item = {
   hidden: { opacity: 0.25, y: 100 },
 }
 
-const CollectionItem = ({ collection, i, onOpen }) => {
-  const onClick = () => {
-    onOpen(collection, i)
+const CollectionItem = ({
+  collection,
+  i,
+  onClick,
+  icon = 'IconArrowRight',
+  valueText = '',
+}) => {
+  const handleClick = () => {
+    if (onClick) {
+      onClick(collection, i)
+    }
   }
 
   return (
@@ -51,7 +59,7 @@ const CollectionItem = ({ collection, i, onOpen }) => {
       whileTap={{ scale: 1 }}
     >
       <StyledCollectionItem>
-        <Item onClick={onClick}>
+        <Item onClick={handleClick} valueIcon={icon} value={valueText}>
           <div className="itemContent">
             <LazyImageFull
               src="https://source.unsplash.com/random/48x48"
@@ -71,7 +79,10 @@ const CollectionItem = ({ collection, i, onOpen }) => {
               )}
             </LazyImageFull>
 
-            <UiText>{collection.title}</UiText>
+            <div className="textContent">
+              <UiText variant="contentBold">{collection.title}</UiText>
+              <Text type="subContent">{collection.linksCount} links</Text>
+            </div>
           </div>
         </Item>
       </StyledCollectionItem>

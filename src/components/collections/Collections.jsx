@@ -24,7 +24,7 @@ const Collections = ({
 
   return (
     <div>
-      {selectedCollection ? (
+      {selectedCollection && selectedCollectionId ? (
         <motion.div initial={{ y: 100 }} animate={{ y: 0 }}>
           <SelectedCollection
             id={selectedCollectionId}
@@ -40,7 +40,7 @@ const Collections = ({
               key={collection.id}
               i={i}
               collection={collection}
-              onOpen={onOpen}
+              onClick={onOpen}
             />
           ))}
         </motion.ul>
