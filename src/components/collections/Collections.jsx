@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 // Components
 import CollectionItem from './CollectionItem'
 import SelectedCollection from './SelectedCollection'
+import useCollections from '../../hooks/useCollections'
 
 const list = {
   visible: { opacity: 1 },
@@ -11,13 +12,13 @@ const list = {
 }
 
 const Collections = ({
-  collections,
-  onCollectionsSave,
-  editable,
+  userId,
   selectedCollection,
   selectedCollectionId,
   onSelectCollection,
 }) => {
+  const { collections } = useCollections(userId)
+
   const onOpen = (collection, i) => {
     onSelectCollection(collection)
   }

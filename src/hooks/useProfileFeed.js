@@ -2,12 +2,13 @@ import { useState, useEffect, useCallback } from 'react'
 import { getProfile as getRemoteProfile } from '../api/profile'
 
 const initialState = {
-  first_name: '',
-  last_name: '',
-  description: '',
-  url: '',
-  avatar_url: '',
-  name: '',
+  first_name: null,
+  last_name: null,
+  description: null,
+  url: null,
+  avatar_url: null,
+  name: null,
+  user_id: null,
 }
 
 const useProfileFeed = (id = null) => {
