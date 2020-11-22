@@ -122,7 +122,9 @@ const Header = ({ id, profile, loading, editable, onEdit }) => {
 
       <Card className="description" size="s">
         <Text alt="Description" title={description}>
-          {description}
+          {description && description !== ''
+            ? description
+            : 'No description yet.'}
         </Text>
       </Card>
     </StyledHeader>

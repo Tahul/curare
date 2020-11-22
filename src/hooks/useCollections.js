@@ -61,7 +61,9 @@ const useCollections = (userId = null) => {
     let isMounted = true
 
     const fetchCollections = async () => {
-      await getCollections(userId, isMounted)
+      if (userId) {
+        await getCollections(userId, isMounted)
+      }
     }
 
     fetchCollections()

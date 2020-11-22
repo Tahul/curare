@@ -25,14 +25,22 @@ const Profile = ({ match }) => {
   const [auth] = useAuth()
 
   // Profile
-  const { profile, setProfile } = useProfileFeed(id || null)
+  const { profile, setProfile, loading: profileLoading } = useProfileFeed(
+    id || null,
+  )
   const [edit, setEdit] = React.useState(false)
   const editable = profile.name === auth.name
 
   // Collections
-  const { collections, setCollections } = useCollections(
-    profile.user_id || null,
-  )
+  const {
+    collections,
+    setCollections,
+    createCollection,
+    updateCollection,
+    deleteCollection,
+    loading: collectionLoading,
+  } = useCollections(profile.user_id || null)
+
   const [selectedCollection, setSelectedCollection] = React.useState(null)
 
   React.useEffect(() => {
@@ -122,6 +130,10 @@ const Profile = ({ match }) => {
                 onSelectCollection={onSetSelectedCollection}
                 selectedCollection={selectedCollection}
                 selectedCollectionId={collectionId}
+                createCollection={createCollection}
+                updateCollection={updateCollection}
+                deleteCollection={deleteCollection}
+                loading={collectionLoading}
               />
             ) : null}
           </motion.div>

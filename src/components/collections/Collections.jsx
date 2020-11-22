@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 // Components
 import CollectionItem from './CollectionItem'
 import SelectedCollection from './SelectedCollection'
-import useCollections from '../../hooks/useCollections'
+import CreateCollection from './CreateCollection'
 
 const list = {
   visible: { opacity: 1 },
@@ -12,15 +12,25 @@ const list = {
 }
 
 const Collections = ({
-  userId,
+  loading,
+  collections,
   selectedCollection,
   selectedCollectionId,
   onSelectCollection,
+  createCollection,
+  updateCollection,
+  deleteCollection,
 }) => {
-  const { collections } = useCollections(userId)
-
   const onOpen = (collection, i) => {
     onSelectCollection(collection)
+  }
+
+  const hanldeScrollBottom = () => {
+    setTimeout(() => {
+      document
+        .querySelector('body')
+        .scrollIntoView({ behavior: 'smooth', block: 'end' })
+    }, 100)
   }
 
   return (
@@ -32,6 +42,7 @@ const Collections = ({
             key={selectedCollectionId}
             collection={selectedCollection}
             onClose={onSelectCollection}
+            onFormOpen={hanldeScrollBottom}
           />
         </motion.div>
       ) : (
@@ -46,6 +57,12 @@ const Collections = ({
           ))}
         </motion.ul>
       )}
+
+      <CreateCollection
+        createCollection={createCollection}
+        loading={loading}
+        onFormOpen={hanldeScrollBottom}
+      />
     </div>
   )
 }

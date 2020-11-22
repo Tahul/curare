@@ -50,7 +50,7 @@ const LoginForm = () => {
     await loginAction(authDispatch, payload)
   }
 
-  const validate = (values) => validator.validateForm(values)
+  const validate = (values) => validator.validateForm
 
   return (
     <Form

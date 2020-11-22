@@ -10,6 +10,16 @@ import LinkItem from '../links/LinkItem'
 
 const StyledSelectedCollection = styled.div`
   margin-bottom: ${theme.space.l};
+
+  .selected {
+    margin-bottom: calc(${theme.space.xxl} + ${theme.space.s});
+
+    .f-Item {
+      &:hover {
+        background-color: white;
+      }
+    }
+  }
 `
 
 const list = {
@@ -17,7 +27,7 @@ const list = {
   hidden: { opacity: 0 },
 }
 
-const SelectedCollection = ({ collection, onClose, onClick }) => {
+const SelectedCollection = ({ collection, onClose }) => {
   const [links] = useLinks()
 
   const handleClose = () => {
@@ -34,11 +44,12 @@ const SelectedCollection = ({ collection, onClose, onClick }) => {
       <StyledSelectedCollection>
         <motion.ul initial="hidden" animate="visible" variants={list}>
           <CollectionItem
+            className="selected"
+            selected={true}
             collection={collection}
             i={0}
-            icon={'IconArrowLeft'}
+            icon={false}
             onClick={handleClose}
-            valueText={'Back'}
           />
 
           {links.map((link, i) => (

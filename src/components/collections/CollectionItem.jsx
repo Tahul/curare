@@ -3,13 +3,14 @@ import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
 // Components
-import { Item, Text, theme, UiText } from '@heetch/flamingo-react'
+import { Button, Item, Text, theme, UiText } from '@heetch/flamingo-react'
 import { LazyImageFull, ImageState } from 'react-lazy-images'
 
 // Assets
 import Fill from '../../assets/images/fill.png'
 
 const StyledCollectionItem = styled.div`
+  position: relative;
   margin-top: ${theme.space.xl};
 
   .itemContent {
@@ -24,6 +25,12 @@ const StyledCollectionItem = styled.div`
       object-fit: cover;
       border-radius: 50%;
     }
+  }
+
+  .actions {
+    position: absolute;
+    margin-top: calc(0rem - ${theme.space.xl});
+    right: ${theme.space.xl};
   }
 `
 const item = {
@@ -43,6 +50,8 @@ const CollectionItem = ({
   onClick,
   icon = 'IconArrowRight',
   valueText = '',
+  selected = false,
+  ...props
 }) => {
   const handleClick = () => {
     if (onClick) {
@@ -52,14 +61,19 @@ const CollectionItem = ({
 
   return (
     <motion.li
+      {...props}
       custom={i}
       animate="visible"
       variants={item}
-      whileHover={{ scale: 1.03 }}
-      whileTap={{ scale: 1 }}
+      whileHover={!selected ? { scale: 1.03 } : null}
+      whileTap={!selected ? { scale: 1 } : null}
     >
-      <StyledCollectionItem>
-        <Item onClick={handleClick} valueIcon={icon} value={valueText}>
+      <StyledCollectionItem className={{ selected }}>
+        <Item
+          onClick={handleClick}
+          valueIcon={icon || undefined}
+          value={valueText}
+        >
           <div className="itemContent">
             <LazyImageFull
               src="https://source.unsplash.com/random/48x48"
@@ -84,6 +98,13 @@ const CollectionItem = ({
               <Text type="subContent">{collection.linksCount} links</Text>
             </div>
           </div>
+
+          {selected ? (
+            <div className="actions">
+              <Button>Edit</Button>
+              <Button>Delete</Button>
+            </div>
+          ) : null}
         </Item>
       </StyledCollectionItem>
     </motion.li>
