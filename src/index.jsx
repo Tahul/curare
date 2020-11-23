@@ -7,7 +7,7 @@ import App from './App'
 
 // Libraries
 import '@heetch/flamingo-react/dist/styles.css'
-import 'normalize.css'
+import 'sanitize.css'
 import './index.css'
 import 'toasted-notes/src/styles.css'
 

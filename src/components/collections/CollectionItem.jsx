@@ -11,7 +11,7 @@ import Fill from '../../assets/images/fill.png'
 
 const StyledCollectionItem = styled.div`
   position: relative;
-  margin-top: ${theme.space.xl};
+  margin-top: ${theme.space.l};
 
   .itemContent {
     display: flex;
@@ -31,6 +31,11 @@ const StyledCollectionItem = styled.div`
     position: absolute;
     margin-top: calc(0rem - ${theme.space.xl});
     right: ${theme.space.xl};
+    display: flex;
+
+    div {
+      margin-left: ${theme.space.m};
+    }
   }
 `
 const item = {
@@ -51,6 +56,8 @@ const CollectionItem = ({
   icon = 'IconArrowRight',
   valueText = '',
   selected = false,
+  onEdit,
+  onDelete,
   ...props
 }) => {
   const handleClick = () => {
@@ -101,8 +108,12 @@ const CollectionItem = ({
 
           {selected ? (
             <div className="actions">
-              <Button>Edit</Button>
-              <Button>Delete</Button>
+              <motion.div whileHover={{ scale: 1.025 }} whileTap={{ scale: 1 }}>
+                <Button onClick={onEdit}>Edit</Button>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.025 }} whileTap={{ scale: 1 }}>
+                <Button onClick={onDelete}>Delete</Button>
+              </motion.div>
             </div>
           ) : null}
         </Item>

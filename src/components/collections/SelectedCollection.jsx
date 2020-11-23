@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
-import { theme } from '@heetch/flamingo-react'
+import { Icon, Text, theme, UiText } from '@heetch/flamingo-react'
 
 // Components
 import CollectionItem from './CollectionItem'
@@ -11,10 +11,29 @@ import LinkItem from '../links/LinkItem'
 const StyledSelectedCollection = styled.div`
   margin-bottom: ${theme.space.l};
 
+  .back {
+    display: flex;
+    align-items: center;
+    margin-top: ${theme.space.l};
+    cursor: pointer;
+
+    &:hover {
+      color: ${theme.color.element.tertiary};
+    }
+
+    .f-Icon {
+      margin-right: ${theme.space.s};
+    }
+  }
+
   .selected {
     margin-bottom: calc(${theme.space.xxl} + ${theme.space.s});
 
     .f-Item {
+      .f-Icon {
+        display: none;
+      }
+
       &:hover {
         background-color: white;
       }
@@ -30,7 +49,7 @@ const list = {
 const SelectedCollection = ({ collection, onClose }) => {
   const [links] = useLinks()
 
-  const handleClose = () => {
+  const handleBack = () => {
     onClose()
   }
 
@@ -42,14 +61,17 @@ const SelectedCollection = ({ collection, onClose }) => {
       transition={{ duration: 0.2 }}
     >
       <StyledSelectedCollection>
+        <Text className="back" variant="contentBold" onClick={handleBack}>
+          <Icon icon="IconArrowLeft" />
+          Go back to collections
+        </Text>
+
         <motion.ul initial="hidden" animate="visible" variants={list}>
           <CollectionItem
             className="selected"
             selected={true}
             collection={collection}
             i={0}
-            icon={false}
-            onClick={handleClose}
           />
 
           {links.map((link, i) => (

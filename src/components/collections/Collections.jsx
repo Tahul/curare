@@ -55,14 +55,14 @@ const Collections = ({
               onClick={onOpen}
             />
           ))}
+
+          <CreateCollection
+            createCollection={createCollection}
+            loading={loading}
+            onFormOpen={hanldeScrollBottom}
+          />
         </motion.ul>
       )}
-
-      <CreateCollection
-        createCollection={createCollection}
-        loading={loading}
-        onFormOpen={hanldeScrollBottom}
-      />
     </div>
   )
 }
