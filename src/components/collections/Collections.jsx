@@ -43,6 +43,9 @@ const Collections = ({
             collection={selectedCollection}
             onClose={onSelectCollection}
             onFormOpen={hanldeScrollBottom}
+            updateCollection={updateCollection}
+            deleteCollection={deleteCollection}
+            loading={loading}
           />
         </motion.div>
       ) : (

@@ -58,6 +58,7 @@ const CollectionItem = ({
   selected = false,
   onEdit,
   onDelete,
+  loading,
   ...props
 }) => {
   const handleClick = () => {
@@ -109,10 +110,14 @@ const CollectionItem = ({
           {selected ? (
             <div className="actions">
               <motion.div whileHover={{ scale: 1.025 }} whileTap={{ scale: 1 }}>
-                <Button onClick={onEdit}>Edit</Button>
+                <Button loading={loading} onClick={onEdit}>
+                  Edit
+                </Button>
               </motion.div>
               <motion.div whileHover={{ scale: 1.025 }} whileTap={{ scale: 1 }}>
-                <Button onClick={onDelete}>Delete</Button>
+                <Button loading={loading} onClick={onDelete}>
+                  Delete
+                </Button>
               </motion.div>
             </div>
           ) : null}

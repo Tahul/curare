@@ -46,11 +46,27 @@ const list = {
   hidden: { opacity: 0 },
 }
 
-const SelectedCollection = ({ collection, onClose }) => {
+const SelectedCollection = ({
+  collection,
+  onClose,
+  loading,
+  deleteCollection,
+  updateCollection,
+}) => {
   const [links] = useLinks()
 
   const handleBack = () => {
     onClose()
+  }
+
+  const handleUpdate = async (payload) => {
+    await updateCollection(payload)
+
+    onClose()
+  }
+
+  const handleDelete = async ({ id }) => {
+    await deleteCollection({ id })
   }
 
   return (
@@ -72,6 +88,9 @@ const SelectedCollection = ({ collection, onClose }) => {
             selected={true}
             collection={collection}
             i={0}
+            loading={loading}
+            onDelete={handleDelete}
+            onUpdate={handleUpdate}
           />
 
           {links.map((link, i) => (
