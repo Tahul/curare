@@ -67,6 +67,10 @@ const CollectionItem = ({
     }
   }
 
+  const handleDelete = () => {
+    onDelete({ id: collection.id })
+  }
+
   return (
     <motion.li
       {...props}
@@ -110,12 +114,12 @@ const CollectionItem = ({
           {selected ? (
             <div className="actions">
               <motion.div whileHover={{ scale: 1.025 }} whileTap={{ scale: 1 }}>
-                <Button loading={loading} onClick={onEdit}>
+                <Button isLoading={loading} onClick={onEdit}>
                   Edit
                 </Button>
               </motion.div>
               <motion.div whileHover={{ scale: 1.025 }} whileTap={{ scale: 1 }}>
-                <Button loading={loading} onClick={onDelete}>
+                <Button isLoading={loading} onClick={handleDelete}>
                   Delete
                 </Button>
               </motion.div>

@@ -45,7 +45,7 @@ const useCollections = (userId = null) => {
 
   const deleteCollection = async ({ id }) => {
     try {
-      await destroy(id)
+      await destroy({ id })
 
       setCollections(
         collections.filter((collection) => {

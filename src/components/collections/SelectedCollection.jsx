@@ -1,12 +1,13 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
-import { Icon, Text, theme, UiText } from '@heetch/flamingo-react'
+import { Icon, Text, theme } from '@heetch/flamingo-react'
 
 // Components
 import CollectionItem from './CollectionItem'
 import useLinks from '../../hooks/useLinks'
 import LinkItem from '../links/LinkItem'
+import { useHistory } from 'react-router-dom'
 
 const StyledSelectedCollection = styled.div`
   margin-bottom: ${theme.space.l};
@@ -53,20 +54,28 @@ const SelectedCollection = ({
   deleteCollection,
   updateCollection,
 }) => {
+  const [edit, setEdit] = React.useState(false)
   const [links] = useLinks()
+  const history = useHistory()
 
   const handleBack = () => {
     onClose()
   }
 
-  const handleUpdate = async (payload) => {
-    await updateCollection(payload)
+  const handleEdit = () => {
+    setEdit(!edit)
+  }
+
+  const handleUpdate = async ({ id, title }) => {
+    await updateCollection({ id, title })
 
     onClose()
   }
 
   const handleDelete = async ({ id }) => {
     await deleteCollection({ id })
+
+    history.goBack()
   }
 
   return (
@@ -90,7 +99,7 @@ const SelectedCollection = ({
             i={0}
             loading={loading}
             onDelete={handleDelete}
-            onUpdate={handleUpdate}
+            onEdit={handleEdit}
           />
 
           {links.map((link, i) => (
