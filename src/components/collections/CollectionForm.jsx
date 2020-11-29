@@ -21,14 +21,7 @@ const StyledCollectionForm = styled.div`
 
 const validationSchema = {
   field: {
-    email: [Validators.required.validator, Validators.email.validator],
-    password: [
-      Validators.required.validator,
-      {
-        validator: Validators.minLength,
-        customArgs: { length: 6 },
-      },
-    ],
+    title: [Validators.required.validator],
   },
 }
 
@@ -36,9 +29,9 @@ const validator = createFinalFormValidation(validationSchema)
 
 const defaultState = {}
 
-const CollectionForm = ({ loading, onCreateCollection, onCancel }) => {
-  const onSubmit = async (payload) => {
-    await onCreateCollection(payload)
+const CollectionForm = ({ collection = {}, loading, onSubmit, onCancel }) => {
+  const onSubmitCollection = async (payload) => {
+    await onSubmit(payload)
 
     onCancel()
   }
@@ -47,10 +40,11 @@ const CollectionForm = ({ loading, onCreateCollection, onCancel }) => {
     onCancel()
   }
 
-  const validate = (values) => validator.validateForm
+  const validate = (values) => validator.validateForm(values)
 
   const initialValues = {
     ...defaultState,
+    ...collection,
   }
 
   return (
@@ -58,7 +52,7 @@ const CollectionForm = ({ loading, onCreateCollection, onCancel }) => {
       <Form
         validate={validate}
         initialValues={initialValues}
-        onSubmit={onSubmit}
+        onSubmit={onSubmitCollection}
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>
             <Field name="title" type="text">

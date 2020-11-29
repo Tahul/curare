@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 // Components
-import { Button, Card, theme } from '@heetch/flamingo-react'
+import { Button, theme } from '@heetch/flamingo-react'
 import { motion } from 'framer-motion'
 import CollectionForm from './CollectionForm'
 
@@ -59,7 +59,7 @@ const CreateCollection = ({ loading, createCollection, onFormOpen }) => {
         <motion.div variants={formVariants} initial="hidden" animate="visible">
           <CollectionForm
             onCancel={handleClose}
-            onCreateCollection={createCollection}
+            onSubmit={createCollection}
             loading={loading}
           />
         </motion.div>

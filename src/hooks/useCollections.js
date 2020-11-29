@@ -8,26 +8,46 @@ const useCollections = (userId = null) => {
   const getCollections = useCallback(async (id = null, isMounted = true) => {
     if (isMounted) setLoading(true)
 
+    let collections
+
     try {
-      setCollections([...(await index(id))])
+      collections = await index(id)
+
+      setCollections([...collections])
     } catch (e) {
       console.log(e)
     }
 
     if (isMounted) setLoading(false)
+
+    return collections
   }, [])
 
   const createCollection = async ({ title }) => {
+    setLoading(true)
+
+    let collection
+
     try {
-      setCollections([...collections, await store({ title })])
+      collection = await store({ title })
+
+      setCollections([...collections, collection])
     } catch (e) {
       console.log(e)
     }
+
+    setLoading(false)
+
+    return collection
   }
 
   const updateCollection = async ({ id, title }) => {
+    setLoading(true)
+
+    let updatedCollection
+
     try {
-      const updatedCollection = await update({ id, title })
+      updatedCollection = await update({ id, title })
 
       setCollections(
         collections.map((collection) => {
@@ -41,6 +61,10 @@ const useCollections = (userId = null) => {
     } catch (e) {
       console.log(e)
     }
+
+    setLoading(false)
+
+    return updatedCollection
   }
 
   const deleteCollection = async ({ id }) => {
@@ -52,9 +76,13 @@ const useCollections = (userId = null) => {
           return collection.id !== id
         }),
       )
+
+      return { id }
     } catch (e) {
       console.log(e)
     }
+
+    return false
   }
 
   useEffect(() => {

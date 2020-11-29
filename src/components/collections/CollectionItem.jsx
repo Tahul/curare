@@ -61,6 +61,9 @@ const CollectionItem = ({
   loading,
   ...props
 }) => {
+  const [isMounted, setIsMounted] = React.useState(false)
+  const [isDeleting, setIsDeleting] = React.useState(false)
+
   const handleClick = () => {
     if (onClick) {
       onClick(collection, i)
@@ -68,8 +71,22 @@ const CollectionItem = ({
   }
 
   const handleDelete = () => {
-    onDelete({ id: collection.id })
+    if (isDeleting) {
+      return onDelete({ id: collection.id })
+    } else {
+      setIsDeleting(true)
+
+      setTimeout(() => {
+        if (isMounted) setIsDeleting(false)
+      }, 1000)
+    }
   }
+
+  React.useEffect(() => {
+    setIsMounted(true)
+
+    return () => setIsMounted(false)
+  }, [])
 
   return (
     <motion.li
@@ -88,9 +105,9 @@ const CollectionItem = ({
         >
           <div className="itemContent">
             <LazyImageFull
-              src="https://source.unsplash.com/random/48x48"
-              alt={`${collection.title}`}
-              title={`${collection.title}`}
+              src={collection.image_url || Fill}
+              alt={collection.title}
+              title={collection.title}
             >
               {({ imageProps, imageState, ref }) => (
                 <img // eslint-disable-line
@@ -107,22 +124,19 @@ const CollectionItem = ({
 
             <div className="textContent">
               <UiText variant="contentBold">{collection.title}</UiText>
-              <Text type="subContent">{collection.linksCount} links</Text>
+              <Text type="subContent">{collection.links_count} links</Text>
             </div>
           </div>
 
           {selected ? (
             <div className="actions">
-              <motion.div whileHover={{ scale: 1.025 }} whileTap={{ scale: 1 }}>
-                <Button isLoading={loading} onClick={onEdit}>
-                  Edit
-                </Button>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.025 }} whileTap={{ scale: 1 }}>
-                <Button isLoading={loading} onClick={handleDelete}>
-                  Delete
-                </Button>
-              </motion.div>
+              <Button isLoading={loading} onClick={onEdit}>
+                Edit
+              </Button>
+
+              <Button isLoading={loading} onClick={handleDelete}>
+                {isDeleting ? 'Sure?' : 'Delete'}
+              </Button>
             </div>
           ) : null}
         </Item>

@@ -8,6 +8,7 @@ import CollectionItem from './CollectionItem'
 import useLinks from '../../hooks/useLinks'
 import LinkItem from '../links/LinkItem'
 import { useHistory } from 'react-router-dom'
+import CollectionForm from './CollectionForm'
 
 const StyledSelectedCollection = styled.div`
   margin-bottom: ${theme.space.l};
@@ -47,12 +48,25 @@ const list = {
   hidden: { opacity: 0 },
 }
 
+const formVariants = {
+  visible: {
+    opacity: 1,
+    y: 0,
+  },
+  hidden: {
+    opacity: 0.25,
+    y: -50,
+  },
+}
+
 const SelectedCollection = ({
+  userName,
   collection,
   onClose,
   loading,
   deleteCollection,
   updateCollection,
+  onSelectCollection,
 }) => {
   const [edit, setEdit] = React.useState(false)
   const [links] = useLinks()
@@ -62,20 +76,22 @@ const SelectedCollection = ({
     onClose()
   }
 
-  const handleEdit = () => {
+  const toggleEdit = () => {
     setEdit(!edit)
   }
 
   const handleUpdate = async ({ id, title }) => {
-    await updateCollection({ id, title })
+    const collection = await updateCollection({ id, title })
 
-    onClose()
+    onSelectCollection(collection)
+
+    setEdit(false)
   }
 
   const handleDelete = async ({ id }) => {
     await deleteCollection({ id })
 
-    history.goBack()
+    history.push(`/profile/${userName}`)
   }
 
   return (
@@ -99,12 +115,24 @@ const SelectedCollection = ({
             i={0}
             loading={loading}
             onDelete={handleDelete}
-            onEdit={handleEdit}
+            onEdit={toggleEdit}
           />
 
-          {links.map((link, i) => (
-            <LinkItem key={link.id} link={link} i={i} />
-          ))}
+          {!edit ? (
+            links.map((link, i) => <LinkItem key={link.id} link={link} i={i} />)
+          ) : (
+            <motion.div
+              variants={formVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              <CollectionForm
+                collection={collection}
+                onSubmit={handleUpdate}
+                onCancel={toggleEdit}
+              />
+            </motion.div>
+          )}
         </motion.ul>
       </StyledSelectedCollection>
     </motion.div>

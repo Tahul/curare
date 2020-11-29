@@ -119,11 +119,12 @@ const Profile = ({ match }) => {
               profile={profile}
               editable={editable}
               onEdit={onToggleEdit}
+              loading={profileLoading}
             />
 
             {profile?.user_id ? (
               <Collections
-                userId={profile.user_id}
+                userName={profile.name}
                 collections={collections}
                 editable={editable}
                 onCollectionsSave={onCollectionsSave}

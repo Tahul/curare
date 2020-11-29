@@ -12,6 +12,7 @@ const list = {
 }
 
 const Collections = ({
+  userName,
   loading,
   collections,
   selectedCollection,
@@ -21,7 +22,7 @@ const Collections = ({
   updateCollection,
   deleteCollection,
 }) => {
-  const onOpen = (collection, i) => {
+  const onOpen = (collection) => {
     onSelectCollection(collection)
   }
 
@@ -38,6 +39,7 @@ const Collections = ({
       {selectedCollection && selectedCollectionId ? (
         <motion.div initial={{ y: 100 }} animate={{ y: 0 }}>
           <SelectedCollection
+            userName={userName}
             id={selectedCollectionId}
             key={selectedCollectionId}
             collection={selectedCollection}
@@ -45,6 +47,7 @@ const Collections = ({
             onFormOpen={hanldeScrollBottom}
             updateCollection={updateCollection}
             deleteCollection={deleteCollection}
+            onSelectCollection={onSelectCollection}
             loading={loading}
           />
         </motion.div>
@@ -52,6 +55,7 @@ const Collections = ({
         <motion.ul initial="hidden" animate="visible" variants={list}>
           {collections.map((collection, i) => (
             <CollectionItem
+              loading={loading}
               key={collection.id}
               i={i}
               collection={collection}
