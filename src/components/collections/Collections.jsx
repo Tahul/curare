@@ -21,6 +21,7 @@ const Collections = ({
   createCollection,
   updateCollection,
   deleteCollection,
+  updateCollectionImage,
 }) => {
   const onOpen = (collection) => {
     onSelectCollection(collection)
@@ -47,6 +48,7 @@ const Collections = ({
             onFormOpen={hanldeScrollBottom}
             updateCollection={updateCollection}
             deleteCollection={deleteCollection}
+            updateCollectionImage={updateCollectionImage}
             onSelectCollection={onSelectCollection}
             loading={loading}
           />
@@ -65,6 +67,7 @@ const Collections = ({
 
           <CreateCollection
             createCollection={createCollection}
+            updateCollectionImage={updateCollectionImage}
             loading={loading}
             onFormOpen={hanldeScrollBottom}
           />

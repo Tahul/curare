@@ -1,7 +1,7 @@
 import API from './index'
 
 /**
- * Get a user profile (the current logged-in user if no `id`)
+ * Get a user profile (the current logged-in user if no `id`).
  *
  * @param {number | null} id
  */
@@ -12,7 +12,7 @@ export const getProfile = async (id = null) => {
 }
 
 /**
- * Update a user profile data
+ * Update a user profile data.
  *
  * @param {first_name, last_name, description, url} profile
  */
@@ -33,7 +33,7 @@ export const updateProfile = async ({
 }
 
 /**
- * Update a user profile avatar
+ * Update a user profile avatar.
  *
  * @param {File | null} avatar
  */

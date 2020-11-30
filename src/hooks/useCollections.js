@@ -1,10 +1,25 @@
 import { useState, useEffect, useCallback } from 'react'
-import { destroy, index, store, update } from '../api/collections'
+import {
+  destroy,
+  index,
+  store,
+  update,
+  updateImage as updateRemoteImage,
+} from '../api/collections'
 
 const useCollections = (userId = null) => {
   const [loading, setLoading] = useState(false)
-  const [collections, setCollections] = useState([])
+  const [collections, setCollectionsTest] = useState([])
 
+  const setCollections = (...args) => {
+    console.log(args)
+
+    setCollectionsTest(...args)
+  }
+
+  /**
+   * Get all the collections for the current userId.
+   */
   const getCollections = useCallback(async (id = null, isMounted = true) => {
     if (isMounted) setLoading(true)
 
@@ -23,6 +38,11 @@ const useCollections = (userId = null) => {
     return collections
   }, [])
 
+  /**
+   * Create a collection.
+   *
+   * @param {string} collection
+   */
   const createCollection = async ({ title }) => {
     setLoading(true)
 
@@ -41,6 +61,11 @@ const useCollections = (userId = null) => {
     return collection
   }
 
+  /**
+   * Update a collection.
+   *
+   * @param {string, string} collection
+   */
   const updateCollection = async ({ id, title }) => {
     setLoading(true)
 
@@ -67,6 +92,11 @@ const useCollections = (userId = null) => {
     return updatedCollection
   }
 
+  /**
+   * Delete a collection.
+   *
+   * @param {id} collection
+   */
   const deleteCollection = async ({ id }) => {
     try {
       await destroy({ id })
@@ -83,6 +113,32 @@ const useCollections = (userId = null) => {
     }
 
     return false
+  }
+
+  /**
+   * Update the collection image, or remove it if passing null
+   *
+   * @param {File | null} image
+   */
+  const updateCollectionImage = async ({ id, image = null }) => {
+    setLoading(true)
+
+    let updatedCollection
+
+    try {
+      updatedCollection = await updateRemoteImage({ id, image })
+
+      setCollections([
+        ...collections.filter((collection) => collection.id !== id),
+        updatedCollection,
+      ])
+    } catch (e) {
+      // Mitigate this case
+    }
+
+    setLoading(false)
+
+    return updatedCollection
   }
 
   useEffect(() => {
@@ -106,6 +162,7 @@ const useCollections = (userId = null) => {
     createCollection,
     updateCollection,
     deleteCollection,
+    updateCollectionImage,
     loading,
   }
 }

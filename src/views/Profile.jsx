@@ -38,6 +38,7 @@ const Profile = ({ match }) => {
     createCollection,
     updateCollection,
     deleteCollection,
+    updateCollectionImage,
     loading: collectionLoading,
   } = useCollections(profile.user_id || null)
 
@@ -134,6 +135,7 @@ const Profile = ({ match }) => {
                 createCollection={createCollection}
                 updateCollection={updateCollection}
                 deleteCollection={deleteCollection}
+                updateCollectionImage={updateCollectionImage}
                 loading={collectionLoading}
               />
             ) : null}

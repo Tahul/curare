@@ -40,32 +40,38 @@ const buttonsVariants = {
   },
 }
 
-const CreateCollection = ({ loading, createCollection, onFormOpen }) => {
-  const [isCreating, setIsCreating] = React.useState(false)
+const CreateCollection = ({
+  loading,
+  createCollection,
+  updateCollectionImage,
+  onFormOpen,
+}) => {
+  const [formVisible, setFormVisible] = React.useState(false)
 
   const handleCreate = () => {
-    setIsCreating(true)
+    setFormVisible(true)
 
     onFormOpen()
   }
 
   const handleClose = () => {
-    setIsCreating(false)
+    setFormVisible(false)
   }
 
   return (
     <StyledCreateCollection>
-      {isCreating ? (
+      {formVisible ? (
         <motion.div variants={formVariants} initial="hidden" animate="visible">
           <CollectionForm
             onCancel={handleClose}
             onSubmit={createCollection}
+            onImageUpdate={updateCollectionImage}
             loading={loading}
           />
         </motion.div>
       ) : null}
 
-      {!isCreating ? (
+      {!formVisible ? (
         <motion.div
           className="buttons"
           variants={buttonsVariants}

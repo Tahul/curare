@@ -59,7 +59,7 @@ const ProfileForm = ({ onSave }) => {
     ...profile,
   }
 
-  const onSubmit = async (payload) => {
+  const handleSubmit = async (payload) => {
     await updateProfile({
       ...defaultState,
       ...payload,
@@ -101,7 +101,7 @@ const ProfileForm = ({ onSave }) => {
 
   return (
     <Form
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit}
       validate={validate}
       initialValues={initialValues}
       render={({ handleSubmit }) => (

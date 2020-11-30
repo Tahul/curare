@@ -7,7 +7,8 @@ import { Form, Field } from 'react-final-form'
 // Form validation
 import { Validators } from '@lemoncode/fonk'
 import { createFinalFormValidation } from '@lemoncode/fonk-final-form'
-import { Button, InputField } from '@heetch/flamingo-react'
+import { Button, InputField, UploaderField } from '@heetch/flamingo-react'
+import { base64MimeType, toDataURL } from '../../plugins/file'
 
 const StyledCollectionForm = styled.div`
   .buttons {
@@ -27,11 +28,25 @@ const validationSchema = {
 
 const validator = createFinalFormValidation(validationSchema)
 
-const defaultState = {}
+const defaultState = {
+  title: '',
+  image_url: null,
+}
 
-const CollectionForm = ({ collection = {}, loading, onSubmit, onCancel }) => {
-  const onSubmitCollection = async (payload) => {
-    await onSubmit(payload)
+const CollectionForm = ({
+  collection = false,
+  loading,
+  onSubmit,
+  onImageUpdate,
+  onCancel,
+}) => {
+  const [image, setImage] = React.useState([])
+  const [currentImage, setCurrentImage] = React.useState(false)
+
+  const handleSubmit = async ({ title }) => {
+    const collection = await onSubmit({ title })
+
+    await onImageUpdate({ id: collection.id, image: currentImage })
 
     onCancel()
   }
@@ -40,21 +55,63 @@ const CollectionForm = ({ collection = {}, loading, onSubmit, onCancel }) => {
     onCancel()
   }
 
+  const handleImageUpload = async (image) => {
+    setCurrentImage(image[0] || null)
+  }
+
   const validate = (values) => validator.validateForm(values)
 
-  const initialValues = {
-    ...defaultState,
-    ...collection,
-  }
+  const initialValues = collection
+    ? {
+        ...defaultState,
+        ...collection,
+      }
+    : {
+        ...defaultState,
+      }
+
+  React.useEffect(() => {
+    let isMounted = true
+
+    const fetchAvatar = async () => {
+      if (collection?.image_url) {
+        const file = await toDataURL(collection.image_url)
+        const mimeType = base64MimeType(file)
+
+        if (isMounted) {
+          setImage([
+            {
+              type: mimeType,
+              name: `avatar.${mimeType.split('/')[1]}`,
+              preview: file,
+            },
+          ])
+        }
+      }
+    }
+
+    fetchAvatar()
+
+    return () => (isMounted = false)
+  }, [collection])
 
   return (
     <StyledCollectionForm>
       <Form
         validate={validate}
         initialValues={initialValues}
-        onSubmit={onSubmitCollection}
+        onSubmit={handleSubmit}
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>
+            <UploaderField
+              accept="image/jpg,jpeg,png"
+              onChange={handleImageUpload}
+              id="image"
+              label="Image"
+              value={image}
+              disabled={loading}
+            />
+
             <Field name="title" type="text">
               {({ input, meta }) => (
                 <InputField

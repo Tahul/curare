@@ -66,6 +66,7 @@ const SelectedCollection = ({
   loading,
   deleteCollection,
   updateCollection,
+  updateCollectionImage,
   onSelectCollection,
 }) => {
   const [edit, setEdit] = React.useState(false)
@@ -80,12 +81,23 @@ const SelectedCollection = ({
     setEdit(!edit)
   }
 
-  const handleUpdate = async ({ id, title }) => {
-    const collection = await updateCollection({ id, title })
+  const handleUpdate = async ({ title }) => {
+    const updatedCollection = await updateCollection({
+      id: collection.id,
+      title,
+    })
 
-    onSelectCollection(collection)
+    onSelectCollection(updatedCollection)
 
     setEdit(false)
+
+    return updatedCollection
+  }
+
+  const handleImageUpdate = async ({ id, image }) => {
+    const collection = await updateCollectionImage({ id, image })
+
+    onSelectCollection(collection)
   }
 
   const handleDelete = async ({ id }) => {
@@ -129,6 +141,7 @@ const SelectedCollection = ({
               <CollectionForm
                 collection={collection}
                 onSubmit={handleUpdate}
+                onImageUpdate={handleImageUpdate}
                 onCancel={toggleEdit}
               />
             </motion.div>
