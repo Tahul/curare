@@ -32,8 +32,14 @@ API.interceptors.response.use(
     if (error && error.response && error.response.data) {
       const { data, status } = error.response
 
+      // If status is 401, it means we are unauthenticated, so logout the app
       if (status === 401) {
         history.push('/?logout=true')
+      }
+
+      // Redirect if key is specified
+      if (data.redirect) {
+        history.push(data.redirect)
       }
 
       // Default message key on server errors
