@@ -37,7 +37,7 @@ const Collections = ({
 
   return (
     <div>
-      {selectedCollection && selectedCollectionId ? (
+      {loading ? null : selectedCollection && selectedCollectionId ? (
         <motion.div initial={{ y: 100 }} animate={{ y: 0 }}>
           <SelectedCollection
             userName={userName}
