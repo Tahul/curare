@@ -4,7 +4,7 @@ import { ImageState, LazyImageFull } from 'react-lazy-images'
 import styled from 'styled-components'
 
 // Assets
-import Logo from '../../assets/images/logo.svg'
+import Fill from '../../assets/images/fill.png'
 
 const StyledHeader = styled.div`
   width: 100%;
@@ -81,7 +81,7 @@ const Header = ({ id, profile, loading, editable, onEdit }) => {
     <StyledHeader>
       <div className="avatar">
         <LazyImageFull
-          src={profile?.avatar_url || Logo}
+          src={profile?.avatar_url || Fill}
           alt={`${id} avatar`}
           title={`${id} avatar`}
         >
@@ -90,7 +90,7 @@ const Header = ({ id, profile, loading, editable, onEdit }) => {
               {...imageProps}
               ref={ref}
               src={
-                imageState === ImageState.LoadSuccess ? imageProps.src : Logo
+                imageState === ImageState.LoadSuccess ? imageProps.src : Fill
               }
             />
           )}
