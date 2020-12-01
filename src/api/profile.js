@@ -3,10 +3,10 @@ import API from './index'
 /**
  * Get a user profile (the current logged-in user if no `id`).
  *
- * @param {number | null} id
+ * @param {userId} userId
  */
-export const getProfile = async (id = null) => {
-  const request = await API.get(`/profiles${id ? `/${id}` : ``}`)
+export const getProfile = async ({ userId = null }) => {
+  const request = await API.get(`/profiles${userId ? `/${userId}` : ``}`)
 
   return request.data
 }
@@ -37,7 +37,7 @@ export const updateProfile = async ({
  *
  * @param {File | null} avatar
  */
-export const updateAvatar = async (avatar) => {
+export const updateAvatar = async ({ avatar }) => {
   if (avatar) {
     // Avatar isn't null, try to update the avatar accordingly
     if (!(avatar instanceof File)) {

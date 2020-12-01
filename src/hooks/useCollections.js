@@ -20,23 +20,26 @@ const useCollections = (userId = null) => {
   /**
    * Get all the collections for the current userId.
    */
-  const getCollections = useCallback(async (id = null, isMounted = true) => {
-    if (isMounted) setLoading(true)
+  const getCollections = useCallback(
+    async ({ userId = null, isMounted = true }) => {
+      if (isMounted) setLoading(true)
 
-    let collections
+      let collections
 
-    try {
-      collections = await index(id)
+      try {
+        collections = await index({ userId })
 
-      setCollections([...collections])
-    } catch (e) {
-      console.log(e)
-    }
+        setCollections([...collections])
+      } catch (e) {
+        console.log(e)
+      }
 
-    if (isMounted) setLoading(false)
+      if (isMounted) setLoading(false)
 
-    return collections
-  }, [])
+      return collections
+    },
+    [],
+  )
 
   /**
    * Create a collection.
@@ -146,7 +149,7 @@ const useCollections = (userId = null) => {
 
     const fetchCollections = async () => {
       if (userId) {
-        await getCollections(userId, isMounted)
+        await getCollections({ userId, isMounted })
       }
     }
 

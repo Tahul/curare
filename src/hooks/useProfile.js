@@ -23,11 +23,11 @@ const useProfile = (id = null) => {
    * @param {*} id
    * @param {boolean} isMounted
    */
-  const getProfile = useCallback(async (id, isMounted = true) => {
+  const getProfile = useCallback(async ({ userId, isMounted = true }) => {
     if (isMounted) setLoading(true)
 
     try {
-      const remoteProfile = await getRemoteProfile(id)
+      const remoteProfile = await getRemoteProfile({ userId })
 
       setProfile({ ...profile, ...remoteProfile })
     } catch (e) {
@@ -86,7 +86,7 @@ const useProfile = (id = null) => {
     let isMounted = true
 
     const fetchProfile = async () => {
-      await getProfile(id, isMounted)
+      await getProfile({ id, isMounted })
     }
 
     fetchProfile()

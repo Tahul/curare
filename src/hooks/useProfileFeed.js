@@ -11,7 +11,7 @@ const initialState = {
   user_id: null,
 }
 
-const useProfileFeed = (id = null) => {
+const useProfileFeed = (userId = null) => {
   const [loading, setLoading] = useState(false)
   const [profile, setProfile] = useState(initialState)
 
@@ -21,11 +21,11 @@ const useProfileFeed = (id = null) => {
    * @param {*} id
    * @param {boolean} isMounted
    */
-  const getProfile = useCallback(async (id, isMounted = true) => {
+  const getProfile = useCallback(async ({ userId, isMounted = true }) => {
     if (isMounted) setLoading(true)
 
     try {
-      const remoteProfile = await getRemoteProfile(id)
+      const remoteProfile = await getRemoteProfile({ userId })
 
       setProfile({ ...profile, ...remoteProfile })
     } catch (e) {
@@ -41,13 +41,13 @@ const useProfileFeed = (id = null) => {
     let isMounted = true
 
     const fetchProfile = async () => {
-      await getProfile(id, isMounted)
+      await getProfile({ userId, isMounted })
     }
 
     fetchProfile()
 
     return () => (isMounted = false)
-  }, [id, getProfile])
+  }, [userId, getProfile])
 
   return {
     profile,
