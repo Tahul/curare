@@ -82,7 +82,7 @@ const SelectedCollection = ({
   onSelectCollection,
 }) => {
   const [edit, setEdit] = React.useState(false)
-  const [links] = useLinks()
+  const { links } = useLinks({ collectionId: collection.id })
   const history = useHistory()
 
   const handleBack = () => {
