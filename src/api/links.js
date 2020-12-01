@@ -3,7 +3,7 @@ import API from './index'
 /**
  * Get all the links for a user and/or a collection.
  *
- * @param {*} userId
+ * @param {string, string} userId
  */
 export const index = async ({ userId = null, collectionId = null }) => {
   const request = await API.get(
@@ -18,7 +18,7 @@ export const index = async ({ userId = null, collectionId = null }) => {
 /**
  * Create a collection.
  *
- * @param { title } collection
+ * @param {title} collection
  */
 export const store = async ({ url, description }) => {
   const request = await API.post(`/links`, { url, description })
@@ -40,10 +40,21 @@ export const update = async ({ id, url, description }) => {
 /**
  * Destroy a collection.
  *
- * @param { string } id
+ * @param {string} id
  */
 export const destroy = async ({ id }) => {
   const request = await API.delete(`/links/${id}`)
+
+  return request.data
+}
+
+/**
+ * Preview a link OpenGraph data.
+ *
+ * @param {string} url
+ */
+export const preview = async ({ url }) => {
+  const request = await API.get(`/preview?url=${url}`)
 
   return request.data
 }
