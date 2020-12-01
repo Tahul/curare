@@ -9,13 +9,7 @@ import {
 
 const useCollections = (userId = null) => {
   const [loading, setLoading] = useState(false)
-  const [collections, setCollectionsTest] = useState([])
-
-  const setCollections = (...args) => {
-    console.log(args)
-
-    setCollectionsTest(...args)
-  }
+  const [collections, setCollections] = useState([])
 
   /**
    * Get all the collections for the current userId.
