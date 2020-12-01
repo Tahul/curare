@@ -69,7 +69,7 @@ const ProfileForm = ({ onSave }) => {
   }
 
   const handleAvatarUpload = async (payload) => {
-    await updateAvatar(payload[0])
+    await updateAvatar({ avatar: payload[0] })
   }
 
   const validate = (values) => validator.validateForm(values)
