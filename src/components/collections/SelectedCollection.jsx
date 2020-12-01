@@ -9,6 +9,7 @@ import useLinks from '../../hooks/useLinks'
 import LinkItem from '../links/LinkItem'
 import { useHistory } from 'react-router-dom'
 import CollectionForm from './CollectionForm'
+import AddLink from '../links/AddLink'
 
 const StyledSelectedCollection = styled.div`
   margin-bottom: ${theme.space.l};
@@ -56,6 +57,17 @@ const formVariants = {
   hidden: {
     opacity: 0.25,
     y: -50,
+  },
+}
+
+const contentVariants = {
+  visible: {
+    opacity: 1,
+    y: 0,
+  },
+  hidden: {
+    opacity: 0.25,
+    y: 50,
   },
 }
 
@@ -130,10 +142,24 @@ const SelectedCollection = ({
             onEdit={toggleEdit}
           />
 
-          {!edit ? (
-            links.map((link, i) => <LinkItem key={link.id} link={link} i={i} />)
-          ) : (
+          {!edit && (
             <motion.div
+              id="content"
+              variants={contentVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              <AddLink />
+
+              {links.map((link, i) => (
+                <LinkItem key={link.id} link={link} i={i + 1} />
+              ))}
+            </motion.div>
+          )}
+
+          {edit && (
+            <motion.div
+              id="form"
               variants={formVariants}
               initial="hidden"
               animate="visible"
