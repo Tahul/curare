@@ -6,7 +6,9 @@ import API from './index'
  * @param {*} userId
  */
 export const index = async (userId = null) => {
-  const request = await API.get(`/collections${userId ? `/${userId}` : ``}`)
+  const request = await API.get(
+    `/collections${userId ? `?userId=${userId}` : ``}`,
+  )
 
   return request.data
 }
