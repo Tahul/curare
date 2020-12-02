@@ -54,7 +54,7 @@ export const destroy = async ({ id }) => {
  * @param {string} url
  */
 export const preview = async ({ url }) => {
-  const request = await API.get(`/preview?url=${url}`)
+  const request = await API.get(`/links/preview?url=${url}`)
 
   return request.data
 }

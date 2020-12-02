@@ -82,7 +82,7 @@ const SelectedCollection = ({
   onSelectCollection,
 }) => {
   const [edit, setEdit] = React.useState(false)
-  const { links } = useLinks({ collectionId: collection.id })
+  const { links, getLinkPreview } = useLinks({ collectionId: collection.id })
   const history = useHistory()
 
   const handleBack = () => {
@@ -149,7 +149,7 @@ const SelectedCollection = ({
               initial="hidden"
               animate="visible"
             >
-              <AddLink />
+              <AddLink onLinkPreview={getLinkPreview} />
 
               {links.map((link, i) => (
                 <LinkItem key={link.id} link={link} i={i + 1} />
