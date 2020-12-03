@@ -58,6 +58,7 @@ const CollectionItem = ({
   selected = false,
   onEdit,
   onDelete,
+  editable,
   loading,
   ...props
 }) => {
@@ -128,7 +129,7 @@ const CollectionItem = ({
             </div>
           </div>
 
-          {selected ? (
+          {selected && editable ? (
             <div className="actions">
               <Button isLoading={loading} onClick={onEdit}>
                 Edit

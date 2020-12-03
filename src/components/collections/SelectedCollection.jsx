@@ -32,7 +32,8 @@ const StyledSelectedCollection = styled.div`
   }
 
   .selected {
-    margin-bottom: calc(${theme.space.xxl} + ${theme.space.s});
+    margin-bottom: ${(props) =>
+      props.editable ? `calc(${theme.space.xxl} + ${theme.space.s})` : 0};
 
     .f-Item {
       .f-Icon {
@@ -136,7 +137,7 @@ const SelectedCollection = ({
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2 }}
     >
-      <StyledSelectedCollection>
+      <StyledSelectedCollection editable={editable}>
         <Text className="back" variant="contentBold" onClick={handleBack}>
           <Icon icon="IconArrowLeft" />
           Go back to collections
@@ -151,6 +152,7 @@ const SelectedCollection = ({
             loading={loading}
             onDelete={handleDelete}
             onEdit={toggleEdit}
+            editable={editable}
           />
 
           {!edit && (
@@ -160,10 +162,12 @@ const SelectedCollection = ({
               initial="hidden"
               animate="visible"
             >
-              <AddLink
-                onLinkPreview={getLinkPreview}
-                onLinkSave={handleLinkSave}
-              />
+              {editable ? (
+                <AddLink
+                  onLinkPreview={getLinkPreview}
+                  onLinkSave={handleLinkSave}
+                />
+              ) : null}
 
               {links.map((link, i) => (
                 <LinkItem
