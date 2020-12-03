@@ -20,8 +20,12 @@ export const index = async ({ userId = null, collectionId = null }) => {
  *
  * @param {title} collection
  */
-export const store = async ({ url, description }) => {
-  const request = await API.post(`/links`, { url, description })
+export const store = async ({ url, ogp, collection_id }) => {
+  const request = await API.post(`/links`, {
+    url,
+    ogp,
+    collection_id,
+  })
 
   return request.data
 }
