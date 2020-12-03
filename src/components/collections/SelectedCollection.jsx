@@ -82,7 +82,9 @@ const SelectedCollection = ({
   onSelectCollection,
 }) => {
   const [edit, setEdit] = React.useState(false)
-  const { links, getLinkPreview } = useLinks({ collectionId: collection.id })
+  const { links, getLinkPreview, createLink, deleteLink } = useLinks({
+    collectionId: collection.id,
+  })
   const history = useHistory()
 
   const handleBack = () => {
@@ -118,6 +120,12 @@ const SelectedCollection = ({
     history.push(`/profile/${userName}`)
   }
 
+  const handleLinkSave = async ({ url, ogp }) => {
+    const link = { collection_id: collection.id, url, ogp }
+
+    await createLink(link)
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -149,10 +157,18 @@ const SelectedCollection = ({
               initial="hidden"
               animate="visible"
             >
-              <AddLink onLinkPreview={getLinkPreview} />
+              <AddLink
+                onLinkPreview={getLinkPreview}
+                onLinkSave={handleLinkSave}
+              />
 
               {links.map((link, i) => (
-                <LinkItem key={link.id} link={link} i={i + 1} />
+                <LinkItem
+                  key={link.id}
+                  link={link}
+                  i={i + 1}
+                  onDelete={deleteLink}
+                />
               ))}
             </motion.div>
           )}
