@@ -1,10 +1,11 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
-import { Button, Icon, IconButton, theme, UiText } from '@heetch/flamingo-react'
+import renderHtml from '../../plugins/renderHtml'
 
 // Components
 import { ImageState, LazyImageFull } from 'react-lazy-images'
+import { Button, Icon, IconButton, theme, UiText } from '@heetch/flamingo-react'
 
 // Assets
 import Fill from '../../assets/images/fill.png'
@@ -18,7 +19,7 @@ const StyledLinkItem = styled.div`
   overflow: hidden;
 
   .image {
-    height: 125px;
+    height: 130px;
     overflow: hidden;
 
     img {
@@ -31,10 +32,21 @@ const StyledLinkItem = styled.div`
     padding: ${theme.space.l};
     overflow: hidden;
 
-    .title p {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
+    .title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      svg {
+        fill: ${theme.color.element.tertiary};
+      }
+
+      p {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        padding-right: ${theme.space.s};
+      }
     }
 
     .line {
@@ -53,9 +65,6 @@ const StyledLinkItem = styled.div`
     }
   }
 `
-
-const renderHTML = (rawHTML) =>
-  React.createElement('p', { dangerouslySetInnerHTML: { __html: rawHTML } })
 
 const item = {
   visible: (i) => ({
@@ -109,8 +118,15 @@ const LinkItem = ({ link, i, editing = false, onSave }) => {
         </div>
 
         <div className="itemContent">
-          <UiText className="title" variant="contentBold">
-            {renderHTML(ogp.title)}
+          <UiText
+            className="title"
+            variant="contentBold"
+            alt={link?.url}
+            title={link?.url}
+          >
+            {renderHtml('span', ogp.title)}
+
+            <Icon icon="IconGlobe" />
           </UiText>
 
           <ExpandableText
@@ -119,7 +135,7 @@ const LinkItem = ({ link, i, editing = false, onSave }) => {
             text={ogp?.description}
           />
 
-          <div class="actions">
+          <div className="actions">
             {ogp?.description.length > 35 && !full ? (
               <IconButton
                 className="expand"
