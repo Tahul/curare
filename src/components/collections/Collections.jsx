@@ -67,12 +67,14 @@ const Collections = ({
             />
           ))}
 
-          <CreateCollection
-            createCollection={createCollection}
-            updateCollectionImage={updateCollectionImage}
-            loading={loading}
-            onFormOpen={hanldeScrollBottom}
-          />
+          {editable ? (
+            <CreateCollection
+              createCollection={createCollection}
+              updateCollectionImage={updateCollectionImage}
+              loading={loading}
+              onFormOpen={hanldeScrollBottom}
+            />
+          ) : null}
         </motion.ul>
       )}
     </div>

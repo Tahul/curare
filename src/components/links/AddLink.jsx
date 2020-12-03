@@ -63,7 +63,12 @@ const AddLink = ({ onLinkPreview, onLinkSave }) => {
       />
 
       {preview ? (
-        <LinkItem editing onSave={handleSave} link={{ ogp: preview }} />
+        <LinkItem
+          editable
+          editing
+          onSave={handleSave}
+          link={{ ogp: preview }}
+        />
       ) : null}
     </StyledAddLink>
   )
