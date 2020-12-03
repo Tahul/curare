@@ -26,6 +26,7 @@ const StyledLinkItem = styled.div`
     img {
       width: 100%;
       object-fit: cover;
+      object-position: 50% 50%;
     }
   }
 
@@ -80,6 +81,8 @@ const item = {
 }
 
 const LinkItem = ({ link, i, editing = false, editable, onSave, onDelete }) => {
+  const [hash, setHash] = React.useState(Date.now())
+
   const { ogp } = link
 
   const [full, setFull] = React.useState(false)
@@ -100,6 +103,14 @@ const LinkItem = ({ link, i, editing = false, editable, onSave, onDelete }) => {
     window.open(link.url, '_blank')
   }
 
+  React.useEffect(() => {
+    let isMounted = true
+
+    if (isMounted) setHash(Date.now())
+
+    return () => (isMounted = false)
+  }, [link])
+
   return (
     <motion.li
       custom={i}
@@ -112,7 +123,7 @@ const LinkItem = ({ link, i, editing = false, editable, onSave, onDelete }) => {
         {ogp?.og?.['og:image'] ? (
           <div className="image" onClick={editing ? null : handleOpen}>
             <LazyImageFull
-              src={ogp.og['og:image']}
+              src={`${ogp.og['og:image']}?${hash}`}
               alt={`${ogp.title}`}
               title={`${ogp.title}`}
             >
