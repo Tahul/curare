@@ -21,6 +21,7 @@ const StyledLinkItem = styled.div`
   .image {
     height: 130px;
     overflow: hidden;
+    cursor: ${(props) => (!props.editing ? 'pointer' : 'cursor')};
 
     img {
       width: 100%;
@@ -28,9 +29,10 @@ const StyledLinkItem = styled.div`
     }
   }
 
-  .itemContent {
+  .content {
     padding: ${theme.space.l};
     overflow: hidden;
+    cursor: ${(props) => (!props.editing ? 'pointer' : 'cursor')};
 
     .title {
       display: flex;
@@ -41,11 +43,11 @@ const StyledLinkItem = styled.div`
         fill: ${theme.color.element.tertiary};
       }
 
-      p {
+      span {
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
-        padding-right: ${theme.space.s};
+        padding-right: ${theme.space.m};
       }
     }
 
@@ -53,15 +55,15 @@ const StyledLinkItem = styled.div`
       margin-top: ${theme.space.l};
       width: 100%;
     }
+  }
 
-    .actions {
-      display: flex;
-      justify-content: flex-end;
-      margin-top: ${theme.space.l};
+  .actions {
+    padding: 0 ${theme.space.l};
+    display: flex;
+    justify-content: flex-end;
 
-      .expand {
-        transform: rotate(90deg);
-      }
+    .expand {
+      transform: rotate(90deg);
     }
   }
 `
@@ -77,7 +79,7 @@ const item = {
   hidden: { opacity: 0.25, y: 100 },
 }
 
-const LinkItem = ({ link, i, editing = false, onSave }) => {
+const LinkItem = ({ link, i, editing = false, onSave, onDelete }) => {
   const { ogp } = link
 
   const [full, setFull] = React.useState(false)
@@ -90,6 +92,14 @@ const LinkItem = ({ link, i, editing = false, onSave }) => {
     onSave(link)
   }
 
+  const handleDelete = () => {
+    onDelete(link)
+  }
+
+  const handleOpen = () => {
+    window.open(link.url, '_blank')
+  }
+
   return (
     <motion.li
       custom={i}
@@ -98,45 +108,53 @@ const LinkItem = ({ link, i, editing = false, onSave }) => {
       whileHover={editing ? false : { scale: 1.03 }}
       whileTap={editing ? false : { scale: 1 }}
     >
-      <StyledLinkItem>
-        <div className="image">
-          <LazyImageFull
-            src={ogp?.og?.['og:image']}
-            alt={`${ogp.title}`}
-            title={`${ogp.title}`}
-          >
-            {({ imageProps, imageState, ref }) => (
-              <img // eslint-disable-line
-                {...imageProps}
-                ref={ref}
-                src={
-                  imageState === ImageState.LoadSuccess ? imageProps.src : Fill
-                }
-              />
-            )}
-          </LazyImageFull>
-        </div>
+      <StyledLinkItem editing={editing}>
+        {ogp?.og?.['og:image'] ? (
+          <div className="image" onClick={editing ? null : handleOpen}>
+            <LazyImageFull
+              src={ogp.og['og:image']}
+              alt={`${ogp.title}`}
+              title={`${ogp.title}`}
+            >
+              {({ imageProps, imageState, ref }) => (
+                <img // eslint-disable-line
+                  {...imageProps}
+                  ref={ref}
+                  src={
+                    imageState === ImageState.LoadSuccess
+                      ? imageProps.src
+                      : Fill
+                  }
+                />
+              )}
+            </LazyImageFull>
+          </div>
+        ) : null}
 
-        <div className="itemContent">
+        <div className="content" onClick={editing ? null : handleOpen}>
           <UiText
             className="title"
             variant="contentBold"
             alt={link?.url}
             title={link?.url}
           >
-            {renderHtml('span', ogp.title)}
+            {renderHtml('span', ogp.title || ogp.domain)}
 
             <Icon icon="IconGlobe" />
           </UiText>
 
-          <ExpandableText
-            full={full}
-            className="line"
-            text={ogp?.description}
-          />
+          {ogp.description ? (
+            <ExpandableText
+              full={full}
+              className="line"
+              text={ogp.description}
+            />
+          ) : null}
+        </div>
 
-          <div className="actions">
-            {ogp?.description.length > 35 && !full ? (
+        <div className="actions">
+          {ogp.description ? (
+            ogp?.description.length > 35 && !full ? (
               <IconButton
                 className="expand"
                 onClick={toggleFull}
@@ -148,12 +166,18 @@ const LinkItem = ({ link, i, editing = false, onSave }) => {
                 onClick={toggleFull}
                 icon="IconCross"
               />
-            )}
+            )
+          ) : (
+            ''
+          )}
 
+          {link?.id ? (
+            <IconButton icon="IconTrash" onClick={handleDelete} />
+          ) : (
             <Button onClick={handleSave} icon="IconCheck">
               Save
             </Button>
-          </div>
+          )}
         </div>
       </StyledLinkItem>
     </motion.li>

@@ -6,7 +6,7 @@ import renderHtml from '../../plugins/renderHtml'
 
 const StyledExpandableText = styled.div``
 
-const ExpandableText = ({ full, text, ...props }) => {
+const ExpandableText = ({ full, text = '', ...props }) => {
   const displayText = full ? text : text.slice(0, 35)
 
   return (
