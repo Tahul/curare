@@ -35,8 +35,8 @@ export const store = async ({ url, ogp, collection_id }) => {
  *
  * @param {string, string} collection
  */
-export const update = async ({ id, url, description }) => {
-  const request = await API.patch(`/links/${id}`, { url, description })
+export const update = async ({ id, url, ogp }) => {
+  const request = await API.patch(`/links/${id}`, { url, ogp })
 
   return request.data
 }
