@@ -13,18 +13,28 @@ const isUrl = (url) => {
 const StyledAddLink = styled.div``
 
 const AddLink = ({ onLinkPreview }) => {
+  const [loading, setLoading] = React.useState(false)
   const [preview, setPreview] = React.useState(false)
 
   const handleLinkChange = async (url) => {
-    url = url?.target?.value
+    setLoading(true)
 
-    if (url && isUrl(url)) {
-      const preview = await onLinkPreview({ url })
+    try {
+      url = url?.target?.value
 
-      setPreview(preview)
-    } else {
-      setPreview(false)
+      if (url && isUrl(url)) {
+        const preview = await onLinkPreview({ url })
+
+        setPreview(preview)
+      } else {
+        setPreview(false)
+      }
+    } catch (e) {
+      console.warn('Could not preview the following url:\n')
+      console.warn(url)
     }
+
+    setLoading(false)
   }
 
   return (
