@@ -40,13 +40,13 @@ const useLinks = ({ userId = null, collectionId = null }) => {
    *
    * @param {string, string} link
    */
-  const createLink = async ({ url, description }) => {
+  const createLink = async ({ url, ogp, collection_id }) => {
     setLoading(true)
 
     let link
 
     try {
-      link = await store({ url, description })
+      link = await store({ url, ogp, collection_id })
 
       setLinks([...links, link])
     } catch (e) {
