@@ -13,7 +13,7 @@ const isUrl = (url) => {
 
 const StyledAddLink = styled.div``
 
-const AddLink = ({ onLinkPreview }) => {
+const AddLink = ({ onLinkPreview, onLinkSave }) => {
   const inputRef = React.useRef()
   const [loading, setLoading] = React.useState(false)
   const [preview, setPreview] = React.useState(false)
@@ -39,12 +39,18 @@ const AddLink = ({ onLinkPreview }) => {
     setLoading(false)
   }
 
-  const handleSave = (link) => {
-    console.log(link)
+  const handleSave = async (link) => {
+    try {
+      const url = inputRef.current.value
 
-    inputRef.current.value = ''
+      await onLinkSave({ url, ogp: preview })
 
-    setPreview(false)
+      inputRef.current.value = ''
+
+      setPreview(false)
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   return (
