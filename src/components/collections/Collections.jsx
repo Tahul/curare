@@ -14,6 +14,7 @@ const list = {
 const Collections = ({
   userName,
   loading,
+  editable,
   collections,
   selectedCollection,
   selectedCollectionId,
@@ -51,6 +52,7 @@ const Collections = ({
             updateCollectionImage={updateCollectionImage}
             onSelectCollection={onSelectCollection}
             loading={loading}
+            editable={editable}
           />
         </motion.div>
       ) : (

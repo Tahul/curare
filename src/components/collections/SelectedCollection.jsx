@@ -1,15 +1,17 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
-import { Icon, Text, theme } from '@heetch/flamingo-react'
+
+// Hooks
+import useLinks from '../../hooks/useLinks'
+import { useHistory } from 'react-router-dom'
 
 // Components
 import CollectionItem from './CollectionItem'
-import useLinks from '../../hooks/useLinks'
 import LinkItem from '../links/LinkItem'
-import { useHistory } from 'react-router-dom'
 import CollectionForm from './CollectionForm'
 import AddLink from '../links/AddLink'
+import { Icon, Text, theme } from '@heetch/flamingo-react'
 
 const StyledSelectedCollection = styled.div`
   margin-bottom: ${theme.space.l};
@@ -73,6 +75,7 @@ const contentVariants = {
 
 const SelectedCollection = ({
   userName,
+  editable,
   collection,
   onClose,
   loading,
@@ -167,6 +170,7 @@ const SelectedCollection = ({
                   key={link.id}
                   link={link}
                   i={i + 1}
+                  editable={editable}
                   onDelete={deleteLink}
                 />
               ))}

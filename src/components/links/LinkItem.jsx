@@ -79,7 +79,7 @@ const item = {
   hidden: { opacity: 0.25, y: 100 },
 }
 
-const LinkItem = ({ link, i, editing = false, onSave, onDelete }) => {
+const LinkItem = ({ link, i, editing = false, editable, onSave, onDelete }) => {
   const { ogp } = link
 
   const [full, setFull] = React.useState(false)
@@ -171,13 +171,15 @@ const LinkItem = ({ link, i, editing = false, onSave, onDelete }) => {
             ''
           )}
 
-          {link?.id ? (
-            <IconButton icon="IconTrash" onClick={handleDelete} />
-          ) : (
-            <Button onClick={handleSave} icon="IconCheck">
-              Save
-            </Button>
-          )}
+          {editable ? (
+            link?.id ? (
+              <IconButton icon="IconTrash" onClick={handleDelete} />
+            ) : (
+              <Button onClick={handleSave} icon="IconCheck">
+                Save
+              </Button>
+            )
+          ) : null}
         </div>
       </StyledLinkItem>
     </motion.li>
