@@ -6,10 +6,7 @@ import { createBrowserHistory } from 'history'
 import App from './App'
 
 // Libraries
-import '@heetch/flamingo-react/dist/styles.css'
-import 'sanitize.css'
 import './index.css'
-import 'toasted-notes/src/styles.css'
 
 // Routing
 export const history = createBrowserHistory()

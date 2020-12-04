@@ -1,3 +1,7 @@
+@import 'sanitize.css';
+@import '@heetch/flamingo-react/dist/styles.css';
+@import 'toasted-notes/src/styles.css';
+
 body {
   margin: 0;
   width: 100%;
