@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 
 // Components
 import { Button, Item, Text, theme, UiText } from '@heetch/flamingo-react'
-import { LazyImageFull, ImageState } from 'react-lazy-images'
 
 // Assets
 import Fill from '../../assets/images/fill.png'
@@ -105,23 +104,11 @@ const CollectionItem = ({
           value={valueText}
         >
           <div className="itemContent">
-            <LazyImageFull
+            <img
               src={collection.image_url || Fill}
               alt={collection.title}
               title={collection.title}
-            >
-              {({ imageProps, imageState, ref }) => (
-                <img // eslint-disable-line
-                  {...imageProps}
-                  ref={ref}
-                  src={
-                    imageState === ImageState.LoadSuccess
-                      ? imageProps.src
-                      : Fill
-                  }
-                />
-              )}
-            </LazyImageFull>
+            />
 
             <div className="textContent">
               <UiText variant="contentBold">{collection.title}</UiText>

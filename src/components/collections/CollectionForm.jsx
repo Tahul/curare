@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
+import { base64MimeType, toDataURL } from '../../plugins/file'
 
 // Components
 import { Form, Field } from 'react-final-form'
+import { Button, InputField, UploaderField } from '@heetch/flamingo-react'
 
 // Form validation
 import { Validators } from '@lemoncode/fonk'
 import { createFinalFormValidation } from '@lemoncode/fonk-final-form'
-import { Button, InputField, UploaderField } from '@heetch/flamingo-react'
-import { base64MimeType, toDataURL } from '../../plugins/file'
 
 const StyledCollectionForm = styled.div`
   .buttons {

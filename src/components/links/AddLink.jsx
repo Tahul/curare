@@ -68,6 +68,7 @@ const AddLink = ({ onLinkPreview, onLinkSave }) => {
           editing
           onSave={handleSave}
           link={{ ogp: preview }}
+          loading={loading}
         />
       ) : null}
     </StyledAddLink>

@@ -1,11 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
+import { motion } from 'framer-motion'
+
+// Hooks
+import { useAuth, useAuthState } from '../../contexts/auth'
 
 // Components
 import { Button, IconButton, theme } from '@heetch/flamingo-react'
 import { Link } from 'react-router-dom'
-import { useAuth, useAuthState } from '../../contexts/auth'
-import { motion } from 'framer-motion'
 
 const StyledActions = styled.div`
   height: 100%;

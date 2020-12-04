@@ -1,4 +1,6 @@
 import { createElement } from 'react'
 
-export default (tag, rawHTML) =>
+const renderHtml = (tag, rawHTML) =>
   createElement(tag, { dangerouslySetInnerHTML: { __html: rawHTML } })
+
+export default renderHtml
