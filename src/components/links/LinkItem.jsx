@@ -112,13 +112,7 @@ const LinkItem = ({ link, i, editing = false, editable, onSave, onDelete }) => {
   }, [link])
 
   return (
-    <motion.li
-      custom={i}
-      animate="visible"
-      variants={item}
-      whileHover={editing ? false : { scale: 1.03 }}
-      whileTap={editing ? false : { scale: 1 }}
-    >
+    <motion.li custom={i} animate="visible" variants={item}>
       <StyledLinkItem editing={editing}>
         {ogp?.og?.['og:image'] ? (
           <div className="image" onClick={editing ? null : handleOpen}>
