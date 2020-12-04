@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from 'react'
-import { destroy, index, preview, store, update } from '../api/links'
+import { destroy, index, preview, store, update, click } from '../api/links'
 
 const useLinks = ({ userId = null, collectionId = null }) => {
   const [loading, setLoading] = useState(false)
@@ -129,6 +129,29 @@ const useLinks = ({ userId = null, collectionId = null }) => {
     return false
   }
 
+  /**
+   * Increment the click count of a link.
+   *
+   * @param {string} id
+   */
+  const clickLink = async ({ id }) => {
+    try {
+      const updatedLink = await click({ id })
+
+      setLinks(
+        links.map((link) => {
+          if (link.id === updatedLink.id) {
+            return updatedLink
+          }
+
+          return link
+        }),
+      )
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   useEffect(() => {
     let isMounted = true
 
@@ -148,6 +171,7 @@ const useLinks = ({ userId = null, collectionId = null }) => {
     createLink,
     updateLink,
     deleteLink,
+    clickLink,
     getLinkPreview,
     loading,
   }

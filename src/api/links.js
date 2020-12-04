@@ -62,3 +62,14 @@ export const preview = async ({ url }) => {
 
   return request.data
 }
+
+/**
+ * Increment the click count of a link.
+ *
+ * @param {string} id
+ */
+export const click = async ({ id }) => {
+  const request = await API.post(`/links/${id}/click`)
+
+  return request.data
+}

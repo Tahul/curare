@@ -86,9 +86,11 @@ const SelectedCollection = ({
   onSelectCollection,
 }) => {
   const [edit, setEdit] = React.useState(false)
-  const { links, getLinkPreview, createLink, deleteLink } = useLinks({
-    collectionId: collection.id,
-  })
+  const { links, getLinkPreview, createLink, deleteLink, clickLink } = useLinks(
+    {
+      collectionId: collection.id,
+    },
+  )
   const history = useHistory()
 
   const handleBack = () => {
@@ -176,6 +178,7 @@ const SelectedCollection = ({
                   i={i + 1}
                   editable={editable}
                   onDelete={deleteLink}
+                  onOpen={clickLink}
                 />
               ))}
             </motion.div>
