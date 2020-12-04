@@ -39,6 +39,7 @@ const Profile = ({ match }) => {
     updateCollection,
     deleteCollection,
     updateCollectionImage,
+    refreshCollection,
     loading: collectionLoading,
   } = useCollections(profile.user_id || null)
 
@@ -130,12 +131,14 @@ const Profile = ({ match }) => {
                 editable={editable}
                 onCollectionsSave={onCollectionsSave}
                 onSelectCollection={onSetSelectedCollection}
+                onUpdateSelectedCollection={setSelectedCollection}
                 selectedCollection={selectedCollection}
                 selectedCollectionId={collectionId}
                 createCollection={createCollection}
                 updateCollection={updateCollection}
                 deleteCollection={deleteCollection}
                 updateCollectionImage={updateCollectionImage}
+                refreshCollection={refreshCollection}
                 loading={collectionLoading}
               />
             ) : null}

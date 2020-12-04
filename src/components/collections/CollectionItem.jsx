@@ -113,7 +113,11 @@ const CollectionItem = ({
 
             <div className="textContent">
               <UiText variant="contentBold">{collection.title}</UiText>
-              <Text type="subContent">{collection.links_count} links</Text>
+              <Text type="subContent">
+                {collection.links_count > 0
+                  ? `${collection.links_count} links`
+                  : 'No links yet'}
+              </Text>
             </div>
           </div>
 

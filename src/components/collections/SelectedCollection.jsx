@@ -83,7 +83,8 @@ const SelectedCollection = ({
   deleteCollection,
   updateCollection,
   updateCollectionImage,
-  onSelectCollection,
+  onUpdateSelectedCollection,
+  refreshCollection,
 }) => {
   const [edit, setEdit] = React.useState(false)
   const { links, getLinkPreview, createLink, deleteLink, clickLink } = useLinks(
@@ -107,7 +108,7 @@ const SelectedCollection = ({
       title,
     })
 
-    onSelectCollection(updatedCollection)
+    onUpdateSelectedCollection(updatedCollection)
 
     setEdit(false)
 
@@ -117,7 +118,7 @@ const SelectedCollection = ({
   const handleImageUpdate = async ({ id, image }) => {
     const collection = await updateCollectionImage({ id, image })
 
-    onSelectCollection(collection)
+    onUpdateSelectedCollection(collection)
   }
 
   const handleDelete = async ({ id }) => {
@@ -130,6 +131,18 @@ const SelectedCollection = ({
     const link = { collection_id: collection.id, url, ogp }
 
     await createLink(link)
+
+    const updatedCollection = await refreshCollection({ id: collection.id })
+
+    onUpdateSelectedCollection(updatedCollection)
+  }
+
+  const handleLinkDelete = async ({ id }) => {
+    await deleteLink({ id })
+
+    const updatedCollection = await refreshCollection({ id: collection.id })
+
+    onUpdateSelectedCollection(updatedCollection)
   }
 
   return (
@@ -177,7 +190,7 @@ const SelectedCollection = ({
                   link={link}
                   i={i + 1}
                   editable={editable}
-                  onDelete={deleteLink}
+                  onDelete={handleLinkDelete}
                   onOpen={clickLink}
                 />
               ))}

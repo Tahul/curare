@@ -22,7 +22,9 @@ const Collections = ({
   createCollection,
   updateCollection,
   deleteCollection,
+  refreshCollection,
   updateCollectionImage,
+  onUpdateSelectedCollection,
 }) => {
   const onOpen = (collection) => {
     onSelectCollection(collection)
@@ -50,7 +52,8 @@ const Collections = ({
             updateCollection={updateCollection}
             deleteCollection={deleteCollection}
             updateCollectionImage={updateCollectionImage}
-            onSelectCollection={onSelectCollection}
+            onUpdateSelectedCollection={onUpdateSelectedCollection}
+            refreshCollection={refreshCollection}
             loading={loading}
             editable={editable}
           />
