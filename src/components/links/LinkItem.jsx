@@ -4,11 +4,9 @@ import styled from 'styled-components'
 import renderHtml from '../../plugins/renderHtml'
 
 // Components
-import { ImageState, LazyImageFull } from 'react-lazy-images'
 import { Button, Icon, IconButton, theme, UiText } from '@heetch/flamingo-react'
 
 // Assets
-import Fill from '../../assets/images/fill.png'
 import ExpandableText from './ExpandableText'
 
 const StyledLinkItem = styled.div`
@@ -122,23 +120,11 @@ const LinkItem = ({ link, i, editing = false, editable, onSave, onDelete }) => {
       <StyledLinkItem editing={editing}>
         {ogp?.og?.['og:image'] ? (
           <div className="image" onClick={editing ? null : handleOpen}>
-            <LazyImageFull
+            <img
               src={`${ogp.og['og:image']}?${hash}`}
               alt={`${ogp.title}`}
               title={`${ogp.title}`}
-            >
-              {({ imageProps, imageState, ref }) => (
-                <img // eslint-disable-line
-                  {...imageProps}
-                  ref={ref}
-                  src={
-                    imageState === ImageState.LoadSuccess
-                      ? imageProps.src
-                      : Fill
-                  }
-                />
-              )}
-            </LazyImageFull>
+            />
           </div>
         ) : null}
 

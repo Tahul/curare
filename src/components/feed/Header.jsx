@@ -1,10 +1,11 @@
-import { Card, IconButton, Text, theme, UiText } from '@heetch/flamingo-react'
 import React from 'react'
-import { ImageState, LazyImageFull } from 'react-lazy-images'
 import styled from 'styled-components'
 
 // Assets
 import Fill from '../../assets/images/fill.png'
+
+// Components
+import { Card, IconButton, Text, theme, UiText } from '@heetch/flamingo-react'
 
 const StyledHeader = styled.div`
   width: 100%;
@@ -80,21 +81,11 @@ const Header = ({ id, profile, loading, editable, onEdit }) => {
   return (
     <StyledHeader>
       <div className="avatar">
-        <LazyImageFull
+        <img
           src={profile?.avatar_url || Fill}
           alt={`${id} avatar`}
           title={`${id} avatar`}
-        >
-          {({ imageProps, imageState, ref }) => (
-            <img // eslint-disable-line
-              {...imageProps}
-              ref={ref}
-              src={
-                imageState === ImageState.LoadSuccess ? imageProps.src : Fill
-              }
-            />
-          )}
-        </LazyImageFull>
+        />
 
         {editable ? (
           <IconButton
