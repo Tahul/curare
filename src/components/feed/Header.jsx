@@ -6,6 +6,7 @@ import Fill from '../../assets/images/fill.png'
 
 // Components
 import { Card, IconButton, Text, theme, UiText } from '@heetch/flamingo-react'
+import { Img } from 'react-image'
 
 const StyledHeader = styled.div`
   width: 100%;
@@ -81,7 +82,7 @@ const Header = ({ id, profile, loading, editable, onEdit }) => {
   return (
     <StyledHeader>
       <div className="avatar">
-        <img
+        <Img
           src={profile?.avatar_url || Fill}
           alt={`${id} avatar`}
           title={`${id} avatar`}

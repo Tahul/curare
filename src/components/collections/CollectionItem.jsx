@@ -7,6 +7,7 @@ import { Button, Item, Text, theme, UiText } from '@heetch/flamingo-react'
 
 // Assets
 import Fill from '../../assets/images/fill.png'
+import { Img } from 'react-image'
 
 const StyledCollectionItem = styled.div`
   position: relative;
@@ -104,7 +105,7 @@ const CollectionItem = ({
           value={valueText}
         >
           <div className="itemContent">
-            <img
+            <Img
               src={collection.image_url || Fill}
               alt={collection.title}
               title={collection.title}

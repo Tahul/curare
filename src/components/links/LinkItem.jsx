@@ -8,6 +8,7 @@ import { Button, Icon, IconButton, theme, UiText } from '@heetch/flamingo-react'
 
 // Assets
 import ExpandableText from './ExpandableText'
+import { Img } from 'react-image'
 
 const StyledLinkItem = styled.div`
   width: 100%;
@@ -17,12 +18,13 @@ const StyledLinkItem = styled.div`
   overflow: hidden;
 
   .image {
-    height: 130px;
+    height: 150px;
     overflow: hidden;
     cursor: ${(props) => (!props.editing ? 'pointer' : 'cursor')};
 
     img {
       width: 100%;
+      height: 100%;
       object-fit: cover;
       object-position: 50% 50%;
     }
@@ -120,8 +122,8 @@ const LinkItem = ({ link, i, editing = false, editable, onSave, onDelete }) => {
       <StyledLinkItem editing={editing}>
         {ogp?.og?.['og:image'] ? (
           <div className="image" onClick={editing ? null : handleOpen}>
-            <img
-              src={`${ogp.og['og:image']}?${hash}`}
+            <Img
+              src={`${ogp.og['og:image']}`}
               alt={`${ogp.title}`}
               title={`${ogp.title}`}
             />
