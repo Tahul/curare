@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import {
   destroy,
   index,
+  show,
   store,
   update,
   updateImage as updateRemoteImage,
@@ -138,6 +139,32 @@ const useCollections = (userId = null) => {
     return updatedCollection
   }
 
+  /**
+   * Get a single entity and refresh it from the local list.
+   *
+   * @param {string} id
+   */
+  const refreshCollection = async ({ id }) => {
+    setLoading(true)
+
+    let updatedCollection
+
+    try {
+      updatedCollection = await show({ id })
+
+      setCollections([
+        ...collections.filter((collection) => collection.id !== id),
+        updatedCollection,
+      ])
+    } catch (e) {
+      // Mitigate this case
+    }
+
+    setLoading(false)
+
+    return updatedCollection
+  }
+
   useEffect(() => {
     let isMounted = true
 
@@ -160,6 +187,7 @@ const useCollections = (userId = null) => {
     updateCollection,
     deleteCollection,
     updateCollectionImage,
+    refreshCollection,
     loading,
   }
 }

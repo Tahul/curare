@@ -14,6 +14,17 @@ export const index = async ({ userId = null }) => {
 }
 
 /**
+ * Get a single collection.
+ *
+ * @param {string} id
+ */
+export const show = async ({ id }) => {
+  const request = await API.get(`/collections/${id}`)
+
+  return request.data
+}
+
+/**
  * Create a collection.
  *
  * @param { title } collection
