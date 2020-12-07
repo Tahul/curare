@@ -17,7 +17,6 @@ const Collections = ({
   editable,
   collections,
   selectedCollection,
-  selectedCollectionId,
   onSelectCollection,
   createCollection,
   updateCollection,
@@ -40,12 +39,12 @@ const Collections = ({
 
   return (
     <div>
-      {loading ? null : selectedCollection && selectedCollectionId ? (
+      {selectedCollection ? (
         <motion.div initial={{ y: 100 }} animate={{ y: 0 }}>
           <SelectedCollection
             userName={userName}
-            id={selectedCollectionId}
-            key={selectedCollectionId}
+            id={selectedCollection.id}
+            key={selectedCollection.id}
             collection={selectedCollection}
             onClose={onSelectCollection}
             onFormOpen={hanldeScrollBottom}
