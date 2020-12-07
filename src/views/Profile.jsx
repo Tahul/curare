@@ -133,7 +133,6 @@ const Profile = ({ match }) => {
                 onSelectCollection={onSetSelectedCollection}
                 onUpdateSelectedCollection={setSelectedCollection}
                 selectedCollection={selectedCollection}
-                selectedCollectionId={collectionId}
                 createCollection={createCollection}
                 updateCollection={updateCollection}
                 deleteCollection={deleteCollection}
