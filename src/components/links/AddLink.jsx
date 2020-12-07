@@ -4,6 +4,7 @@ import styled from 'styled-components'
 // Components
 import { Input } from '@heetch/flamingo-react'
 import LinkItem from './LinkItem'
+import useIsMounted from '../../hooks/useIsMounted'
 
 const regex = /^(?:((?:(?:https?|ftp):\/\/))|(?:www.))+(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z0-9\u00a1-\uffff][a-z0-9\u00a1-\uffff_-]{0,62})?[a-z0-9\u00a1-\uffff]\.)+(?:[a-z\u00a1-\uffff]{2,}\.?))(?::\d{2,5})?(?:[/?#]\S*)?$/
 
@@ -14,12 +15,13 @@ const isUrl = (url) => {
 const StyledAddLink = styled.div``
 
 const AddLink = ({ onLinkPreview, onLinkSave }) => {
+  const isMounted = useIsMounted()
   const inputRef = React.useRef()
   const [loading, setLoading] = React.useState(false)
   const [preview, setPreview] = React.useState(false)
 
   const handleLinkChange = async (url) => {
-    setLoading(true)
+    if (isMounted) setLoading(true)
 
     try {
       url = url?.target?.value
@@ -27,27 +29,27 @@ const AddLink = ({ onLinkPreview, onLinkSave }) => {
       if (url && isUrl(url)) {
         const preview = await onLinkPreview({ url })
 
-        setPreview(preview)
+        if (isMounted) setPreview(preview)
       } else {
-        setPreview(false)
+        if (isMounted) setPreview(false)
       }
     } catch (e) {
       console.warn('Could not preview the following url:\n')
       console.warn(url)
     }
 
-    setLoading(false)
+    if (isMounted) setLoading(false)
   }
 
-  const handleSave = async (link) => {
+  const handleSave = async () => {
     try {
       const url = inputRef.current.value
 
       await onLinkSave({ url, ogp: preview })
 
-      inputRef.current.value = ''
+      if (inputRef?.current) inputRef.current.value = ''
 
-      setPreview(false)
+      if (isMounted) setPreview(false)
     } catch (e) {
       console.log(e)
     }
