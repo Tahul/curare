@@ -85,17 +85,6 @@ const StyledLinkItem = styled.div`
   }
 `
 
-const item = {
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.05,
-    },
-  }),
-  hidden: { opacity: 0.25, y: 100 },
-}
-
 const LinkItem = ({
   link,
   i,
@@ -128,7 +117,26 @@ const LinkItem = ({
   }
 
   return (
-    <motion.li custom={i} animate="visible" variants={item}>
+    <motion.li
+      initial={{
+        opacity: 1,
+        y: 50,
+      }}
+      animate={{
+        opacity: 1,
+        y: 0,
+        transition: {
+          delay: i * 0.05,
+        },
+      }}
+      exit={{
+        opacity: 0,
+        scale: 0,
+        transition: {
+          duration: 0.2,
+        },
+      }}
+    >
       <StyledLinkItem editing={editing}>
         {ogp?.og?.['og:image'] ? (
           <div className="image" onClick={editing ? null : handleOpen}>

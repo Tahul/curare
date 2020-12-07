@@ -1,5 +1,5 @@
 import React from 'react'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import styled from 'styled-components'
 
 // Hooks
@@ -184,16 +184,18 @@ const SelectedCollection = ({
                 />
               ) : null}
 
-              {links.map((link, i) => (
-                <LinkItem
-                  key={link.id}
-                  link={link}
-                  i={i + 1}
-                  editable={editable}
-                  onDelete={handleLinkDelete}
-                  onOpen={clickLink}
-                />
-              ))}
+              <AnimatePresence>
+                {links.map((link, i) => (
+                  <LinkItem
+                    key={link.id}
+                    link={link}
+                    i={i + 1}
+                    editable={editable}
+                    onDelete={handleLinkDelete}
+                    onOpen={clickLink}
+                  />
+                ))}
+              </AnimatePresence>
             </motion.div>
           )}
 
