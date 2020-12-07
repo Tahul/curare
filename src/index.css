@@ -9,6 +9,7 @@ body {
   align-items: center;
   justify-content: center;
   background-color: rgb(236, 239, 248);
+  overflow-y: scroll;
 }
 
 a,
