@@ -12,6 +12,7 @@ import { createFinalFormValidation } from '@lemoncode/fonk-final-form'
 
 // Hooks
 import useIsMounted from '../../hooks/useIsMounted'
+import useActionsSounds from '../../hooks/useActionsSounds'
 
 const StyledCollectionForm = styled.div`
   .buttons {
@@ -43,6 +44,7 @@ const CollectionForm = ({
   onImageUpdate,
   onCancel,
 }) => {
+  const { playBack } = useActionsSounds()
   const isMounted = useIsMounted()
   const [image, setImage] = React.useState([])
   const [currentImage, setCurrentImage] = React.useState(false)
@@ -58,6 +60,8 @@ const CollectionForm = ({
   }
 
   const handleCancel = () => {
+    playBack()
+
     onCancel()
   }
 

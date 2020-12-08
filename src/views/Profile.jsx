@@ -13,7 +13,6 @@ import Header from '../components/feed/Header'
 import Collections from '../components/collections/Collections'
 import useCollections from '../hooks/useCollections'
 import { useHistory } from 'react-router-dom'
-import { Icon, Text } from '@heetch/flamingo-react'
 import BackButton from '../components/layout/BackButton'
 
 const StyledProfile = styled.div`

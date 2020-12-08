@@ -11,6 +11,7 @@ import { Field, Form } from 'react-final-form'
 // Form validation
 import { Validators } from '@lemoncode/fonk'
 import { createFinalFormValidation } from '@lemoncode/fonk-final-form'
+import useActionsSounds from '../../hooks/useActionsSounds'
 
 const passwordConfirmationValidator = ({ values }) => {
   if (values.passwordConfirmation !== values.password) {
@@ -74,6 +75,7 @@ const defaultState =
       }
 
 const RegisterForm = () => {
+  const { playSuccess } = useActionsSounds()
   const { loading } = useAuthState()
   const authDispatch = useAuthDispatch()
 
@@ -87,6 +89,8 @@ const RegisterForm = () => {
       email,
       password,
     })
+
+    playSuccess()
   }
 
   const validate = (values) => validator.validateForm(values)

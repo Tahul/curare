@@ -11,6 +11,7 @@ import { Field, Form } from 'react-final-form'
 // Form validation
 import { Validators } from '@lemoncode/fonk'
 import { createFinalFormValidation } from '@lemoncode/fonk-final-form'
+import useActionsSounds from '../../hooks/useActionsSounds'
 
 const validationSchema = {
   field: {
@@ -39,6 +40,7 @@ const defaultState =
       }
 
 const LoginForm = () => {
+  const { playSuccess } = useActionsSounds()
   const { loading } = useAuthState()
   const authDispatch = useAuthDispatch()
 
@@ -48,6 +50,8 @@ const LoginForm = () => {
 
   const onSubmit = async (payload) => {
     await loginAction(authDispatch, payload)
+
+    playSuccess()
   }
 
   const validate = (values) => validator.validateForm(values)

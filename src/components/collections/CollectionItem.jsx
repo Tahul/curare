@@ -59,6 +59,7 @@ const CollectionItem = ({
   icon = 'IconArrowRight',
   valueText = '',
   selected = false,
+  isEditing = false,
   onEdit,
   onDelete,
   editable,
@@ -66,8 +67,16 @@ const CollectionItem = ({
   ...props
 }) => {
   const isMounted = useIsMounted()
-  const { playButton } = useActionsSounds()
+  const { playButton, playBack } = useActionsSounds()
   const [isDeleting, setIsDeleting] = React.useState(false)
+
+  const handleEdit = () => {
+    if (isEditing) {
+      playBack()
+    } else playButton()
+
+    onEdit()
+  }
 
   const handleClick = () => {
     if (onClick) {
@@ -122,7 +131,7 @@ const CollectionItem = ({
 
           {selected && editable ? (
             <div className="actions">
-              <Button isLoading={loading} onClick={onEdit}>
+              <Button isLoading={loading} onClick={handleEdit}>
                 Edit
               </Button>
 

@@ -153,6 +153,7 @@ const SelectedCollection = ({
             onDelete={handleDelete}
             onEdit={toggleEdit}
             editable={editable}
+            isEditing={edit}
           />
 
           {!edit && (

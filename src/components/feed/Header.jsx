@@ -1,6 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 
+// Hooks
+import useActionsSounds from '../../hooks/useActionsSounds'
+
 // Assets
 import Fill from '../../assets/images/fill.png'
 
@@ -71,6 +74,8 @@ const StyledHeader = styled.div`
 `
 
 const Header = ({ id, profile, loading, editable, onEdit }) => {
+  const { playButton } = useActionsSounds()
+
   const fullName = `${profile.first_name || ''}${
     profile.last_name ? ' ' + profile.last_name : ''
   }`
@@ -78,6 +83,12 @@ const Header = ({ id, profile, loading, editable, onEdit }) => {
   const name = `${profile.name}`
 
   const description = profile.description
+
+  const handleEdit = () => {
+    playButton()
+
+    onEdit()
+  }
 
   return (
     <StyledHeader>
@@ -92,7 +103,7 @@ const Header = ({ id, profile, loading, editable, onEdit }) => {
           <IconButton
             className="edit-button"
             icon="IconPen"
-            onClick={onEdit}
+            onClick={handleEdit}
             variant="minimal"
             intent="primary"
           />
