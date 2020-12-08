@@ -5,6 +5,9 @@ import {
   updateAvatar as updateRemoteAvatar,
 } from '../api/profile'
 
+// Hooks
+import useIsMounted from './useIsMounted'
+
 const initialState = {
   first_name: '',
   last_name: '',
@@ -14,6 +17,7 @@ const initialState = {
 }
 
 const useProfile = (id = null) => {
+  const isMounted = useIsMounted()
   const [loading, setLoading] = useState(false)
   const [profile, setProfile] = useState(initialState)
 
@@ -23,21 +27,23 @@ const useProfile = (id = null) => {
    * @param {*} id
    * @param {boolean} isMounted
    */
-  const getProfile = useCallback(async ({ userId, isMounted = true }) => {
-    if (isMounted) setLoading(true)
+  const getProfile = useCallback(
+    async ({ userId }) => {
+      if (isMounted) setLoading(true)
 
-    try {
-      const remoteProfile = await getRemoteProfile({ userId })
+      try {
+        const remoteProfile = await getRemoteProfile({ userId })
 
-      setProfile({ ...profile, ...remoteProfile })
-    } catch (e) {
-      // Mitigate this case
-    }
+        setProfile({ ...profile, ...remoteProfile })
+      } catch (e) {
+        // Mitigate this case
+      }
 
-    if (isMounted) setLoading(false)
-
+      if (isMounted) setLoading(false)
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    [isMounted],
+  )
 
   /**
    * Update the current user profile
@@ -83,15 +89,11 @@ const useProfile = (id = null) => {
   }
 
   useEffect(() => {
-    let isMounted = true
-
     const fetchProfile = async () => {
-      await getProfile({ id, isMounted })
+      await getProfile({ id })
     }
 
     fetchProfile()
-
-    return () => (isMounted = false)
   }, [id, getProfile])
 
   return {

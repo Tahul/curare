@@ -8,7 +8,11 @@ import {
   updateImage as updateRemoteImage,
 } from '../api/collections'
 
+// Hooks
+import useIsMounted from './useIsMounted'
+
 const useCollections = (userId = null) => {
+  const isMounted = useIsMounted()
   const [loading, setLoading] = useState(false)
   const [collections, setCollections] = useState([])
 
@@ -16,7 +20,7 @@ const useCollections = (userId = null) => {
    * Get all the collections for the current userId.
    */
   const getCollections = useCallback(
-    async ({ userId = null, isMounted = true }) => {
+    async ({ userId = null }) => {
       if (isMounted) setLoading(true)
 
       let collections
@@ -33,7 +37,7 @@ const useCollections = (userId = null) => {
 
       return collections
     },
-    [],
+    [isMounted],
   )
 
   /**
@@ -166,17 +170,13 @@ const useCollections = (userId = null) => {
   }
 
   useEffect(() => {
-    let isMounted = true
-
     const fetchCollections = async () => {
       if (userId) {
-        await getCollections({ userId, isMounted })
+        await getCollections({ userId })
       }
     }
 
     fetchCollections()
-
-    return () => (isMounted = false)
   }, [getCollections, userId])
 
   return {

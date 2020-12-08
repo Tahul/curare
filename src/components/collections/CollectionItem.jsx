@@ -5,6 +5,9 @@ import { motion } from 'framer-motion'
 // Components
 import { Button, Item, Text, theme, UiText } from '@heetch/flamingo-react'
 
+// Hooks
+import useIsMounted from '../../hooks/useIsMounted'
+
 // Assets
 import Fill from '../../assets/images/fill.png'
 
@@ -61,7 +64,7 @@ const CollectionItem = ({
   loading,
   ...props
 }) => {
-  const [isMounted, setIsMounted] = React.useState(false)
+  const isMounted = useIsMounted()
   const [isDeleting, setIsDeleting] = React.useState(false)
 
   const handleClick = () => {
@@ -81,12 +84,6 @@ const CollectionItem = ({
       }, 1000)
     }
   }
-
-  React.useEffect(() => {
-    setIsMounted(true)
-
-    return () => setIsMounted(false)
-  }, [])
 
   return (
     <motion.li

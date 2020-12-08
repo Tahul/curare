@@ -10,6 +10,9 @@ import { Button, InputField, UploaderField } from '@heetch/flamingo-react'
 import { Validators } from '@lemoncode/fonk'
 import { createFinalFormValidation } from '@lemoncode/fonk-final-form'
 
+// Hooks
+import useIsMounted from '../../hooks/useIsMounted'
+
 const StyledCollectionForm = styled.div`
   .buttons {
     display: flex;
@@ -40,6 +43,7 @@ const CollectionForm = ({
   onImageUpdate,
   onCancel,
 }) => {
+  const isMounted = useIsMounted()
   const [image, setImage] = React.useState([])
   const [currentImage, setCurrentImage] = React.useState(false)
 
@@ -73,8 +77,6 @@ const CollectionForm = ({
       }
 
   React.useEffect(() => {
-    let isMounted = true
-
     const fetchAvatar = async () => {
       if (collection?.image_url) {
         const file = await toDataURL(collection.image_url)
@@ -93,9 +95,7 @@ const CollectionForm = ({
     }
 
     fetchAvatar()
-
-    return () => (isMounted = false)
-  }, [collection])
+  }, [collection, isMounted])
 
   return (
     <StyledCollectionForm>

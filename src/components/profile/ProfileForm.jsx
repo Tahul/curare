@@ -7,6 +7,7 @@ import { createFinalFormValidation } from '@lemoncode/fonk-final-form'
 
 // Hooks
 import useProfile from '../../hooks/useProfile'
+import useIsMounted from '../../hooks/useIsMounted'
 
 // Components
 import {
@@ -51,6 +52,7 @@ const defaultState = {
 }
 
 const ProfileForm = ({ onSave }) => {
+  const isMounted = useIsMounted()
   const { profile, loading, updateProfile, updateAvatar } = useProfile()
   const [avatar, setAvatar] = React.useState([])
 
@@ -75,8 +77,6 @@ const ProfileForm = ({ onSave }) => {
   const validate = (values) => validator.validateForm(values)
 
   React.useEffect(() => {
-    let isMounted = true
-
     const fetchAvatar = async () => {
       if (profile.avatar_url) {
         const file = await toDataURL(profile.avatar_url)
@@ -95,9 +95,7 @@ const ProfileForm = ({ onSave }) => {
     }
 
     fetchAvatar()
-
-    return () => (isMounted = false)
-  }, [profile])
+  }, [profile, isMounted])
 
   return (
     <Form

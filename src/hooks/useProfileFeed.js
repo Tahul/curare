@@ -1,6 +1,9 @@
 import { useState, useEffect, useCallback } from 'react'
 import { getProfile as getRemoteProfile } from '../api/profile'
 
+// Hooks
+import useIsMounted from './useIsMounted'
+
 const initialState = {
   first_name: null,
   last_name: null,
@@ -12,6 +15,7 @@ const initialState = {
 }
 
 const useProfileFeed = (userId = null) => {
+  const isMounted = useIsMounted()
   const [loading, setLoading] = useState(false)
   const [profile, setProfile] = useState(initialState)
 
@@ -21,32 +25,30 @@ const useProfileFeed = (userId = null) => {
    * @param {*} id
    * @param {boolean} isMounted
    */
-  const getProfile = useCallback(async ({ userId, isMounted = true }) => {
-    if (isMounted) setLoading(true)
+  const getProfile = useCallback(
+    async ({ userId }) => {
+      if (isMounted) setLoading(true)
 
-    try {
-      const remoteProfile = await getRemoteProfile({ userId })
+      try {
+        const remoteProfile = await getRemoteProfile({ userId })
 
-      setProfile({ ...profile, ...remoteProfile })
-    } catch (e) {
-      // Mitigate this case
-    }
+        setProfile({ ...profile, ...remoteProfile })
+      } catch (e) {
+        // Mitigate this case
+      }
 
-    if (isMounted) setLoading(false)
-
+      if (isMounted) setLoading(false)
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    [isMounted],
+  )
 
   useEffect(() => {
-    let isMounted = true
-
     const fetchProfile = async () => {
-      await getProfile({ userId, isMounted })
+      await getProfile({ userId })
     }
 
     fetchProfile()
-
-    return () => (isMounted = false)
   }, [userId, getProfile])
 
   return {

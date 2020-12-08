@@ -1,7 +1,11 @@
 import { useState, useCallback, useEffect } from 'react'
 import { destroy, index, preview, store, update, click } from '../api/links'
 
+// Hooks
+import useIsMounted from './useIsMounted'
+
 const useLinks = ({ userId = null, collectionId = null }) => {
+  const isMounted = useIsMounted()
   const [loading, setLoading] = useState(false)
   const [links, setLinks] = useState([])
 
@@ -10,30 +14,27 @@ const useLinks = ({ userId = null, collectionId = null }) => {
    *
    * @param {boolean} isMounted
    */
-  const getLinks = useCallback(
-    async ({ isMounted = true }) => {
-      if (isMounted) setLoading(true)
+  const getLinks = useCallback(async () => {
+    if (isMounted) setLoading(true)
 
-      let links
+    let links
 
-      try {
-        if (collectionId) {
-          links = await index({ collectionId })
-        } else if (userId) {
-          links = await index({ userId })
-        }
-
-        setLinks([...links])
-      } catch (e) {
-        console.log(e)
+    try {
+      if (collectionId) {
+        links = await index({ collectionId })
+      } else if (userId) {
+        links = await index({ userId })
       }
 
-      if (isMounted) setLoading(false)
+      setLinks([...links])
+    } catch (e) {
+      console.log(e)
+    }
 
-      return links
-    },
-    [collectionId, userId],
-  )
+    if (isMounted) setLoading(false)
+
+    return links
+  }, [collectionId, userId, isMounted])
 
   /**
    * Create a link.
@@ -153,15 +154,11 @@ const useLinks = ({ userId = null, collectionId = null }) => {
   }
 
   useEffect(() => {
-    let isMounted = true
-
     const fetchLinks = async () => {
-      await getLinks({ isMounted })
+      await getLinks()
     }
 
     fetchLinks()
-
-    return () => (isMounted = false)
   }, [getLinks, userId])
 
   return {
