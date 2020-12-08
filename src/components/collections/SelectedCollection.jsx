@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 // Hooks
 import useLinks from '../../hooks/useLinks'
+import useActionsSounds from '../../hooks/useActionsSounds'
 import { useHistory } from 'react-router-dom'
 
 // Components
@@ -11,25 +12,11 @@ import CollectionItem from './CollectionItem'
 import LinkItem from '../links/LinkItem'
 import CollectionForm from './CollectionForm'
 import AddLink from '../links/AddLink'
-import { Icon, Text, theme } from '@heetch/flamingo-react'
+import { theme } from '@heetch/flamingo-react'
+import BackButton from '../layout/BackButton'
 
 const StyledSelectedCollection = styled.div`
   margin-bottom: ${theme.space.l};
-
-  .back {
-    display: flex;
-    align-items: center;
-    margin-top: ${theme.space.l};
-    cursor: pointer;
-
-    &:hover {
-      color: ${theme.color.element.tertiary};
-    }
-
-    .f-Icon {
-      margin-right: ${theme.space.s};
-    }
-  }
 
   .selected {
     margin-bottom: ${(props) =>
@@ -44,6 +31,10 @@ const StyledSelectedCollection = styled.div`
         background-color: white;
       }
     }
+  }
+
+  .backButton {
+    margin-top: ${theme.space.l};
   }
 `
 
@@ -86,6 +77,7 @@ const SelectedCollection = ({
   onUpdateSelectedCollection,
   refreshCollection,
 }) => {
+  const { playBack } = useActionsSounds()
   const [edit, setEdit] = React.useState(false)
   const { links, getLinkPreview, createLink, deleteLink, clickLink } = useLinks(
     {
@@ -93,10 +85,6 @@ const SelectedCollection = ({
     },
   )
   const history = useHistory()
-
-  const handleBack = () => {
-    onClose()
-  }
 
   const toggleEdit = () => {
     setEdit(!edit)
@@ -153,10 +141,7 @@ const SelectedCollection = ({
       transition={{ duration: 0.2 }}
     >
       <StyledSelectedCollection editable={editable}>
-        <Text className="back" variant="contentBold" onClick={handleBack}>
-          <Icon icon="IconArrowLeft" />
-          Go back to collections
-        </Text>
+        <BackButton onBack={onClose}>Go back to collections</BackButton>
 
         <motion.ul initial="hidden" animate="visible" variants={list}>
           <CollectionItem

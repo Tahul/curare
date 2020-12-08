@@ -6,9 +6,14 @@ import errorSfx from '../assets/sounds/error.wav'
 import successSfx from '../assets/sounds/success.wav'
 import warningSfx from '../assets/sounds/warning.wav'
 import buttonSfx from '../assets/sounds/button.wav'
+import backSfx from '../assets/sounds/back.wav'
 
 const useActionsSounds = () => {
   const [playButton, stopButton] = useSound(buttonSfx, {
+    volume: 0.15,
+  })
+
+  const [playBack, stopBack] = useSound(backSfx, {
     volume: 0.15,
   })
 
@@ -27,6 +32,8 @@ const useActionsSounds = () => {
   return {
     playButton,
     stopButton,
+    playBack,
+    stopBack,
     playError,
     stopError,
     playSuccess,

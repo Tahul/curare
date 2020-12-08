@@ -13,6 +13,8 @@ import Header from '../components/feed/Header'
 import Collections from '../components/collections/Collections'
 import useCollections from '../hooks/useCollections'
 import { useHistory } from 'react-router-dom'
+import { Icon, Text } from '@heetch/flamingo-react'
+import BackButton from '../components/layout/BackButton'
 
 const StyledProfile = styled.div`
   position: relative;
@@ -108,6 +110,8 @@ const Profile = ({ match }) => {
             initial={{ opacity: 0.25, rotateY: -90 }}
             animate={{ opacity: 1, rotateY: 0 }}
           >
+            <BackButton onBack={onToggleEdit}>Go back to my profile</BackButton>
+
             <ProfileForm onSave={onProfileSave}></ProfileForm>
           </motion.div>
         ) : (
