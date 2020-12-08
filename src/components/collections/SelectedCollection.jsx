@@ -102,7 +102,7 @@ const SelectedCollection = ({
     setEdit(!edit)
   }
 
-  const handleUpdate = async ({ title }) => {
+  const handleUpdate = async ({ title }, isUpdatingImage = false) => {
     const updatedCollection = await updateCollection({
       id: collection.id,
       title,
@@ -110,15 +110,15 @@ const SelectedCollection = ({
 
     onUpdateSelectedCollection(updatedCollection)
 
-    setEdit(false)
-
     return updatedCollection
   }
 
   const handleImageUpdate = async ({ id, image }) => {
-    const collection = await updateCollectionImage({ id, image })
+    const updatedCollection = await updateCollectionImage({ id, image })
 
-    onUpdateSelectedCollection(collection)
+    onUpdateSelectedCollection(updatedCollection)
+
+    return updatedCollection
   }
 
   const handleDelete = async ({ id }) => {

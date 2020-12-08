@@ -59,15 +59,17 @@ const Collections = ({
         </motion.div>
       ) : (
         <motion.ul initial="hidden" animate="visible" variants={list}>
-          {collections.map((collection, i) => (
-            <CollectionItem
-              loading={loading}
-              key={collection.id}
-              i={i}
-              collection={collection}
-              onClick={onOpen}
-            />
-          ))}
+          {!loading
+            ? collections.map((collection, i) => (
+                <CollectionItem
+                  loading={loading}
+                  key={collection.id}
+                  i={i}
+                  collection={collection}
+                  onClick={onOpen}
+                />
+              ))
+            : null}
 
           {editable ? (
             <CreateCollection

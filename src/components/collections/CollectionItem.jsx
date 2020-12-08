@@ -61,8 +61,6 @@ const CollectionItem = ({
   loading,
   ...props
 }) => {
-  console.log({ img: collection.image_url })
-
   const [isMounted, setIsMounted] = React.useState(false)
   const [isDeleting, setIsDeleting] = React.useState(false)
 
