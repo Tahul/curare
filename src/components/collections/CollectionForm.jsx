@@ -46,7 +46,9 @@ const CollectionForm = ({
   const handleSubmit = async ({ title }) => {
     const collection = await onSubmit({ title })
 
-    await onImageUpdate({ id: collection.id, image: currentImage })
+    if (currentImage !== false) {
+      await onImageUpdate({ id: collection.id, image: currentImage })
+    }
 
     onCancel()
   }
