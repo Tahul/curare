@@ -1,6 +1,8 @@
 import React from 'react'
-import { Alert } from '@heetch/flamingo-react'
 import toast from 'toasted-notes'
+
+// Components
+import { Alert } from '@heetch/flamingo-react'
 
 const defaultOptions = {
   position: 'bottom',
