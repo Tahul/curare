@@ -3,6 +3,9 @@ import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import renderHtml from '../../plugins/renderHtml'
 
+// Hooks
+import useActionsSounds from '../../hooks/useActionsSounds'
+
 // Components
 import {
   Button,
@@ -72,6 +75,12 @@ const StyledLinkItem = styled.div`
     justify-content: space-between;
 
     .infos {
+      display: flex;
+      align-items: center;
+
+      .f-Text {
+        margin-right: ${theme.space.s};
+      }
     }
 
     .actions {
@@ -95,11 +104,18 @@ const LinkItem = ({
   onDelete,
   onOpen,
 }) => {
+  const { playButton, playBack } = useActionsSounds()
   const { ogp } = link
 
   const [full, setFull] = React.useState(false)
 
   const toggleFull = () => {
+    if (!full) {
+      playButton()
+    } else {
+      playBack()
+    }
+
     setFull(!full)
   }
 
