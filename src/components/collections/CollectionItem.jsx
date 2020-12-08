@@ -7,9 +7,11 @@ import { Button, Item, Text, theme, UiText } from '@heetch/flamingo-react'
 
 // Hooks
 import useIsMounted from '../../hooks/useIsMounted'
+import useSound from 'use-sound'
 
 // Assets
 import Fill from '../../assets/images/fill.png'
+import buttonSfx from '../../assets/sounds/button.wav'
 
 const StyledCollectionItem = styled.div`
   position: relative;
@@ -65,6 +67,9 @@ const CollectionItem = ({
   ...props
 }) => {
   const isMounted = useIsMounted()
+  const [play] = useSound(buttonSfx, {
+    volume: 0.25,
+  })
   const [isDeleting, setIsDeleting] = React.useState(false)
 
   const handleClick = () => {
@@ -93,6 +98,7 @@ const CollectionItem = ({
       variants={item}
       whileHover={!selected ? { scale: 1.03 } : null}
       whileTap={!selected ? { scale: 1 } : null}
+      onClick={!selected ? play : null}
     >
       <StyledCollectionItem className={{ selected }}>
         <Item

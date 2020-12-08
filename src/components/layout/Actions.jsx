@@ -4,10 +4,14 @@ import { motion } from 'framer-motion'
 
 // Hooks
 import { useAuth, useAuthState } from '../../contexts/auth'
+import useSound from 'use-sound'
 
 // Components
 import { Button, IconButton, theme } from '@heetch/flamingo-react'
 import { Link } from 'react-router-dom'
+
+// Assets
+import buttonSfx from '../../assets/sounds/button.wav'
 
 const StyledActions = styled.div`
   height: 100%;
@@ -47,15 +51,19 @@ const GuestActions = () => (
 )
 
 const LoggedInActions = () => {
+  const [play] = useSound(buttonSfx, {
+    volume: 0.25,
+  })
+
   const [auth] = useAuth()
 
   return (
     <AnimateActions>
-      <Link to={`/profile/${auth.name}`} tabIndex={0}>
+      <Link to={`/profile/${auth.name}`} tabIndex={0} onClick={play}>
         <IconButton icon="IconUser" />
       </Link>
 
-      <Link to="/settings" tabIndex={1}>
+      <Link to="/settings" tabIndex={1} onClick={play}>
         <IconButton icon="IconGear" />
       </Link>
     </AnimateActions>
