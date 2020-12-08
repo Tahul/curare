@@ -10,6 +10,7 @@ import Fill from '../../assets/images/fill.png'
 // Components
 import { Card, IconButton, Text, theme, UiText } from '@heetch/flamingo-react'
 import { Img } from 'react-image'
+import FollowButton from '../relations/FollowButton'
 
 const StyledHeader = styled.div`
   width: 100%;
@@ -53,27 +54,48 @@ const StyledHeader = styled.div`
   }
 
   .infos {
+    flex: 1;
     margin-left: ${theme.space.l};
 
     .fullname {
       font-weight: ${theme.fontWeight.bold};
     }
 
-    .followers,
-    .following {
-      span {
-        font-weight: ${theme.fontWeight.bold};
+    .relation {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .followers,
+      .following {
+        span {
+          font-weight: ${theme.fontWeight.bold};
+        }
+      }
+
+      .f-Button {
+        margin: 0;
       }
     }
   }
 
   .description {
     width: 100%;
-    margin-top: ${theme.space.xl};
+    margin-top: ${theme.space.l};
   }
 `
 
-const Header = ({ id, profile, loading, editable, onEdit }) => {
+const Header = ({
+  id,
+  profile,
+  loading,
+  editable,
+  onEdit,
+  isFollowing,
+  onFollow,
+  onUnfollow,
+}) => {
   const { playButton } = useActionsSounds()
 
   const fullName = `${profile.first_name || ''}${
@@ -121,13 +143,25 @@ const Header = ({ id, profile, loading, editable, onEdit }) => {
           @{name}
         </Text>
 
-        <Text className="following" alt="Following" title="Following">
-          <span>{profile.following}</span> following
-        </Text>
+        <div className="relation">
+          <div className="stats">
+            <Text className="following" alt="Following" title="Following">
+              <span>{profile.following}</span> following
+            </Text>
 
-        <Text className="followers" alt="Followers" title="Followers">
-          <span>{profile.followers}</span> followers
-        </Text>
+            <Text className="followers" alt="Followers" title="Followers">
+              <span>{profile.followers}</span> followers
+            </Text>
+          </div>
+          <div className="button">
+            <FollowButton
+              loading={loading}
+              isFollowing={isFollowing}
+              onFollow={onFollow}
+              onUnfollow={onUnfollow}
+            />
+          </div>
+        </div>
       </div>
 
       <Card className="description" size="s">
