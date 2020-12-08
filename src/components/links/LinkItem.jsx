@@ -89,6 +89,7 @@ const LinkItem = ({
   link,
   i,
   editing = false,
+  loading = false,
   editable,
   onSave,
   onDelete,
@@ -197,9 +198,17 @@ const LinkItem = ({
 
             {editable ? (
               link?.id ? (
-                <IconButton icon="IconTrash" onClick={handleDelete} />
+                <IconButton
+                  icon="IconTrash"
+                  onClick={handleDelete}
+                  isLoading={loading}
+                />
               ) : (
-                <Button onClick={handleSave} icon="IconCheck">
+                <Button
+                  onClick={handleSave}
+                  icon="IconCheck"
+                  isLoading={loading}
+                >
                   Save
                 </Button>
               )

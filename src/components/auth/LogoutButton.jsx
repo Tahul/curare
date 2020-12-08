@@ -5,7 +5,7 @@ import useActionsSounds from '../../hooks/useActionsSounds'
 import { useHistory } from 'react-router-dom'
 
 // Contexts
-import { useAuthDispatch } from '../../contexts/auth'
+import { useAuthDispatch, useAuthState } from '../../contexts/auth'
 import { logoutAction } from '../../contexts/auth/actions'
 
 // Components
@@ -14,6 +14,7 @@ import { Button } from '@heetch/flamingo-react'
 const LogoutButton = () => {
   const { playBack } = useActionsSounds()
   const authDispatch = useAuthDispatch()
+  const { loading } = useAuthState()
   const history = useHistory()
 
   const handleLogout = async () => {
@@ -26,7 +27,11 @@ const LogoutButton = () => {
   }
 
   return (
-    <Button style={{ width: '100%' }} onClick={handleLogout}>
+    <Button
+      style={{ width: '100%' }}
+      onClick={handleLogout}
+      isLoading={loading}
+    >
       Logout
     </Button>
   )

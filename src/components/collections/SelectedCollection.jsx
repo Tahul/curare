@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 // Hooks
 import useLinks from '../../hooks/useLinks'
-import useActionsSounds from '../../hooks/useActionsSounds'
+import useIsMounted from '../../hooks/useIsMounted'
 import { useHistory } from 'react-router-dom'
 
 // Components
@@ -77,7 +77,8 @@ const SelectedCollection = ({
   onUpdateSelectedCollection,
   refreshCollection,
 }) => {
-  const { playBack } = useActionsSounds()
+  const isMounted = useIsMounted()
+  const [loadingLink, setLoadingLink] = React.useState(false)
   const [edit, setEdit] = React.useState(false)
   const { links, getLinkPreview, createLink, deleteLink, clickLink } = useLinks(
     {
@@ -126,11 +127,15 @@ const SelectedCollection = ({
   }
 
   const handleLinkDelete = async ({ id }) => {
+    if (isMounted) setLoadingLink(id)
+
     await deleteLink({ id })
 
     const updatedCollection = await refreshCollection({ id: collection.id })
 
     onUpdateSelectedCollection(updatedCollection)
+
+    if (isMounted) setLoadingLink(false)
   }
 
   return (
@@ -179,6 +184,7 @@ const SelectedCollection = ({
                     editable={editable}
                     onDelete={handleLinkDelete}
                     onOpen={clickLink}
+                    loading={loadingLink === link.id}
                   />
                 ))}
               </AnimatePresence>

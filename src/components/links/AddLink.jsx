@@ -44,17 +44,23 @@ const AddLink = ({ onLinkPreview, onLinkSave }) => {
   }
 
   const handleSave = async () => {
+    if (isMounted) setLoading(true)
+
+    const previewData = { ...preview }
+
     try {
       const url = inputRef.current.value
 
-      await onLinkSave({ url, ogp: preview })
+      if (isMounted) setPreview(false)
+
+      await onLinkSave({ url, ogp: previewData })
 
       if (inputRef?.current) inputRef.current.value = ''
-
-      if (isMounted) setPreview(false)
     } catch (e) {
-      console.log(e)
+      setPreview(previewData)
     }
+
+    if (isMounted) setLoading(false)
   }
 
   return (

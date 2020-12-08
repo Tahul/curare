@@ -53,7 +53,7 @@ const CollectionForm = ({
     const collection = await onSubmit({ title })
 
     if (currentImage !== false) {
-      await onImageUpdate({ id: collection.id, image: currentImage })
+      onImageUpdate({ id: collection.id, image: currentImage })
     }
 
     onCancel()
@@ -136,10 +136,17 @@ const CollectionForm = ({
             </Field>
 
             <div className="buttons">
-              <Button onClick={handleCancel} intent="primary" variant="outline">
+              <Button
+                onClick={handleCancel}
+                intent="primary"
+                variant="outline"
+                isLoading={loading}
+              >
                 Cancel
               </Button>
-              <Button onClick={handleSubmit}>Save</Button>
+              <Button onClick={handleSubmit} isLoading={loading}>
+                Save
+              </Button>
             </div>
           </form>
         )}
