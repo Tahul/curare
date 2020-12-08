@@ -3,8 +3,10 @@ import { destroy, index, preview, store, update, click } from '../api/links'
 
 // Hooks
 import useIsMounted from './useIsMounted'
+import useActionsSounds from './useActionsSounds'
 
 const useLinks = ({ userId = null, collectionId = null }) => {
+  const { playSuccess, playError, playWarning } = useActionsSounds()
   const isMounted = useIsMounted()
   const [loading, setLoading] = useState(false)
   const [links, setLinks] = useState([])
@@ -50,8 +52,10 @@ const useLinks = ({ userId = null, collectionId = null }) => {
       link = await store({ url, ogp, collection_id })
 
       setLinks([...links, link])
+
+      playSuccess()
     } catch (e) {
-      console.log(e)
+      playError()
     }
 
     setLoading(false)
@@ -81,8 +85,10 @@ const useLinks = ({ userId = null, collectionId = null }) => {
           return link
         }),
       )
+
+      playSuccess()
     } catch (e) {
-      console.log(e)
+      playError()
     }
 
     setLoading(false)
@@ -105,9 +111,11 @@ const useLinks = ({ userId = null, collectionId = null }) => {
         }),
       )
 
+      playSuccess()
+
       return { id }
     } catch (e) {
-      console.log(e)
+      playError()
     }
 
     return false

@@ -7,6 +7,7 @@ import {
 
 // Hooks
 import useIsMounted from './useIsMounted'
+import useActionsSounds from './useActionsSounds'
 
 const initialState = {
   first_name: '',
@@ -17,6 +18,7 @@ const initialState = {
 }
 
 const useProfile = (id = null) => {
+  const { playSuccess, playError } = useActionsSounds()
   const isMounted = useIsMounted()
   const [loading, setLoading] = useState(false)
   const [profile, setProfile] = useState(initialState)
@@ -62,8 +64,10 @@ const useProfile = (id = null) => {
       })
 
       setProfile({ ...profile, ...updatedProfile })
+
+      playSuccess()
     } catch (e) {
-      // Mitigate this case
+      playError()
     }
 
     setLoading(false)

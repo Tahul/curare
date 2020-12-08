@@ -9,9 +9,13 @@ import {
 } from '../api/collections'
 
 // Hooks
+import useActionsSounds from './useActionsSounds'
+
+// Hooks
 import useIsMounted from './useIsMounted'
 
 const useCollections = (userId = null) => {
+  const { playSuccess, playError, playWarning } = useActionsSounds()
   const isMounted = useIsMounted()
   const [loading, setLoading] = useState(false)
   const [collections, setCollections] = useState([])
@@ -54,8 +58,10 @@ const useCollections = (userId = null) => {
       collection = await store({ title })
 
       setCollections([...collections, collection])
+
+      playSuccess()
     } catch (e) {
-      console.log(e)
+      playError()
     }
 
     setLoading(false)
@@ -85,8 +91,10 @@ const useCollections = (userId = null) => {
           return collection
         }),
       )
+
+      playSuccess()
     } catch (e) {
-      console.log(e)
+      playError()
     }
 
     setLoading(false)
@@ -109,9 +117,11 @@ const useCollections = (userId = null) => {
         }),
       )
 
+      playSuccess()
+
       return { id }
     } catch (e) {
-      console.log(e)
+      playError()
     }
 
     return false
