@@ -2,6 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
+// Hooks
+import useActionsSounds from '../../hooks/useActionsSounds'
+
 // Components
 import { Button, theme } from '@heetch/flamingo-react'
 import CollectionForm from './CollectionForm'
@@ -46,10 +49,13 @@ const CreateCollection = ({
   updateCollectionImage,
   onFormOpen,
 }) => {
+  const { playButton } = useActionsSounds()
   const [formVisible, setFormVisible] = React.useState(false)
 
   const handleCreate = () => {
     setFormVisible(true)
+
+    playButton()
 
     onFormOpen()
   }

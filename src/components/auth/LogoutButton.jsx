@@ -1,6 +1,7 @@
 import React from 'react'
 
 // Hooks
+import useActionsSounds from '../../hooks/useActionsSounds'
 import { useHistory } from 'react-router-dom'
 
 // Contexts
@@ -11,11 +12,14 @@ import { logoutAction } from '../../contexts/auth/actions'
 import { Button } from '@heetch/flamingo-react'
 
 const LogoutButton = () => {
+  const { playBack } = useActionsSounds()
   const authDispatch = useAuthDispatch()
   const history = useHistory()
 
   const handleLogout = async () => {
     await logoutAction(authDispatch)
+
+    playBack()
 
     // Redirect after logout
     history.push('/')
