@@ -35,17 +35,21 @@ const AnimateActions = ({ children }) => (
   </motion.div>
 )
 
-const GuestActions = () => (
-  <AnimateActions>
-    <Link to="/login" tabIndex={0}>
-      <Button>Login</Button>
-    </Link>
+const GuestActions = () => {
+  const { playButton } = useActionsSounds()
 
-    <Link to="/register" tabIndex={1}>
-      <Button>Register</Button>
-    </Link>
-  </AnimateActions>
-)
+  return (
+    <AnimateActions>
+      <Link to="/login" tabIndex={0} onClick={playButton}>
+        <Button>Login</Button>
+      </Link>
+
+      <Link to="/register" tabIndex={1} onClick={playButton}>
+        <Button>Register</Button>
+      </Link>
+    </AnimateActions>
+  )
+}
 
 const LoggedInActions = () => {
   const { playButton } = useActionsSounds()
