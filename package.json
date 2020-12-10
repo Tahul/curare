@@ -20,6 +20,7 @@
     "axios": "^0.21.0",
     "final-form": "^4.20.1",
     "framer-motion": "^2.9.5",
+    "numeral": "^2.0.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-final-form": "^6.5.2",
