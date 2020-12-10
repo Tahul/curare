@@ -74,13 +74,18 @@ const Profile = ({ match }) => {
     followUser,
     unfollowUser,
     getUserFollowers,
-    getUserFollowing,
+    getUserFollowings,
+    loading: relationsLoading,
   } = useRelations({ setProfile })
 
   /**
    * Toggle form section
    */
   const onToggleEdit = () => {
+    setShowFollowers(false) // Ensure showFollowers is turned false when opening profile edit
+
+    setShowFollowings(false) // Ensure showFollowings is turned false when opening profile edit
+
     setEdit(!edit)
   }
 
@@ -177,15 +182,19 @@ const Profile = ({ match }) => {
 
             {!showFollowings && showFollowers && (
               <Followers
+                loading={relationsLoading}
                 userId={profile.id}
                 getUserFollowers={getUserFollowers}
+                onClose={onToggleFollowers}
               />
             )}
 
             {!showFollowers && showFollowings && (
               <Followings
+                loading={relationsLoading}
                 userId={profile.id}
-                getUserFollowers={getUserFollowing}
+                getUserFollowings={getUserFollowings}
+                onClose={onToggleFollowings}
               />
             )}
 

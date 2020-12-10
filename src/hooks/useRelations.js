@@ -79,7 +79,7 @@ const useRelations = ({ setProfile }) => {
    *
    * @param {*} param0
    */
-  const getUserFollowing = async ({ userId }) => {
+  const getUserFollowings = async ({ userId }) => {
     if (isMounted) setLoading(true)
 
     try {
@@ -96,7 +96,7 @@ const useRelations = ({ setProfile }) => {
     followUser,
     unfollowUser,
     getUserFollowers,
-    getUserFollowing,
+    getUserFollowings,
     userFollowers,
     userFollowing,
   }
