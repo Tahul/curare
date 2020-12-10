@@ -28,7 +28,7 @@ const formVariants = {
   },
   hidden: {
     opacity: 0.25,
-    y: -50,
+    y: -100,
   },
 }
 
@@ -39,7 +39,7 @@ const buttonsVariants = {
   },
   hidden: {
     opacity: 0.25,
-    y: 50,
+    y: 100,
   },
 }
 
