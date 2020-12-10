@@ -4,10 +4,11 @@ import { theme } from '@heetch/flamingo-react'
 
 // Components
 import BackButton from '../layout/BackButton'
+import User from './User'
 
 const StyledFollowers = styled.div`
   .backButton {
-    margin-top: ${theme.space.l};
+    margin: ${theme.space.l} 0;
   }
 `
 
@@ -29,6 +30,13 @@ const Followers = ({
   return (
     <StyledFollowers>
       <BackButton onBack={onClose}>Go back to collections</BackButton>
+
+      <ul>
+        {followers &&
+          followers.map((profile) => (
+            <User key={profile.user_id} profile={profile} />
+          ))}
+      </ul>
     </StyledFollowers>
   )
 }
