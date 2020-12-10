@@ -195,23 +195,33 @@ const Profile = ({ match }) => {
             />
 
             {!showFollowings && showFollowers && (
-              <Followers
-                loading={relationsLoading}
-                userId={profile.user_id}
-                getUserFollowers={getUserFollowers}
-                onClose={onToggleFollowers}
-                followers={userFollowers}
-              />
+              <motion.div
+                initial={{ y: 100, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+              >
+                <Followers
+                  loading={relationsLoading}
+                  userId={profile.user_id}
+                  getUserFollowers={getUserFollowers}
+                  onClose={onToggleFollowers}
+                  followers={userFollowers}
+                />
+              </motion.div>
             )}
 
             {!showFollowers && showFollowings && (
-              <Followings
-                loading={relationsLoading}
-                userId={profile.user_id}
-                getUserFollowings={getUserFollowings}
-                onClose={onToggleFollowings}
-                followings={userFollowings}
-              />
+              <motion.div
+                initial={{ y: 100, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+              >
+                <Followings
+                  loading={relationsLoading}
+                  userId={profile.user_id}
+                  getUserFollowings={getUserFollowings}
+                  onClose={onToggleFollowings}
+                  followings={userFollowings}
+                />
+              </motion.div>
             )}
 
             {!showFollowers && !showFollowings && profile?.user_id ? (
