@@ -33,8 +33,8 @@ const Followings = ({
 
       <ul>
         {followings &&
-          followings.map((profile) => (
-            <User key={profile.user_id} profile={profile} />
+          followings.map((profile, i) => (
+            <User i={i} key={profile.user_id} profile={profile} />
           ))}
       </ul>
     </StyledFollowings>
