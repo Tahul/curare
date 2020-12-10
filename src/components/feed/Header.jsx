@@ -120,6 +120,18 @@ const Header = ({
     onEdit()
   }
 
+  const handleFollowersClick = () => {
+    playButton()
+
+    onToggleFollowers()
+  }
+
+  const handleFollowingsClick = () => {
+    playButton()
+
+    onToggleFollowings()
+  }
+
   return (
     <StyledHeader>
       <div className="avatar">
@@ -157,7 +169,7 @@ const Header = ({
               className="following"
               alt="Following"
               title="Following"
-              onClick={onToggleFollowings}
+              onClick={handleFollowingsClick}
             >
               <span>
                 {numeral(profile.following).format(
@@ -171,7 +183,7 @@ const Header = ({
               className="followers"
               alt="Followers"
               title="Followers"
-              onClick={onToggleFollowers}
+              onClick={handleFollowersClick}
             >
               <span>
                 {numeral(profile.followers).format(
