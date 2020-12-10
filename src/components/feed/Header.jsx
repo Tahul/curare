@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import numeral from 'numeral'
 
 // Hooks
 import useActionsSounds from '../../hooks/useActionsSounds'
@@ -146,11 +147,21 @@ const Header = ({
         <div className="relation">
           <div className="stats">
             <Text className="following" alt="Following" title="Following">
-              <span>{profile.following}</span> following
+              <span>
+                {numeral(profile.following).format(
+                  profile.following > 1000 ? '0.0a' : '0a',
+                )}
+              </span>{' '}
+              following
             </Text>
 
             <Text className="followers" alt="Followers" title="Followers">
-              <span>{profile.followers}</span> followers
+              <span>
+                {numeral(profile.followers).format(
+                  profile.followers > 1000 ? '0.0a' : '0a',
+                )}
+              </span>{' '}
+              followers
             </Text>
           </div>
           <div className="button">
