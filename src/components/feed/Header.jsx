@@ -73,6 +73,11 @@ const StyledHeader = styled.div`
         span {
           font-weight: ${theme.fontWeight.bold};
         }
+
+        &:hover {
+          font-weight: ${theme.fontWeight.bold};
+          cursor: pointer;
+        }
       }
 
       .f-Button {
@@ -96,6 +101,8 @@ const Header = ({
   isFollowing,
   onFollow,
   onUnfollow,
+  onToggleFollowers,
+  onToggleFollowings,
 }) => {
   const { playButton } = useActionsSounds()
 
@@ -146,7 +153,12 @@ const Header = ({
 
         <div className="relation">
           <div className="stats">
-            <Text className="following" alt="Following" title="Following">
+            <Text
+              className="following"
+              alt="Following"
+              title="Following"
+              onClick={onToggleFollowings}
+            >
               <span>
                 {numeral(profile.following).format(
                   profile.following > 1000 ? '0.0a' : '0a',
@@ -155,7 +167,12 @@ const Header = ({
               following
             </Text>
 
-            <Text className="followers" alt="Followers" title="Followers">
+            <Text
+              className="followers"
+              alt="Followers"
+              title="Followers"
+              onClick={onToggleFollowers}
+            >
               <span>
                 {numeral(profile.followers).format(
                   profile.followers > 1000 ? '0.0a' : '0a',

@@ -15,6 +15,8 @@ import useCollections from '../hooks/useCollections'
 import { useHistory } from 'react-router-dom'
 import BackButton from '../components/layout/BackButton'
 import useRelations from '../hooks/useRelations'
+import Followers from '../components/relations/Followers'
+import Followings from '../components/relations/Followings'
 
 const StyledProfile = styled.div`
   position: relative;
@@ -22,15 +24,20 @@ const StyledProfile = styled.div`
 `
 
 const Profile = ({ match }) => {
+  // Routing
   const history = useHistory()
   const { id, collectionId } = match.params
+
+  // Auth
   const [auth] = useAuth()
 
   // Profile
   const { profile, setProfile, loading: profileLoading } = useProfileFeed(
     id || null,
   )
+
   const [edit, setEdit] = React.useState(false)
+
   const editable = profile.name === auth.name
 
   // Collections
@@ -60,6 +67,9 @@ const Profile = ({ match }) => {
   }, [selectedCollection, collectionId, collections])
 
   // Relations
+  const [showFollowers, setShowFollowers] = React.useState(false)
+  const [showFollowings, setShowFollowings] = React.useState(false)
+
   const {
     followUser,
     unfollowUser,
@@ -68,10 +78,32 @@ const Profile = ({ match }) => {
   } = useRelations({ setProfile })
 
   /**
-   * Toggle form
+   * Toggle form section
    */
   const onToggleEdit = () => {
     setEdit(!edit)
+  }
+
+  /**
+   * Toggle followers section
+   */
+  const onToggleFollowers = () => {
+    setEdit(false) // Ensure edit is turned false when opening followers
+
+    setShowFollowings(false) // Ensure showFollowings is turned false when opening followers
+
+    setShowFollowers(!showFollowers)
+  }
+
+  /**
+   * Toggle followings section
+   */
+  const onToggleFollowings = () => {
+    setEdit(false) // Ensure edit is turned false when opening followings
+
+    setShowFollowers(false) // Ensure showFollowings is turned false when opening followings
+
+    setShowFollowings(!showFollowings)
   }
 
   /**
@@ -112,7 +144,7 @@ const Profile = ({ match }) => {
   return (
     <Page animated={false}>
       <StyledProfile>
-        {edit ? (
+        {edit && (
           <motion.div
             key="form"
             initial={{ opacity: 0.25, rotateY: -90 }}
@@ -122,7 +154,9 @@ const Profile = ({ match }) => {
 
             <ProfileForm onSave={onProfileSave}></ProfileForm>
           </motion.div>
-        ) : (
+        )}
+
+        {!edit && (
           <motion.div
             key="profile"
             initial={{ opacity: 0.25, rotateY: 90 }}
@@ -137,9 +171,25 @@ const Profile = ({ match }) => {
               isFollowing={profile.is_followed}
               onFollow={followUser}
               onUnfollow={unfollowUser}
+              onToggleFollowers={onToggleFollowers}
+              onToggleFollowings={onToggleFollowings}
             />
 
-            {profile?.user_id ? (
+            {!showFollowings && showFollowers && (
+              <Followers
+                userId={profile.id}
+                getUserFollowers={getUserFollowers}
+              />
+            )}
+
+            {!showFollowers && showFollowings && (
+              <Followings
+                userId={profile.id}
+                getUserFollowers={getUserFollowing}
+              />
+            )}
+
+            {!showFollowers && !showFollowings && profile?.user_id ? (
               <Collections
                 userName={profile.name}
                 collections={collections}
