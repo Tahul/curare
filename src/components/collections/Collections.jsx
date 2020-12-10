@@ -66,7 +66,7 @@ const Collections = ({
             />
           ))}
 
-          {editable ? (
+          {editable && !loading ? (
             <motion.div
               initial={{ y: 100, opacity: 0 }}
               animate={{
