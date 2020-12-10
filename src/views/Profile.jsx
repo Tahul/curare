@@ -75,6 +75,8 @@ const Profile = ({ match }) => {
     unfollowUser,
     getUserFollowers,
     getUserFollowings,
+    userFollowers,
+    userFollowings,
     loading: relationsLoading,
   } = useRelations({ setProfile })
 
@@ -178,23 +180,27 @@ const Profile = ({ match }) => {
               onUnfollow={unfollowUser}
               onToggleFollowers={onToggleFollowers}
               onToggleFollowings={onToggleFollowings}
+              showFollowers={showFollowers}
+              showFollowings={showFollowings}
             />
 
             {!showFollowings && showFollowers && (
               <Followers
                 loading={relationsLoading}
-                userId={profile.id}
+                userId={profile.user_id}
                 getUserFollowers={getUserFollowers}
                 onClose={onToggleFollowers}
+                followers={userFollowers}
               />
             )}
 
             {!showFollowers && showFollowings && (
               <Followings
                 loading={relationsLoading}
-                userId={profile.id}
+                userId={profile.user_id}
                 getUserFollowings={getUserFollowings}
                 onClose={onToggleFollowings}
+                followings={userFollowings}
               />
             )}
 

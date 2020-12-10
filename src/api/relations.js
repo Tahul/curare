@@ -40,7 +40,7 @@ export const followers = async ({ userId = null }) => {
  *
  * @param {string|null} userId
  */
-export const following = async ({ userId = null }) => {
+export const followings = async ({ userId = null }) => {
   const request = await API.get(
     `/social/following${userId ? `/${userId}` : ``}`,
   )

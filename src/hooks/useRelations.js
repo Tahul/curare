@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { follow, unfollow, following, followers } from '../api/relations'
+import { follow, unfollow, followings, followers } from '../api/relations'
 import useActionsSounds from './useActionsSounds'
 import useIsMounted from './useIsMounted'
 
@@ -9,7 +9,7 @@ const useRelations = ({ setProfile }) => {
   const isMounted = useIsMounted()
   const [loading, setLoading] = useState(false)
   const [userFollowers, setUserFollowers] = useState([])
-  const [userFollowing, setUserFollowing] = useState([])
+  const [userFollowings, setUserFollowings] = useState([])
 
   /**
    * Follow a user.
@@ -83,7 +83,7 @@ const useRelations = ({ setProfile }) => {
     if (isMounted) setLoading(true)
 
     try {
-      setUserFollowing(await following({ userId }))
+      setUserFollowings(await followings({ userId }))
     } catch (e) {
       console.log(e)
     }
@@ -98,7 +98,7 @@ const useRelations = ({ setProfile }) => {
     getUserFollowers,
     getUserFollowings,
     userFollowers,
-    userFollowing,
+    userFollowings,
   }
 }
 
