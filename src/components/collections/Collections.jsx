@@ -6,11 +6,6 @@ import CollectionItem from './CollectionItem'
 import SelectedCollection from './SelectedCollection'
 import CreateCollection from './CreateCollection'
 
-const list = {
-  visible: { opacity: 1 },
-  hidden: { opacity: 0 },
-}
-
 const Collections = ({
   userName,
   loading,
@@ -39,7 +34,7 @@ const Collections = ({
 
   return (
     <div>
-      {selectedCollection ? (
+      {selectedCollection && (
         <motion.div initial={{ y: 100 }} animate={{ y: 0 }}>
           <SelectedCollection
             userName={userName}
@@ -57,27 +52,38 @@ const Collections = ({
             editable={editable}
           />
         </motion.div>
-      ) : (
-        <motion.ul initial="hidden" animate="visible" variants={list}>
+      )}
+
+      {collections && !selectedCollection && (
+        <ul>
           {collections.map((collection, i) => (
             <CollectionItem
               loading={loading}
               key={collection.id}
-              i={i}
+              i={i + 1}
               collection={collection}
               onClick={onOpen}
             />
           ))}
 
           {editable ? (
-            <CreateCollection
-              createCollection={createCollection}
-              updateCollectionImage={updateCollectionImage}
-              loading={loading}
-              onFormOpen={hanldeScrollBottom}
-            />
+            <motion.div
+              initial={{ y: 100, opacity: 0 }}
+              animate={{
+                y: 0,
+                opacity: 1,
+                transition: { delay: collections.length * 0.02 },
+              }}
+            >
+              <CreateCollection
+                createCollection={createCollection}
+                updateCollectionImage={updateCollectionImage}
+                loading={loading}
+                onFormOpen={hanldeScrollBottom}
+              />
+            </motion.div>
           ) : null}
-        </motion.ul>
+        </ul>
       )}
     </div>
   )

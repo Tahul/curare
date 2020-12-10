@@ -46,7 +46,7 @@ const item = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: i * 0.05,
+      delay: i * 0.02,
     },
   }),
   hidden: { opacity: 0.25, y: 100 },
@@ -100,6 +100,7 @@ const CollectionItem = ({
     <motion.li
       {...props}
       custom={i}
+      initial="hidden"
       animate="visible"
       variants={item}
       whileHover={!selected ? { scale: 1.03 } : null}
