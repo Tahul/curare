@@ -69,12 +69,13 @@ const StyledHeader = styled.div`
       justify-content: space-between;
 
       .followers,
-      .following {
+      .followings {
         span {
           font-weight: ${theme.fontWeight.bold};
         }
 
-        &:hover {
+        &:hover,
+        &.active {
           font-weight: ${theme.fontWeight.bold};
           cursor: pointer;
         }
@@ -103,8 +104,10 @@ const Header = ({
   onUnfollow,
   onToggleFollowers,
   onToggleFollowings,
+  showFollowers,
+  showFollowings,
 }) => {
-  const { playButton } = useActionsSounds()
+  const { playButton, playBack } = useActionsSounds()
 
   const fullName = `${profile.first_name || ''}${
     profile.last_name ? ' ' + profile.last_name : ''
@@ -121,13 +124,15 @@ const Header = ({
   }
 
   const handleFollowersClick = () => {
-    playButton()
+    if (showFollowers) playBack()
+    else playButton()
 
     onToggleFollowers()
   }
 
   const handleFollowingsClick = () => {
-    playButton()
+    if (showFollowings) playBack()
+    else playButton()
 
     onToggleFollowings()
   }
@@ -166,7 +171,7 @@ const Header = ({
         <div className="relation">
           <div className="stats">
             <Text
-              className="following"
+              className={`followings ${showFollowings ? `active` : ``}`}
               alt="Following"
               title="Following"
               onClick={handleFollowingsClick}
@@ -180,7 +185,7 @@ const Header = ({
             </Text>
 
             <Text
-              className="followers"
+              className={`followers ${showFollowers ? `active` : ``}`}
               alt="Followers"
               title="Followers"
               onClick={handleFollowersClick}
