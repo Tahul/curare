@@ -40,6 +40,16 @@ const Profile = ({ match }) => {
 
   const editable = profile.name === auth.name
 
+  React.useEffect(() => {
+    setEdit(false)
+
+    setSelectedCollection(null)
+
+    setShowFollowers(false)
+
+    setShowFollowings(false)
+  }, [profile])
+
   // Collections
   const {
     collections,
@@ -154,8 +164,8 @@ const Profile = ({ match }) => {
         {edit && (
           <motion.div
             key="form"
-            initial={{ opacity: 0.25, rotateY: -90 }}
-            animate={{ opacity: 1, rotateY: 0 }}
+            initial={{ opacity: 0.25, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
           >
             <BackButton onBack={onToggleEdit}>Go back to my profile</BackButton>
 
@@ -166,8 +176,8 @@ const Profile = ({ match }) => {
         {!edit && (
           <motion.div
             key="profile"
-            initial={{ opacity: 0.25, rotateY: 90 }}
-            animate={{ opacity: 1, rotateY: 0 }}
+            initial={{ opacity: 0.25, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
           >
             <Header
               id={id}
