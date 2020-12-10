@@ -11,17 +11,18 @@ const StyledFollowButton = styled.div``
 
 const FollowButton = ({
   loading,
-  isFollowing = true,
+  userId,
+  isFollowing = false,
   onFollow,
   onUnfollow,
 }) => {
   const [hoverRef, isHovered] = useHover()
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (isFollowing) {
-      onUnfollow()
+      await onUnfollow({ userId })
     } else {
-      onFollow()
+      await onFollow({ userId })
     }
   }
 

@@ -14,6 +14,7 @@ import Collections from '../components/collections/Collections'
 import useCollections from '../hooks/useCollections'
 import { useHistory } from 'react-router-dom'
 import BackButton from '../components/layout/BackButton'
+import useRelations from '../hooks/useRelations'
 
 const StyledProfile = styled.div`
   position: relative;
@@ -57,6 +58,14 @@ const Profile = ({ match }) => {
       )
     }
   }, [selectedCollection, collectionId, collections])
+
+  // Relations
+  const {
+    followUser,
+    unfollowUser,
+    getUserFollowers,
+    getUserFollowing,
+  } = useRelations({ setProfile })
 
   /**
    * Toggle form
@@ -125,6 +134,9 @@ const Profile = ({ match }) => {
               editable={editable}
               onEdit={onToggleEdit}
               loading={profileLoading}
+              isFollowing={profile.is_followed}
+              onFollow={followUser}
+              onUnfollow={unfollowUser}
             />
 
             {profile?.user_id ? (

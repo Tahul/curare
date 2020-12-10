@@ -156,6 +156,7 @@ const Header = ({
           <div className="button">
             <FollowButton
               loading={loading}
+              userId={profile.user_id}
               isFollowing={isFollowing}
               onFollow={onFollow}
               onUnfollow={onUnfollow}
