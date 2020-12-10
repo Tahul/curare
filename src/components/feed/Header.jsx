@@ -164,15 +164,17 @@ const Header = ({
               followers
             </Text>
           </div>
-          <div className="button">
-            <FollowButton
-              loading={loading}
-              userId={profile.user_id}
-              isFollowing={isFollowing}
-              onFollow={onFollow}
-              onUnfollow={onUnfollow}
-            />
-          </div>
+          {!editable ? (
+            <div className="button">
+              <FollowButton
+                loading={loading}
+                userId={profile.user_id}
+                isFollowing={isFollowing}
+                onFollow={onFollow}
+                onUnfollow={onUnfollow}
+              />
+            </div>
+          ) : null}
         </div>
       </div>
 
