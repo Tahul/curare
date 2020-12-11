@@ -101,7 +101,6 @@ const StyledLinkItem = styled.div`
 
 const LinkItem = ({
   link,
-  i,
   editing = false,
   loading = false,
   editable,

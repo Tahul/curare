@@ -176,11 +176,10 @@ const SelectedCollection = ({
               ) : null}
 
               <AnimatePresence>
-                {links.map((link, i) => (
+                {links.map((link) => (
                   <LinkItem
                     key={link.id}
                     link={link}
-                    i={i + 1}
                     editable={editable}
                     onDelete={handleLinkDelete}
                     onOpen={clickLink}
