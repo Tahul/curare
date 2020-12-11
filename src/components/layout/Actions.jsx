@@ -8,7 +8,7 @@ import useActionsSounds from '../../hooks/useActionsSounds'
 
 // Components
 import { Button, IconButton, theme } from '@heetch/flamingo-react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const StyledActions = styled.div`
   height: 100%;
@@ -21,6 +21,15 @@ const StyledActions = styled.div`
 
     a {
       margin-left: ${theme.space.m};
+    }
+
+    .active {
+      button {
+        background-color: ${theme.color.brand.primary};
+        svg {
+          fill: ${theme.color.element.primary};
+        }
+      }
     }
   }
 `
@@ -40,13 +49,23 @@ const GuestActions = () => {
 
   return (
     <AnimateActions>
-      <Link to="/login" tabIndex={0} onClick={playButton}>
+      <NavLink
+        to="/login"
+        tabIndex={0}
+        onClick={playButton}
+        activeClassName="active"
+      >
         <Button>Login</Button>
-      </Link>
+      </NavLink>
 
-      <Link to="/register" tabIndex={1} onClick={playButton}>
+      <NavLink
+        to="/register"
+        tabIndex={1}
+        onClick={playButton}
+        activeClassName="active"
+      >
         <Button>Register</Button>
-      </Link>
+      </NavLink>
     </AnimateActions>
   )
 }
@@ -58,13 +77,23 @@ const LoggedInActions = () => {
 
   return (
     <AnimateActions>
-      <Link to={`/profile/${auth.name}`} tabIndex={0} onClick={playButton}>
+      <NavLink
+        to={`/profile/${auth.name}`}
+        tabIndex={0}
+        onClick={playButton}
+        activeClassName="active"
+      >
         <IconButton icon="IconUser" />
-      </Link>
+      </NavLink>
 
-      <Link to="/settings" tabIndex={1} onClick={playButton}>
+      <NavLink
+        to="/settings"
+        tabIndex={1}
+        onClick={playButton}
+        activeClassName="active"
+      >
         <IconButton icon="IconGear" />
-      </Link>
+      </NavLink>
     </AnimateActions>
   )
 }
