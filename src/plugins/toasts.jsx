@@ -7,7 +7,7 @@ import { Alert, theme } from '@heetch/flamingo-react'
 
 const defaultOptions = {
   position: 'bottom',
-  duration: 20000,
+  duration: 2000,
 }
 
 const StyledAlert = styled.div`
