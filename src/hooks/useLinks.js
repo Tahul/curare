@@ -8,7 +8,7 @@ import useIsMounted from './useIsMounted'
 import useActionsSounds from './useActionsSounds'
 
 const useLinks = ({ userId = null, collectionId = null }) => {
-  const { playSuccess, playError, playWarning } = useActionsSounds()
+  const { playSuccess, playError } = useActionsSounds()
   const isMounted = useIsMounted()
   const [loading, setLoading] = useState(false)
   const [links, setLinks] = useState([])

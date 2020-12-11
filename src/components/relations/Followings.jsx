@@ -25,7 +25,7 @@ const Followings = ({
     }
 
     fetchUserFollowings()
-  }, [userId])
+  }, [getUserFollowings, userId])
 
   return (
     <StyledFollowings>

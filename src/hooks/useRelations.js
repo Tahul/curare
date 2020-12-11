@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 // API
 import { follow, unfollow, followings, followers } from '../api/relations'
@@ -65,34 +65,40 @@ const useRelations = ({ setProfile }) => {
    *
    * @param {string} userId
    */
-  const getUserFollowers = async ({ userId }) => {
-    if (isMounted) setLoading(true)
+  const getUserFollowers = useCallback(
+    async ({ userId }) => {
+      if (isMounted) setLoading(true)
 
-    try {
-      setUserFollowers(await followers({ userId }))
-    } catch (e) {
-      console.log(e)
-    }
+      try {
+        setUserFollowers(await followers({ userId }))
+      } catch (e) {
+        console.log(e)
+      }
 
-    if (isMounted) setLoading(false)
-  }
+      if (isMounted) setLoading(false)
+    },
+    [isMounted],
+  )
 
   /**
    * Get a user following.
    *
    * @param {*} param0
    */
-  const getUserFollowings = async ({ userId }) => {
-    if (isMounted) setLoading(true)
+  const getUserFollowings = useCallback(
+    async ({ userId }) => {
+      if (isMounted) setLoading(true)
 
-    try {
-      setUserFollowings(await followings({ userId }))
-    } catch (e) {
-      console.log(e)
-    }
+      try {
+        setUserFollowings(await followings({ userId }))
+      } catch (e) {
+        console.log(e)
+      }
 
-    if (isMounted) setLoading(true)
-  }
+      if (isMounted) setLoading(true)
+    },
+    [isMounted],
+  )
 
   return {
     loading,
