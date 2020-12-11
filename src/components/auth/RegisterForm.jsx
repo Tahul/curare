@@ -146,6 +146,7 @@ const RegisterForm = () => {
                 label="Password"
                 id={input.name}
                 disabled={loading}
+                autocomplete="new-password"
                 {...input}
               />
             )}
