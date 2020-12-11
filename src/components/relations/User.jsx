@@ -4,13 +4,13 @@ import styled from 'styled-components'
 
 // Hooks
 import useActionsSounds from '../../hooks/useActionsSounds'
+import { useHistory } from 'react-router-dom'
 
 // Components
 import { Item, Text, theme, UiText } from '@heetch/flamingo-react'
 
 // Assets
 import Fill from '../../assets/images/fill.png'
-import { useHistory } from 'react-router-dom'
 
 const StyledUser = styled.div`
   position: relative;

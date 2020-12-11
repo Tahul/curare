@@ -1,5 +1,9 @@
 import React from 'react'
+
+// Hooks
 import { useHistory, useLocation } from 'react-router-dom'
+
+// Contexts
 import { useAuthDispatch } from '../contexts/auth'
 import { forceLogout } from '../contexts/auth/actions'
 

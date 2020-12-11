@@ -4,6 +4,9 @@ import React from 'react'
 import { loginAction } from '../../contexts/auth/actions'
 import { useAuthDispatch, useAuthState } from '../../contexts/auth'
 
+// Hooks
+import useActionsSounds from '../../hooks/useActionsSounds'
+
 // Components
 import { Button, InputField } from '@heetch/flamingo-react'
 import { Field, Form } from 'react-final-form'
@@ -11,7 +14,6 @@ import { Field, Form } from 'react-final-form'
 // Form validation
 import { Validators } from '@lemoncode/fonk'
 import { createFinalFormValidation } from '@lemoncode/fonk-final-form'
-import useActionsSounds from '../../hooks/useActionsSounds'
 
 const validationSchema = {
   field: {

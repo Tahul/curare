@@ -1,5 +1,6 @@
 import React from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { theme } from '@heetch/flamingo-react'
 import styled from 'styled-components'
 
 // Hooks
@@ -12,7 +13,6 @@ import CollectionItem from './CollectionItem'
 import LinkItem from '../links/LinkItem'
 import CollectionForm from './CollectionForm'
 import AddLink from '../links/AddLink'
-import { theme } from '@heetch/flamingo-react'
 import BackButton from '../layout/BackButton'
 
 const StyledSelectedCollection = styled.div`

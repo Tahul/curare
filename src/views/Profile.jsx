@@ -5,16 +5,16 @@ import { motion } from 'framer-motion'
 // Hooks
 import useProfileFeed from '../hooks/useProfileFeed'
 import { useAuth } from '../contexts/auth'
+import { useHistory } from 'react-router-dom'
+import useCollections from '../hooks/useCollections'
+import useRelations from '../hooks/useRelations'
 
 // Components
 import ProfileForm from '../components/profile/ProfileForm'
 import Page from '../components/layout/Page'
 import Header from '../components/feed/Header'
 import Collections from '../components/collections/Collections'
-import useCollections from '../hooks/useCollections'
-import { useHistory } from 'react-router-dom'
 import BackButton from '../components/layout/BackButton'
-import useRelations from '../hooks/useRelations'
 import Followers from '../components/relations/Followers'
 import Followings from '../components/relations/Followings'
 

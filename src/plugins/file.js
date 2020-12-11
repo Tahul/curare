@@ -1,3 +1,8 @@
+/**
+ * Cast file URL to data.
+ *
+ * @param {*} url
+ */
 export const toDataURL = (url) =>
   new Promise((resolve) => {
     let xhr = new XMLHttpRequest()
@@ -13,6 +18,11 @@ export const toDataURL = (url) =>
     xhr.send()
   })
 
+/**
+ * Get MIME type from Base64 string.
+ *
+ * @param {*} encoded
+ */
 export const base64MimeType = (encoded) => {
   let result = null
 

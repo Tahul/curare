@@ -1,4 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
+
+// API
 import { getProfile as getRemoteProfile } from '../api/profile'
 
 // Hooks
