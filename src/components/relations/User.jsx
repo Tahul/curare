@@ -12,7 +12,7 @@ import { Item, Text, theme, UiText } from '@heetch/flamingo-react'
 import Fill from '../../assets/images/fill.png'
 import { useHistory } from 'react-router-dom'
 
-const StyledUser = styled.li`
+const StyledUser = styled.div`
   position: relative;
   margin-top: ${theme.space.l};
   cursor: pointer;
