@@ -1,9 +1,10 @@
 import React from 'react'
-import { motion } from 'framer-motion'
+import { motion, useAnimation } from 'framer-motion'
 import styled from 'styled-components'
 import renderHtml from '../../plugins/renderHtml'
 
 // Hooks
+import { useInView } from 'react-intersection-observer'
 import useActionsSounds from '../../hooks/useActionsSounds'
 
 // Components
@@ -108,6 +109,11 @@ const LinkItem = ({
   onDelete,
   onOpen,
 }) => {
+  const controls = useAnimation()
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    rootMargin: '-20px 0px',
+  })
   const { playButton, playBack } = useActionsSounds()
   const { ogp } = link
 
@@ -137,17 +143,25 @@ const LinkItem = ({
     await onOpen(link)
   }
 
+  React.useEffect(() => {
+    if (inView) {
+      controls.start('visible')
+    }
+  }, [controls, inView])
+
   return (
     <motion.li
-      initial={{
-        opacity: 1,
-        y: 50,
-      }}
-      animate={{
-        opacity: 1,
-        y: 0,
-        transition: {
-          delay: i * 0.05,
+      ref={ref}
+      animate={controls}
+      initial="hidden"
+      variants={{
+        hidden: {
+          opacity: 0,
+          y: 50,
+        },
+        visible: {
+          opacity: 1,
+          y: 0,
         },
       }}
       exit={{
@@ -161,11 +175,13 @@ const LinkItem = ({
       <StyledLinkItem editing={editing}>
         {ogp?.og?.['og:image'] ? (
           <div className="image" onClick={editing ? null : handleOpen}>
-            <Img
-              src={`${ogp.og['og:image']}`}
-              alt={`${ogp.title}`}
-              title={`${ogp.title}`}
-            />
+            {inView ? (
+              <Img
+                src={`${ogp.og['og:image']}`}
+                alt={`${ogp.title}`}
+                title={`${ogp.title}`}
+              />
+            ) : null}
           </div>
         ) : null}
 
