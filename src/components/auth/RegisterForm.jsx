@@ -31,6 +31,21 @@ const passwordConfirmationValidator = ({ values }) => {
   }
 }
 
+const userNameValidator = ({ values }) => {
+  if (/^[a-zA-Z0-9_]{1,15}$/.test(values.name)) {
+    return {
+      type: 'USERNAME_VALIDATION',
+      succeeded: true,
+    }
+  }
+
+  return {
+    type: 'USERNAME_VALIDATION',
+    succeeded: false,
+    message: 'Your name must be alphanumeric',
+  }
+}
+
 const validationSchema = {
   field: {
     name: [
@@ -38,6 +53,15 @@ const validationSchema = {
       {
         validator: Validators.minLength,
         customArgs: { length: 3 },
+      },
+      {
+        validator: Validators.maxLength,
+        customArgs: {
+          length: 15,
+        },
+      },
+      {
+        validator: userNameValidator,
       },
     ],
     email: [Validators.required.validator, Validators.email.validator],
