@@ -4,7 +4,12 @@ import { base64MimeType, toDataURL } from '../../plugins/file'
 
 // Components
 import { Form, Field } from 'react-final-form'
-import { Button, InputField, UploaderField } from '@heetch/flamingo-react'
+import {
+  Button,
+  InputField,
+  theme,
+  UploaderField,
+} from '@heetch/flamingo-react'
 
 // Form validation
 import { Validators } from '@lemoncode/fonk'
@@ -17,9 +22,10 @@ import useActionsSounds from '../../hooks/useActionsSounds'
 const StyledCollectionForm = styled.div`
   .buttons {
     display: flex;
+    justify-content: space-between;
 
-    .button {
-      width: 50%;
+    & > * + * {
+      margin-left: ${theme.space.l};
     }
   }
 `

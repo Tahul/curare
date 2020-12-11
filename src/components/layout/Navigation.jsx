@@ -12,6 +12,10 @@ const StyledNavigation = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: 320px) {
+    padding: 0;
+  }
 `
 
 const Navigation = () => {

@@ -90,6 +90,10 @@ const StyledLinkItem = styled.div`
       .expand {
         transform: rotate(90deg);
       }
+
+      button {
+        margin-left: ${theme.space.l};
+      }
     }
   }
 `
@@ -189,7 +193,7 @@ const LinkItem = ({
         <div className="footer">
           <div className="infos">
             <Text>
-              {link.clicks > 0 ? `${link.clicks} clicks` : `No clicks yet`}
+              {link.clicks > 0 ? `${link.clicks} clicks` : `No clicks`}
             </Text>
           </div>
 

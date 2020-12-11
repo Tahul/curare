@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { theme } from '@heetch/flamingo-react'
 
 // Hooks
 import useQueryLogout from './hooks/useQueryLogout'
@@ -25,6 +26,10 @@ const StyledApp = styled.div`
   min-height: 100vh;
   width: 320px;
   max-width: 320px;
+
+  @media (max-width: 320px) {
+    padding: ${theme.space.m};
+  }
 `
 
 // Router switch

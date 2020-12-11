@@ -1,23 +1,36 @@
 import React from 'react'
 import toast from 'toasted-notes'
+import styled from 'styled-components'
 
 // Components
-import { Alert } from '@heetch/flamingo-react'
+import { Alert, theme } from '@heetch/flamingo-react'
 
 const defaultOptions = {
   position: 'bottom',
-  timeout: 2000,
+  duration: 20000,
 }
 
+const StyledAlert = styled.div`
+  max-width: 320px;
+  padding: ${theme.space.l} 0;
+
+  .f-Alert {
+    min-width: 320px;
+    max-width: 320px;
+
+    @media (max-width: 320px) {
+      min-width: 310px;
+      max-width: 310px;
+    }
+  }
+`
+
 const AlertComponent = ({ title, message, type, onClose }) => (
-  <Alert
-    title={title}
-    type={type}
-    onClose={onClose}
-    style={{ cursor: 'pointer', width: '320px', maxWidth: '320px' }}
-  >
-    {message}
-  </Alert>
+  <StyledAlert>
+    <Alert title={title} type={type} onClose={onClose}>
+      {message}
+    </Alert>
+  </StyledAlert>
 )
 
 export const Toast = () => {}

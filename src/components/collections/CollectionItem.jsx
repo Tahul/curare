@@ -33,11 +33,18 @@ const StyledCollectionItem = styled.div`
   .actions {
     position: absolute;
     margin-top: calc(0rem - ${theme.space.xl});
-    right: ${theme.space.xl};
+    right: ${theme.space.l};
     display: flex;
 
-    div {
-      margin-left: ${theme.space.m};
+    button {
+      margin-left: ${theme.space.l};
+    }
+
+    @media (max-width: 320px) {
+      button {
+        word-wrap: nowrap;
+        word-break: keep-all;
+      }
     }
   }
 `
@@ -125,7 +132,7 @@ const CollectionItem = ({
               <Text type="subContent">
                 {collection.links_count > 0
                   ? `${collection.links_count} links`
-                  : 'No links yet'}
+                  : 'No links'}
               </Text>
             </div>
           </div>
