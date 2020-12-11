@@ -8,7 +8,7 @@ import useQueryLogout from './hooks/useQueryLogout'
 // Components
 import { Switch } from 'react-router-dom'
 import Navigation from './components/layout/Navigation'
-import { AuthProvider } from './contexts/auth'
+import { AuthProvider, useAuthState } from './contexts/auth'
 import { AnimatePresence } from 'framer-motion'
 import PublicRoute from './components/utils/PrivateRoute'
 import PrivateRoute from './components/utils/PublicRoute'
@@ -19,6 +19,7 @@ import Register from './views/Register'
 import Login from './views/Login'
 import Profile from './views/Profile'
 import Settings from './views/Settings'
+import Feed from './views/Feed'
 
 const StyledApp = styled.div`
   display: flex;
@@ -34,6 +35,8 @@ const StyledApp = styled.div`
 
 // Router switch
 const Routes = () => {
+  const { isLoggedIn } = useAuthState()
+
   useQueryLogout()
 
   return (
@@ -49,7 +52,11 @@ const Routes = () => {
 
         <PrivateRoute path="/settings" component={Settings} />
 
-        <PublicRoute path="/" component={Landing} />
+        {
+          !isLoggedIn ? 
+          <PublicRoute path="/" component={Landing} /> :
+          <PrivateRoute path="/" component={Feed} />
+        }
       </Switch>
     </AnimatePresence>
   )
