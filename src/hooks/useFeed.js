@@ -1,0 +1,54 @@
+import { useCallback, useEffect, useState } from 'react'
+import { index as getFeed } from '../api/feed'
+import useIsMounted from './useIsMounted'
+
+const useFeed = () => {
+  const isMounted = useIsMounted()
+  const [loading, setLoading] = useState(false)
+  const [page, setPage] = useState(0)
+  const [items, setItems] = useState([])
+
+  const getFeedItems = useCallback(async () => {
+    if (isMounted) setLoading(true)
+
+    let updatedItems = [...items]
+
+    try {
+      const feedItems = getFeed({ page })
+
+      updatedItems = [...updatedItems, ...feedItems].reduce((prev, curr, i) => {
+        if (prev.find((item) => item.id === curr.id)) return prev
+
+        return [...prev, curr]
+      }, [])
+
+      console.log({ updatedItems })
+    } catch (e) {
+      console.log(e)
+    }
+
+    if (isMounted) setItems(updatedItems)
+
+    if (isMounted) setLoading(false)
+  }, [page, items])
+
+  useEffect(() => {
+    const fetchFeed = async () => {
+      await getFeedItems()
+    }
+
+    fetchFeed()
+  })
+
+  return {
+    loading,
+    setLoading,
+    page,
+    setPage,
+    items,
+    setItems,
+    getFeedItems,
+  }
+}
+
+export default useFeed
