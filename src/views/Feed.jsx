@@ -6,7 +6,6 @@ import useFeed from '../hooks/useFeed'
 
 // Components
 import Page from '../components/layout/Page'
-import { AnimatePresence } from 'framer-motion'
 import FeedItem from '../components/feed/FeedItem'
 import Loader from '../components/utils/Loader'
 
