@@ -30,10 +30,10 @@ API.interceptors.response.use(
   // Error
   (error) => {
     if (error && error.response && error.response.data) {
-      const { data, status } = error.response
+      const { data, status, config } = error.response
 
       // If status is 401, it means we are unauthenticated, so logout the app
-      if (status === 401) {
+      if (status === 401 && !config.url.includes('login')) {
         history.push('/?logout=true')
       }
 
