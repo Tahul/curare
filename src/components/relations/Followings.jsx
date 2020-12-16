@@ -8,7 +8,7 @@ import User from './User'
 
 const StyledFollowings = styled.div`
   .backButton {
-    margin: ${theme.space.l} 0;
+    margin: ${theme.space.xl} 0;
   }
 `
 

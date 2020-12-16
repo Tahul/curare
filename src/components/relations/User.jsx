@@ -14,7 +14,7 @@ import Fill from '../../assets/images/fill.png'
 
 const StyledUser = styled.div`
   position: relative;
-  margin-top: ${theme.space.l};
+  margin-top: ${theme.space.xl};
   cursor: pointer;
 
   .itemContent {
