@@ -14,10 +14,10 @@ const useFeed = () => {
     let updatedItems = [...items]
 
     try {
-      const feedItems = getFeed({ page })
+      const { current_page, data, last_page } = await getFeed({ page })
 
-      updatedItems = [...updatedItems, ...feedItems].reduce((prev, curr, i) => {
-        if (prev.find((item) => item.id === curr.id)) return prev
+      updatedItems = [...updatedItems, ...data].reduce((prev, curr, i) => {
+        if (prev.findIndex((item) => item.bayer === curr.id) > -1) return prev
 
         return [...prev, curr]
       }, [])
@@ -30,7 +30,7 @@ const useFeed = () => {
     if (isMounted) setItems(updatedItems)
 
     if (isMounted) setLoading(false)
-  }, [page, items])
+  }, [page, isMounted])
 
   useEffect(() => {
     const fetchFeed = async () => {
@@ -38,7 +38,7 @@ const useFeed = () => {
     }
 
     fetchFeed()
-  })
+  }, [])
 
   return {
     loading,
