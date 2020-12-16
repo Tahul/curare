@@ -5,7 +5,8 @@ import useIsMounted from './useIsMounted'
 const useFeed = () => {
   const isMounted = useIsMounted()
   const [loading, setLoading] = useState(false)
-  const [page, setPage] = useState(0)
+  const [page, setPage] = useState(1)
+  const [lastPage, setLastPage] = useState(null)
   const [items, setItems] = useState([])
 
   const getFeedItems = useCallback(async () => {
@@ -14,20 +15,20 @@ const useFeed = () => {
     let updatedItems = [...items]
 
     try {
-      const { current_page, data, last_page } = await getFeed({ page })
+      const { data, last_page } = await getFeed({ page })
 
       updatedItems = [...updatedItems, ...data].reduce((prev, curr, i) => {
-        if (prev.findIndex((item) => item.bayer === curr.id) > -1) return prev
+        if (prev.findIndex((item) => item.id === curr.id) > -1) return prev
 
         return [...prev, curr]
       }, [])
 
-      console.log({ updatedItems })
+      setLastPage(last_page)
+
+      setItems([...updatedItems])
     } catch (e) {
       console.log(e)
     }
-
-    if (isMounted) setItems(updatedItems)
 
     if (isMounted) setLoading(false)
   }, [page, isMounted])
@@ -38,7 +39,7 @@ const useFeed = () => {
     }
 
     fetchFeed()
-  }, [])
+  }, [page])
 
   return {
     loading,
@@ -48,6 +49,7 @@ const useFeed = () => {
     items,
     setItems,
     getFeedItems,
+    lastPage,
   }
 }
 
