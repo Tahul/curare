@@ -53,7 +53,7 @@ const FeedItem = ({ item }) => {
           },
         }}
       >
-        <Img src={Fill} />
+        <Img src={item.profile.avatar_ur || Fill} />
 
         <UiText variant="contentBold">@{item.profile.name}</UiText>
       </motion.div>
