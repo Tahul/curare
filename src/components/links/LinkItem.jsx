@@ -20,11 +20,12 @@ import {
 // Assets
 import ExpandableText from './ExpandableText'
 import { Img } from 'react-image'
+import Fill from '../../assets/images/fill.png'
+import { useHistory } from 'react-router-dom'
 
 const StyledLinkItem = styled.div`
   width: 100%;
   background-color: ${theme.color.text.white};
-  margin-top: ${theme.space.l};
   border-radius: ${theme.borderRadius.m};
   overflow: hidden;
 
@@ -80,7 +81,21 @@ const StyledLinkItem = styled.div`
       align-items: center;
 
       .f-Text {
+        display: flex;
+        align-items: center;
         margin-right: ${theme.space.s};
+
+        &:hover {
+          cursor: pointer;
+          font-weight: ${theme.fontWeight.bold};
+        }
+
+        img {
+          border-radius: 50%;
+          height: 1.5rem;
+          width: 1.5rem;
+          margin-right: ${theme.space.m};
+        }
       }
     }
 
@@ -108,6 +123,7 @@ const LinkItem = ({
   onDelete,
   onOpen,
 }) => {
+  const history = useHistory()
   const controls = useAnimation()
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -140,6 +156,10 @@ const LinkItem = ({
     window.open(link.url, '_blank')
 
     await onOpen(link)
+  }
+
+  const handleCollectionOpen = () => {
+    history.push(`/profile/${link.profile.name}/${link.collection.slug}`)
   }
 
   React.useEffect(() => {
@@ -207,9 +227,16 @@ const LinkItem = ({
 
         <div className="footer">
           <div className="infos">
-            <Text>
-              {link.clicks > 0 ? `${link.clicks} clicks` : `No clicks`}
-            </Text>
+            {link.collection ? (
+              <Text onClick={handleCollectionOpen}>
+                <Img src={link.collection.image_url || Fill} />
+                {link.collection.title}
+              </Text>
+            ) : (
+              <Text>
+                {link.clicks > 0 ? `${link.clicks} clicks` : `No clicks`}
+              </Text>
+            )}
           </div>
 
           <div className="actions">
@@ -228,7 +255,11 @@ const LinkItem = ({
                 />
               )
             ) : (
-              ''
+              <IconButton
+                className="expand"
+                onClick={handleOpen}
+                icon="IconArrowUp"
+              />
             )}
 
             {editable ? (
