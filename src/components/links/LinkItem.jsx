@@ -20,7 +20,6 @@ import {
 // Assets
 import ExpandableText from './ExpandableText'
 import { Img } from 'react-image'
-import Fill from '../../assets/images/fill.png'
 import { useHistory } from 'react-router-dom'
 
 const StyledLinkItem = styled.div`
@@ -80,13 +79,14 @@ const StyledLinkItem = styled.div`
       display: flex;
       align-items: center;
 
-      .f-Text {
+      p {
         display: flex;
         align-items: center;
         margin-right: ${theme.space.s};
+        color: ${theme.color.text.secondary};
+        cursor: pointer;
 
         &:hover {
-          cursor: pointer;
           font-weight: ${theme.fontWeight.bold};
         }
 
@@ -228,10 +228,16 @@ const LinkItem = ({
         <div className="footer">
           <div className="infos">
             {link.collection ? (
-              <Text onClick={handleCollectionOpen}>
-                <Img src={link.collection.image_url || Fill} />
+              <motion.p
+                onClick={handleCollectionOpen}
+                whileHover={{ scale: 1.05 }}
+              >
+                {link.collection.image_url && (
+                  <Img src={link.collection.image_url} />
+                )}
+
                 {link.collection.title}
-              </Text>
+              </motion.p>
             ) : (
               <Text>
                 {link.clicks > 0 ? `${link.clicks} clicks` : `No clicks`}
