@@ -17,10 +17,15 @@ import Collections from '../components/collections/Collections'
 import BackButton from '../components/layout/BackButton'
 import Followers from '../components/relations/Followers'
 import Followings from '../components/relations/Followings'
+import { theme } from '@heetch/flamingo-react'
 
 const StyledProfile = styled.div`
   position: relative;
   height: 100%;
+
+  .backButton {
+    margin: ${theme.space.l} 0;
+  }
 `
 
 const Profile = ({ match }) => {
