@@ -33,8 +33,12 @@ const StyledSelectedCollection = styled.div`
     }
   }
 
-  .backButton {
+  li {
     margin-top: ${theme.space.l};
+  }
+
+  .f-FormEl-wrapper {
+    margin: 0;
   }
 `
 
