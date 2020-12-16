@@ -8,7 +8,6 @@ import Actions from './Actions'
 
 const StyledNavigation = styled.div`
   width: 100%;
-  padding: ${theme.space.m} 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
