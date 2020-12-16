@@ -193,15 +193,18 @@ const LinkItem = ({
     >
       <StyledLinkItem editing={editing}>
         {ogp?.og?.['og:image'] ? (
-          <div className="image" onClick={editing ? null : handleOpen}>
-            {inView ? (
-              <Img
-                src={`${ogp.og['og:image']}`}
-                alt={`${ogp.title}`}
-                title={`${ogp.title}`}
-              />
-            ) : null}
-          </div>
+          <div
+            className="image"
+            onClick={editing ? null : handleOpen}
+            alt={`${ogp.title}`}
+            title={`${ogp.title}`}
+            style={{
+              backgroundImage: `url(${ogp.og['og:image']})`,
+              backgroundSize: 'cover',
+              backgroundPosition: '50% 50%',
+              imageRendering: 'crisp-edges',
+            }}
+          />
         ) : null}
 
         <div className="content" onClick={editing ? null : handleOpen}>
