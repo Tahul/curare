@@ -109,7 +109,11 @@ const FeedItem = ({ item }) => {
             {fullName && fullName !== '' ? fullName : `@${item.profile.name}`}
           </UiText>
 
-          <Text>{formatDistanceToNow(new Date(item.created_at))}</Text>
+          <Text>
+            {formatDistanceToNow(new Date(item.created_at), {
+              addSuffix: true,
+            })}
+          </Text>
 
           <div className="open-arrow">
             <motion.div
