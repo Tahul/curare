@@ -18,8 +18,6 @@ const Feed = () => {
     setPage(page + 1)
 
     getFeedItems()
-
-    console.log({ page })
   }
 
   return (

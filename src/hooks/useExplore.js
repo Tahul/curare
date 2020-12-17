@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { index as getExplore } from '../api/explore'
 import useIsMounted from './useIsMounted'
 
-const useFeed = () => {
+const useExplore = () => {
   const isMounted = useIsMounted()
   const [loading, setLoading] = useState(false)
   const [page, setPage] = useState(1)
@@ -52,9 +52,9 @@ const useFeed = () => {
     setPage,
     items,
     setItems,
-    getExplore,
+    getExploreItems,
     lastPage,
   }
 }
 
-export default useFeed
+export default useExplore
