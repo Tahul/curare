@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import { toDataURL, base64MimeType } from '../../plugins/file'
 
 // Form validation
@@ -51,6 +52,17 @@ const defaultState = {
   url: '',
 }
 
+const StyledProfileForm = styled.div`
+  .avatar {
+    & > div {
+      & > :nth-child(1) {
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+    }
+  }
+`
+
 const ProfileForm = ({ onSave }) => {
   const isMounted = useIsMounted()
   const { profile, loading, updateProfile, updateAvatar } = useProfile()
@@ -80,13 +92,13 @@ const ProfileForm = ({ onSave }) => {
     const fetchAvatar = async () => {
       if (profile.avatar_url) {
         const file = await toDataURL(profile.avatar_url)
-        const mimeType = base64MimeType(file)
+        const mimeType = base64MimeType(file).split('/')[1]
 
         if (isMounted) {
           setAvatar([
             {
               type: mimeType,
-              name: `avatar.${mimeType.split('/')[1]}`,
+              name: `avatar.${mimeType !== 'svg+xml' ? mimeType : 'png'}`,
               preview: file,
             },
           ])
@@ -98,87 +110,90 @@ const ProfileForm = ({ onSave }) => {
   }, [profile, isMounted])
 
   return (
-    <Form
-      onSubmit={handleSubmit}
-      validate={validate}
-      initialValues={initialValues}
-      render={({ handleSubmit }) => (
-        <form onSubmit={handleSubmit}>
-          <UploaderField
-            accept="image/jpg,jpeg,png"
-            onChange={handleAvatarUpload}
-            id="avatar"
-            label="Avatar"
-            value={avatar}
-            disabled={loading}
-          />
+    <StyledProfileForm>
+      <Form
+        onSubmit={handleSubmit}
+        validate={validate}
+        initialValues={initialValues}
+        render={({ handleSubmit }) => (
+          <form onSubmit={handleSubmit}>
+            <UploaderField
+              accept="image/jpg,jpeg,png,svg+xml"
+              onChange={handleAvatarUpload}
+              id="avatar"
+              className="avatar"
+              label="Avatar"
+              value={avatar}
+              disabled={loading}
+            />
 
-          <Field name="first_name">
-            {({ input, meta }) => (
-              <InputField
-                helper={
-                  meta.error && meta.touched ? meta.error : 'Your first name'
-                }
-                invalid={!!(meta.error && meta.touched)}
-                label="First name"
-                id={input.name}
-                {...input}
-                disabled={loading}
-              />
-            )}
-          </Field>
+            <Field name="first_name">
+              {({ input, meta }) => (
+                <InputField
+                  helper={
+                    meta.error && meta.touched ? meta.error : 'Your first name'
+                  }
+                  invalid={!!(meta.error && meta.touched)}
+                  label="First name"
+                  id={input.name}
+                  {...input}
+                  disabled={loading}
+                />
+              )}
+            </Field>
 
-          <Field name="last_name">
-            {({ input, meta }) => (
-              <InputField
-                helper={
-                  meta.error && meta.touched ? meta.error : 'Your last name'
-                }
-                invalid={!!(meta.error && meta.touched)}
-                label="Last name"
-                id={input.name}
-                {...input}
-                disabled={loading}
-              />
-            )}
-          </Field>
+            <Field name="last_name">
+              {({ input, meta }) => (
+                <InputField
+                  helper={
+                    meta.error && meta.touched ? meta.error : 'Your last name'
+                  }
+                  invalid={!!(meta.error && meta.touched)}
+                  label="Last name"
+                  id={input.name}
+                  {...input}
+                  disabled={loading}
+                />
+              )}
+            </Field>
 
-          <Field name="description">
-            {({ input, meta }) => (
-              <TextareaField
-                helper={
-                  meta.error && meta.touched ? meta.error : 'Your description'
-                }
-                invalid={!!(meta.error && meta.touched)}
-                label="Description"
-                id={input.name}
-                {...input}
-                disabled={loading}
-              />
-            )}
-          </Field>
+            <Field name="description">
+              {({ input, meta }) => (
+                <TextareaField
+                  helper={
+                    meta.error && meta.touched ? meta.error : 'Your description'
+                  }
+                  invalid={!!(meta.error && meta.touched)}
+                  label="Description"
+                  id={input.name}
+                  {...input}
+                  disabled={loading}
+                />
+              )}
+            </Field>
 
-          <Field name="url">
-            {({ input, meta }) => (
-              <InputField
-                helper={
-                  meta.error && meta.touched ? meta.error : 'Your website'
-                }
-                invalid={!!(meta.error && meta.touched)}
-                label="Website"
-                id={input.name}
-                {...input}
-                disabled={loading}
-              />
-            )}
-          </Field>
+            <Field name="url">
+              {({ input, meta }) => (
+                <InputField
+                  helper={
+                    meta.error && meta.touched ? meta.error : 'Your website'
+                  }
+                  invalid={!!(meta.error && meta.touched)}
+                  label="Website"
+                  id={input.name}
+                  {...input}
+                  disabled={loading}
+                />
+              )}
+            </Field>
 
-          <Button isLoading={loading} style={{ width: '100%' }} type="submit">
-            Save
-          </Button>
-        </form>
-      )}
-    ></Form>
+            <Button isLoading={loading} style={{ width: '100%' }} type="submit">
+              Save
+            </Button>
+          </form>
+        )}
+      />
+    </StyledProfileForm>
   )
 }
 
