@@ -13,7 +13,7 @@ import { theme, Icon, Button } from '@heetch/flamingo-react'
 const sizes = Object.values(Icon.SIZES)
 
 const IconButtonComponent = React.forwardRef(
-  ({ className, icon, size, iconColor, disabled, children, ...props }, ref) => (
+  ({ className, size, iconColor, disabled, children, ...props }, ref) => (
     <Button
       className={cx('f-Button--icon', className)}
       intent={Button.INTENTS.SECONDARY}
@@ -29,7 +29,6 @@ const IconButtonComponent = React.forwardRef(
 
 IconButtonComponent.propTypes = {
   className: PropTypes.string,
-  icon: PropTypes.oneOf(Icon.NAMES).isRequired,
   size: PropTypes.oneOf(sizes),
   iconColor: PropTypes.string,
   disabled: PropTypes.bool,
@@ -59,7 +58,6 @@ const IconButton = styled(IconButtonComponent)`
 
 IconButton.propTypes = {
   className: PropTypes.string,
-  icon: PropTypes.oneOf(Icon.NAMES).isRequired,
   size: PropTypes.oneOf(sizes),
   iconColor: PropTypes.string,
 }
@@ -67,7 +65,5 @@ IconButton.propTypes = {
 IconButton.defaultProps = {
   size: Icon.SIZES.L,
 }
-
-IconButton.ICONS = Icon.ICONS
 
 export default IconButton

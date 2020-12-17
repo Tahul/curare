@@ -27,7 +27,8 @@ const Loader = ({ lastPage, page, loading, onLoad }) => {
     if (isInView && !loading) {
       onLoad()
     }
-  }, [isInView])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page, isInView])
 
   return (
     <StyledLoader ref={ref} isEnded={isEnded}>
