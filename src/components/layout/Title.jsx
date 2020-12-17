@@ -23,6 +23,12 @@ const StyledTitle = styled.div`
       width: 3rem;
     }
   }
+
+  @media (max-width: 320px) {
+    .title {
+      display: none;
+    }
+  }
 `
 
 const Title = () => (
@@ -31,7 +37,7 @@ const Title = () => (
       <span alt="logo" role="img">
         <Img src={Logo} alt="Curare logo" />
       </span>
-      Curare
+      <span className="title">Curare</span>
     </StyledTitle>
   </Link>
 )

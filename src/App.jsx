@@ -26,9 +26,9 @@ const StyledApp = styled.div`
   flex-direction: column;
   min-height: 100vh;
   width: 420px;
-  max-width: 420px;
 
   @media (max-width: 420px) {
+    width: 100%;
     padding: ${theme.space.m};
   }
 `
