@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { theme } from '@heetch/flamingo-react'
 
 // Components
 import Title from './Title'
