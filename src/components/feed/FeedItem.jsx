@@ -1,13 +1,19 @@
-import { Icon, Text, theme, UiText } from '@heetch/flamingo-react'
 import React from 'react'
 import styled from 'styled-components'
-import LinkItem from '../links/LinkItem'
-import Fill from '../../assets/images/fill.png'
-import { Img } from 'react-image'
-import { useInView } from 'react-intersection-observer'
 import { motion, useAnimation } from 'framer-motion'
-import { useHistory } from 'react-router-dom'
 import { formatDistanceToNow } from 'date-fns'
+
+// Components
+import { Icon, Text, theme, UiText } from '@heetch/flamingo-react'
+import LinkItem from '../links/LinkItem'
+import { Img } from 'react-image'
+
+// Hooks
+import { useInView } from 'react-intersection-observer'
+import { useHistory } from 'react-router-dom'
+
+// Assets
+import Fill from '../../assets/images/fill.png'
 
 const StyledFeedItem = styled.div`
   margin-top: ${theme.space.xxl};
