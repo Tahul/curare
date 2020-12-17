@@ -20,6 +20,7 @@ import Login from './views/Login'
 import Profile from './views/Profile'
 import Settings from './views/Settings'
 import Feed from './views/Feed'
+import Explore from './views/Explore'
 
 const StyledApp = styled.div`
   display: flex;
@@ -51,6 +52,8 @@ const Routes = () => {
         <PrivateRoute path="/profile/:id" component={Profile} />
 
         <PrivateRoute path="/settings" component={Settings} />
+
+        <PrivateRoute path="/explore" component={Explore} />
 
         {!isLoggedIn ? (
           <PublicRoute path="/" component={Landing} />
