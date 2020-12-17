@@ -25,10 +25,10 @@ const StyledApp = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  width: 320px;
-  max-width: 320px;
+  width: 420px;
+  max-width: 420px;
 
-  @media (max-width: 320px) {
+  @media (max-width: 420px) {
     padding: ${theme.space.m};
   }
 `
@@ -52,11 +52,11 @@ const Routes = () => {
 
         <PrivateRoute path="/settings" component={Settings} />
 
-        {
-          !isLoggedIn ? 
-          <PublicRoute path="/" component={Landing} /> :
+        {!isLoggedIn ? (
+          <PublicRoute path="/" component={Landing} />
+        ) : (
           <PrivateRoute path="/" component={Feed} />
-        }
+        )}
       </Switch>
     </AnimatePresence>
   )
