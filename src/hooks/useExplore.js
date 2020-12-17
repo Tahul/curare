@@ -18,7 +18,8 @@ const useExplore = () => {
       const { data, last_page } = await getExplore({ page })
 
       updatedItems = [...updatedItems, ...data].reduce((prev, curr, i) => {
-        if (prev.findIndex((item) => item.id === curr.id) > -1) return prev
+        if (prev.findIndex((item) => item.user_id === curr.user_id) > -1)
+          return prev
 
         return [...prev, curr]
       }, [])
