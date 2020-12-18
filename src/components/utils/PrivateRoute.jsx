@@ -7,14 +7,14 @@ import { useAuthState } from '../../contexts/auth'
 import { Route, Redirect } from 'react-router-dom'
 
 const PublicRoute = ({ component: Component, restricted, ...rest }) => {
-  const { isLoggedIn } = useAuthState()
+  const { isLoggedIn, name } = useAuthState()
 
   return (
     <Route
       {...rest}
       render={(props) =>
         isLoggedIn && restricted ? (
-          <Redirect to="/profile" />
+          <Redirect to={`/profile/${name}`} />
         ) : (
           <Component {...props} />
         )
