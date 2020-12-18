@@ -16,7 +16,7 @@ const StyledLoader = styled.div`
   }
 `
 
-const Loader = ({ lastPage, page, loading, onLoad }) => {
+const Loader = ({ lastPage, page, loading, onLoad, children }) => {
   const [ref, isInView] = useInView()
 
   const isEnded = lastPage && page >= lastPage + 1
@@ -41,14 +41,7 @@ const Loader = ({ lastPage, page, loading, onLoad }) => {
           >
             {!isEnded && <Spinner size="l" />}
 
-            {isEnded && (
-              <Text>
-                You reached the end of your feed{' '}
-                <span role="img" alt="Confettis">
-                  🎉
-                </span>
-              </Text>
-            )}
+            {isEnded && children}
           </motion.div>
         ) : null}
       </AnimatePresence>
