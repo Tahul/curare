@@ -4,10 +4,21 @@ import useIsMounted from './useIsMounted'
 
 const useExplore = () => {
   const isMounted = useIsMounted()
+  const [currentTab, setCurrentTab] = useState('newcomers')
   const [loading, setLoading] = useState(false)
   const [page, setPage] = useState(1)
   const [lastPage, setLastPage] = useState(null)
   const [items, setItems] = useState([])
+
+  const resetExplore = () => {
+    setLoading(false)
+
+    setPage(1)
+
+    setLastPage(null)
+
+    setItems([])
+  }
 
   const getExploreItems = useCallback(async () => {
     if (isMounted) setLoading(true)
@@ -15,7 +26,7 @@ const useExplore = () => {
     let updatedItems = [...items]
 
     try {
-      const { data, last_page } = await getExplore({ page })
+      const { data, last_page } = await getExplore({ page, type: currentTab })
 
       updatedItems = [...updatedItems, ...data].reduce((prev, curr, i) => {
         if (prev.findIndex((item) => item.user_id === curr.user_id) > -1)
@@ -34,7 +45,13 @@ const useExplore = () => {
     if (isMounted) setLoading(false)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, isMounted])
+  }, [page, isMounted, currentTab])
+
+  const handleTabChange = async (tab) => {
+    resetExplore()
+
+    setCurrentTab(tab)
+  }
 
   useEffect(() => {
     const fetchExplore = async () => {
@@ -44,7 +61,7 @@ const useExplore = () => {
     fetchExplore()
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page])
+  }, [currentTab, page])
 
   return {
     loading,
@@ -54,7 +71,11 @@ const useExplore = () => {
     items,
     setItems,
     getExploreItems,
+    resetExplore,
     lastPage,
+    currentTab,
+    setCurrentTab,
+    handleTabChange,
   }
 }
 
