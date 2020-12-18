@@ -41,27 +41,25 @@ const Routes = () => {
   useQueryLogout()
 
   return (
-    <AnimatePresence>
-      <Switch>
-        <PublicRoute restricted={true} path="/login" component={Login} />
+    <Switch>
+      <PublicRoute restricted={true} path="/login" component={Login} />
 
-        <PublicRoute restricted={true} path="/register" component={Register} />
+      <PublicRoute restricted={true} path="/register" component={Register} />
 
-        <PrivateRoute path="/profile/:id/:collectionId" component={Profile} />
+      <PrivateRoute path="/profile/:id/:collectionId" component={Profile} />
 
-        <PrivateRoute path="/profile/:id" component={Profile} />
+      <PrivateRoute path="/profile/:id" component={Profile} />
 
-        <PrivateRoute path="/settings" component={Settings} />
+      <PrivateRoute path="/settings" component={Settings} />
 
-        <PrivateRoute path="/explore" component={Explore} />
+      <PrivateRoute path="/explore" component={Explore} />
 
-        {!isLoggedIn ? (
-          <PublicRoute path="/" component={Landing} />
-        ) : (
-          <PrivateRoute path="/" component={Feed} />
-        )}
-      </Switch>
-    </AnimatePresence>
+      {!isLoggedIn ? (
+        <PublicRoute path="/" component={Landing} />
+      ) : (
+        <PrivateRoute path="/" component={Feed} />
+      )}
+    </Switch>
   )
 }
 
