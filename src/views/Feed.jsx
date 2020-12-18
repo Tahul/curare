@@ -13,12 +13,10 @@ import { Text } from '@heetch/flamingo-react'
 const StyledFeed = styled.div``
 
 const Feed = () => {
-  const { items, getFeedItems, page, setPage, loading, lastPage } = useFeed()
+  const { items, page, setPage, loading, lastPage } = useFeed()
 
   const handleNextPage = () => {
     setPage(page + 1)
-
-    getFeedItems()
   }
 
   return (
