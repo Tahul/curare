@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { motion, useAnimation } from 'framer-motion'
 import { formatDistanceToNow } from 'date-fns'
+import { randomIntFromInterval } from '../../plugins/random'
 
 // Components
 import { Icon, Text, theme, UiText } from '@heetch/flamingo-react'
@@ -52,11 +53,6 @@ const StyledFeedItem = styled.div`
     }
   }
 `
-
-const randomIntFromInterval = (min, max) => {
-  // min and max included
-  return Math.floor(Math.random() * (max - min + 1) + min)
-}
 
 const FeedItem = ({ item }) => {
   const history = useHistory()
