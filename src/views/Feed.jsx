@@ -37,7 +37,7 @@ const Feed = () => {
               onLoad={handleNextPage}
             >
               <Text>
-                You reached the end of your feed{' '}
+                You reached the end of your feed&nbsp;
                 <span role="img" alt="Confettis">
                   🎉
                 </span>
