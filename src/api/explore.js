@@ -5,8 +5,10 @@ import API from './index'
  *
  * @param {number} page
  */
-export const index = async ({ page = null }) => {
-  const request = await API.get(`explore${page ? `?page=${page}` : ``}`)
+export const index = async ({ page = null, type = 'newcomers' }) => {
+  const request = await API.get(
+    `explore?type=${type}${page ? `&page=${page}` : ``}`,
+  )
 
   return request.data
 }
