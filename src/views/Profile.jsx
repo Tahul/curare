@@ -12,7 +12,7 @@ import useRelations from '../hooks/useRelations'
 // Components
 import ProfileForm from '../components/profile/ProfileForm'
 import Page from '../components/layout/Page'
-import Header from '../components/feed/Header'
+import ProfileHeader from '../components/profile/ProfileHeader'
 import Collections from '../components/collections/Collections'
 import BackButton from '../components/layout/BackButton'
 import Followers from '../components/relations/Followers'
@@ -184,7 +184,7 @@ const Profile = ({ match }) => {
             initial={{ opacity: 0.25, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <Header
+            <ProfileHeader
               id={id}
               profile={profile}
               editable={editable}
