@@ -1,5 +1,6 @@
 import { Text } from '@heetch/flamingo-react'
-import React, { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import React from 'react'
 import styled from 'styled-components'
 import UserProfile from '../components/explore/UserProfile'
 
@@ -14,30 +15,25 @@ import useExplore from '../hooks/useExplore'
 const ExploreStyled = styled.div``
 
 const Explore = () => {
-  const [currentTab, setCurrentTab] = useState('newcomers')
   const {
     items,
-    getExploreItems,
     page,
     setPage,
     loading,
     lastPage,
+    currentTab,
+    handleTabChange,
   } = useExplore()
 
-  const handleNextPage = () => {
+  const handleNextPage = async () => {
     setPage(page + 1)
-
-    getExploreItems()
-  }
-
-  const handleTabChange = (tab) => {
-    setCurrentTab(tab)
   }
 
   return (
     <Page animated={false}>
       <ExploreStyled>
         <Tabs
+          loading={loading}
           currentValue={currentTab}
           onChange={handleTabChange}
           tabs={[
@@ -54,27 +50,37 @@ const Explore = () => {
           ]}
         />
 
-        {items && items.length > 0 ? (
+        {currentTab === 'newcomers' && (
           <ul>
-            {items.map((profile, i) => (
-              <UserProfile key={profile.user_id} i={i} profile={profile} />
+            {items.map((profile) => (
+              <UserProfile key={profile.user_id} profile={profile} />
             ))}
-
-            <Loader
-              lastPage={lastPage}
-              page={page}
-              loading={loading}
-              onLoad={handleNextPage}
-            >
-              <Text>
-                You reached the end of new users&nbsp;
-                <span role="img" alt="Confettis">
-                  🎉
-                </span>
-              </Text>
-            </Loader>
           </ul>
-        ) : null}
+        )}
+
+        {currentTab === 'mostfollowed' && (
+          <ul>
+            {items.map((profile) => (
+              <UserProfile key={profile.user_id} profile={profile} />
+            ))}
+          </ul>
+        )}
+
+        <Loader
+          lastPage={lastPage}
+          page={page}
+          loading={loading}
+          onLoad={handleNextPage}
+        >
+          <Text>
+            You reached the end of{' '}
+            {currentTab === 'newcomers' ? 'newcomers' : 'most followed users'}
+            &nbsp;
+            <span role="img" alt="Confettis">
+              🎉
+            </span>
+          </Text>
+        </Loader>
       </ExploreStyled>
     </Page>
   )
