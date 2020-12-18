@@ -8,6 +8,7 @@ import useFeed from '../hooks/useFeed'
 import Page from '../components/layout/Page'
 import FeedItem from '../components/feed/FeedItem'
 import Loader from '../components/utils/Loader'
+import { Text } from '@heetch/flamingo-react'
 
 const StyledFeed = styled.div``
 
@@ -34,7 +35,14 @@ const Feed = () => {
               page={page}
               loading={loading}
               onLoad={handleNextPage}
-            />
+            >
+              <Text>
+                You reached the end of your feed{' '}
+                <span role="img" alt="Confettis">
+                  🎉
+                </span>
+              </Text>
+            </Loader>
           </ul>
         ) : null}
       </StyledFeed>
