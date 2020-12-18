@@ -9,7 +9,6 @@ import useQueryLogout from './hooks/useQueryLogout'
 import { Switch } from 'react-router-dom'
 import Navigation from './components/layout/Navigation'
 import { AuthProvider, useAuthState } from './contexts/auth'
-import { AnimatePresence } from 'framer-motion'
 import PublicRoute from './components/utils/PrivateRoute'
 import PrivateRoute from './components/utils/PublicRoute'
 
