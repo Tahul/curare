@@ -24,9 +24,14 @@ const Loader = ({ lastPage, page, loading, onLoad, children }) => {
   React.useEffect(() => {
     if (isEnded) return
 
-    if (isInView && !loading) {
-      onLoad()
+    const fetchData = async () => {
+      await onLoad()
     }
+
+    if (isInView && !loading) {
+      fetchData()
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, isInView])
 
