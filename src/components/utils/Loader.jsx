@@ -1,4 +1,4 @@
-import { Spinner, Text, theme } from '@heetch/flamingo-react'
+import { Spinner, theme } from '@heetch/flamingo-react'
 import { AnimatePresence, motion } from 'framer-motion'
 import React from 'react'
 import { useInView } from 'react-intersection-observer'
