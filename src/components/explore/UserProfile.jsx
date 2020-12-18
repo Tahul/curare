@@ -105,7 +105,7 @@ const UserProfile = ({ profile }) => {
         <Item>
           <div className="profile">
             <img
-              src={profile?.avatar_url || Fill}
+              src={profile.avatar_url || Fill}
               alt={profile.name}
               title={profile.name}
             />
@@ -129,8 +129,8 @@ const UserProfile = ({ profile }) => {
               <Text className="data">
                 <span>
                   <b>
-                    {numeral(profile.following).format(
-                      profile.following > 1000 ? '0.0a' : '0a',
+                    {numeral(profile.followings_count).format(
+                      profile.followings_count >= 1000 ? '0.0a' : '0a',
                     )}
                   </b>
                   &nbsp;followers
@@ -138,8 +138,8 @@ const UserProfile = ({ profile }) => {
                 <i>&nbsp;·&nbsp;</i>
                 <span>
                   <b>
-                    {numeral(profile.followers).format(
-                      profile.followers > 1000 ? '0.0a' : '0a',
+                    {numeral(profile.followers_count).format(
+                      profile.followers_count >= 1000 ? '0.0a' : '0a',
                     )}
                   </b>
                   &nbsp;followings
@@ -148,7 +148,7 @@ const UserProfile = ({ profile }) => {
                 <span>
                   <b>
                     {numeral(profile.links_count).format(
-                      profile.links_count > 1000 ? '0.0a' : '0a',
+                      profile.links_count >= 1000 ? '0.0a' : '0a',
                     )}
                   </b>
                   &nbsp;links
