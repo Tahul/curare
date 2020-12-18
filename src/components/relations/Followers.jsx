@@ -4,21 +4,17 @@ import { theme } from '@heetch/flamingo-react'
 
 // Components
 import BackButton from '../layout/BackButton'
-import User from './User'
+import UserProfile from '../explore/UserProfile'
 
 const StyledFollowers = styled.div`
+  margin-bottom: ${theme.space.xl};
+
   .backButton {
     margin: ${theme.space.xl} 0;
   }
 `
 
-const Followers = ({
-  loading,
-  userId,
-  getUserFollowers,
-  onClose,
-  followers,
-}) => {
+const Followers = ({ userId, getUserFollowers, onClose, followers }) => {
   React.useEffect(() => {
     const fetchUserFollowers = async () => {
       await getUserFollowers({ userId })
@@ -34,7 +30,7 @@ const Followers = ({
       <ul>
         {followers &&
           followers.map((profile, i) => (
-            <User i={i} key={profile.user_id} profile={profile} />
+            <UserProfile i={i} key={profile.user_id} profile={profile} />
           ))}
       </ul>
     </StyledFollowers>
