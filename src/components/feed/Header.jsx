@@ -172,16 +172,16 @@ const Header = ({
           <div className="stats">
             <Text
               className={`followings ${showFollowings ? `active` : ``}`}
-              alt="Following"
-              title="Following"
+              alt="Followings"
+              title="Followings"
               onClick={handleFollowingsClick}
             >
               <span>
-                {numeral(profile.following).format(
-                  profile.following > 1000 ? '0.0a' : '0a',
+                {numeral(profile.followings_count).format(
+                  profile.followings_count > 1000 ? '0.0a' : '0a',
                 )}
               </span>{' '}
-              following
+              followings
             </Text>
 
             <Text
@@ -191,8 +191,8 @@ const Header = ({
               onClick={handleFollowersClick}
             >
               <span>
-                {numeral(profile.followers).format(
-                  profile.followers > 1000 ? '0.0a' : '0a',
+                {numeral(profile.followers_count).format(
+                  profile.followers_count > 1000 ? '0.0a' : '0a',
                 )}
               </span>{' '}
               followers
