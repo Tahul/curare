@@ -11,13 +11,15 @@ const StyledTabs = styled.div`
   padding: ${theme.space.l} 0;
 `
 
-const Tabs = ({ tabs, currentValue, onChange }) => {
+const Tabs = ({ tabs, loading = false, currentValue, onChange }) => {
   const { playButton } = useActionsSounds()
 
   const handleChange = (value) => {
-    onChange(value)
+    if (!loading && currentValue !== value) {
+      onChange(value)
 
-    if (currentValue !== value) playButton()
+      playButton()
+    }
   }
 
   return (
