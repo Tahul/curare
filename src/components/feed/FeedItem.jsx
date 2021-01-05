@@ -91,8 +91,8 @@ const FeedItem = ({ item }) => {
           },
         }}
         onClick={handleProfileOpen}
-        onMouseOver={() => setHover(true)}
-        onMouseOut={() => setHover(false)}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
       >
         <Img src={item.profile.avatar_url || Fill} />
 

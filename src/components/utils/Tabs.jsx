@@ -100,8 +100,8 @@ const Tab = ({ tab, current, onClick }) => {
     <StyledTab
       active={current || hover}
       onClick={onClick}
-      onMouseOver={() => setHover(true)}
-      onMouseOut={() => setHover(false)}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
     >
       <motion.div
         initial={{ scale: 0 }}
