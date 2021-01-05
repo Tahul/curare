@@ -1,12 +1,8 @@
+import { createBrowserHistory } from 'history'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createBrowserHistory } from 'history'
-
-// Components
 import { Router } from 'react-router-dom'
 import App from './App'
-
-// Styles
 import './index.css'
 
 // Routing

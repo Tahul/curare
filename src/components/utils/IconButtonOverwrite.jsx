@@ -3,12 +3,11 @@
  * a children slot for inserting our own custom Icon, this component is
  * a copy of IconButton that aims to allow this in order to create custom IconButtons.
  */
-import React from 'react'
-import PropTypes from 'prop-types'
+import { Button, Icon, theme } from '@heetch/flamingo-react'
 import cx from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
 import styled from 'styled-components'
-
-import { theme, Icon, Button } from '@heetch/flamingo-react'
 
 const sizes = Object.values(Icon.SIZES)
 

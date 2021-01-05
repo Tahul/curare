@@ -1,10 +1,8 @@
-import React from 'react'
 import { motion } from 'framer-motion'
-
-// Components
+import React from 'react'
 import CollectionItem from './CollectionItem'
-import SelectedCollection from './SelectedCollection'
 import CreateCollection from './CreateCollection'
+import SelectedCollection from './SelectedCollection'
 
 const Collections = ({
   userName,

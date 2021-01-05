@@ -1,13 +1,3 @@
-import React from 'react'
-import { motion, useAnimation } from 'framer-motion'
-import styled from 'styled-components'
-import renderHtml from '../../plugins/renderHtml'
-
-// Hooks
-import { useInView } from 'react-intersection-observer'
-import useActionsSounds from '../../hooks/useActionsSounds'
-
-// Components
 import {
   Button,
   Icon,
@@ -16,11 +6,15 @@ import {
   theme,
   UiText,
 } from '@heetch/flamingo-react'
-
-// Assets
-import ExpandableText from './ExpandableText'
+import { motion, useAnimation } from 'framer-motion'
+import React from 'react'
 import { Img } from 'react-image'
+import { useInView } from 'react-intersection-observer'
 import { useHistory } from 'react-router-dom'
+import styled from 'styled-components'
+import useActionsSounds from '../../hooks/useActionsSounds'
+import renderHtml from '../../plugins/renderHtml'
+import ExpandableText from './ExpandableText'
 
 const StyledLinkItem = styled.div`
   width: 100%;

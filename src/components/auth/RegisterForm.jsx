@@ -1,19 +1,11 @@
-import React from 'react'
-
-// Contexts
-import { useAuthDispatch, useAuthState } from '../../contexts/auth'
-import { registerAction } from '../../contexts/auth/actions'
-
-// Hooks
-import useActionsSounds from '../../hooks/useActionsSounds'
-
-// Components
 import { Button, InputField } from '@heetch/flamingo-react'
-import { Field, Form } from 'react-final-form'
-
-// Form validation
 import { Validators } from '@lemoncode/fonk'
 import { createFinalFormValidation } from '@lemoncode/fonk-final-form'
+import React from 'react'
+import { Field, Form } from 'react-final-form'
+import { useAuthDispatch, useAuthState } from '../../contexts/auth'
+import { registerAction } from '../../contexts/auth/actions'
+import useActionsSounds from '../../hooks/useActionsSounds'
 
 const passwordConfirmationValidator = ({ values }) => {
   if (values.passwordConfirmation !== values.password) {

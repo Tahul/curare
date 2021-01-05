@@ -1,23 +1,17 @@
-import React from 'react'
-import styled from 'styled-components'
-import { toDataURL, base64MimeType } from '../../plugins/file'
-
-// Form validation
-import { Validators } from '@lemoncode/fonk'
-import { createFinalFormValidation } from '@lemoncode/fonk-final-form'
-
-// Hooks
-import useProfile from '../../hooks/useProfile'
-import useIsMounted from '../../hooks/useIsMounted'
-
-// Components
 import {
   Button,
   InputField,
   TextareaField,
   UploaderField,
 } from '@heetch/flamingo-react'
+import { Validators } from '@lemoncode/fonk'
+import { createFinalFormValidation } from '@lemoncode/fonk-final-form'
+import React from 'react'
 import { Field, Form } from 'react-final-form'
+import styled from 'styled-components'
+import useIsMounted from '../../hooks/useIsMounted'
+import useProfile from '../../hooks/useProfile'
+import { base64MimeType, toDataURL } from '../../plugins/file'
 
 const validationSchema = {
   field: {

@@ -1,11 +1,7 @@
+import { Button } from '@heetch/flamingo-react'
 import React from 'react'
 import styled from 'styled-components'
-
-// Hooks
 import useHover from '../../hooks/useHover'
-
-// Components
-import { Button } from '@heetch/flamingo-react'
 
 const StyledFollowButton = styled.div``
 

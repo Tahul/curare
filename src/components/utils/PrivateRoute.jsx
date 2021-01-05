@@ -1,10 +1,6 @@
 import React from 'react'
-
-// Contexts
+import { Redirect, Route } from 'react-router-dom'
 import { useAuthState } from '../../contexts/auth'
-
-// Components
-import { Route, Redirect } from 'react-router-dom'
 
 const PublicRoute = ({ component: Component, restricted, ...rest }) => {
   const { isLoggedIn, name } = useAuthState()

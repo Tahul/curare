@@ -1,11 +1,7 @@
+import { Icon, Text, theme } from '@heetch/flamingo-react'
 import React from 'react'
 import styled from 'styled-components'
-
-// Hooks
 import useActionsSounds from '../../hooks/useActionsSounds'
-
-// Components
-import { Icon, Text, theme } from '@heetch/flamingo-react'
 
 const StyledBackButton = styled.div`
   cursor: pointer;

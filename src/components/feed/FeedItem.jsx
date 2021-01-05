@@ -1,20 +1,14 @@
-import React from 'react'
-import styled from 'styled-components'
-import { motion, useAnimation } from 'framer-motion'
-import { formatDistanceToNow } from 'date-fns'
-import { randomIntFromInterval } from '../../plugins/random'
-
-// Components
 import { Icon, Text, theme, UiText } from '@heetch/flamingo-react'
-import LinkItem from '../links/LinkItem'
+import { formatDistanceToNow } from 'date-fns'
+import { motion, useAnimation } from 'framer-motion'
+import React from 'react'
 import { Img } from 'react-image'
-
-// Hooks
 import { useInView } from 'react-intersection-observer'
 import { useHistory } from 'react-router-dom'
-
-// Assets
+import styled from 'styled-components'
 import Fill from '../../assets/images/fill.png'
+import { randomIntFromInterval } from '../../plugins/random'
+import LinkItem from '../links/LinkItem'
 
 const StyledFeedItem = styled.div`
   margin-top: ${theme.space.xxl};

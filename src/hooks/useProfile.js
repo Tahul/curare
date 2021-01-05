@@ -1,15 +1,11 @@
-import { useState, useEffect, useCallback } from 'react'
-
-// API
+import { useCallback, useEffect, useState } from 'react'
 import {
   getProfile as getRemoteProfile,
-  updateProfile as updateRemoteProfile,
   updateAvatar as updateRemoteAvatar,
+  updateProfile as updateRemoteProfile,
 } from '../api/profile'
-
-// Hooks
-import useIsMounted from './useIsMounted'
 import useActionsSounds from './useActionsSounds'
+import useIsMounted from './useIsMounted'
 
 const initialState = {
   first_name: '',

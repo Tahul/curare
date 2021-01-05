@@ -1,25 +1,19 @@
-import React from 'react'
-import styled from 'styled-components'
 import { theme } from '@heetch/flamingo-react'
-
-// Hooks
-import useQueryLogout from './hooks/useQueryLogout'
-
-// Components
+import React from 'react'
 import { Switch } from 'react-router-dom'
+import styled from 'styled-components'
 import Navigation from './components/layout/Navigation'
-import { AuthProvider, useAuthState } from './contexts/auth'
 import PublicRoute from './components/utils/PrivateRoute'
 import PrivateRoute from './components/utils/PublicRoute'
-
-// Views
+import { AuthProvider, useAuthState } from './contexts/auth'
+import useQueryLogout from './hooks/useQueryLogout'
+import Explore from './views/Explore'
+import Feed from './views/Feed'
 import Landing from './views/Landing'
-import Register from './views/Register'
 import Login from './views/Login'
 import Profile from './views/Profile'
+import Register from './views/Register'
 import Settings from './views/Settings'
-import Feed from './views/Feed'
-import Explore from './views/Explore'
 
 const StyledApp = styled.div`
   display: flex;

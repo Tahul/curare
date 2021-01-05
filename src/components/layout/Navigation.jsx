@@ -1,9 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-
-// Components
-import Title from './Title'
 import Actions from './Actions'
+import Title from './Title'
 
 const StyledNavigation = styled.div`
   width: 100%;

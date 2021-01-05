@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const useHover = () => {
   const [value, setValue] = useState(false)

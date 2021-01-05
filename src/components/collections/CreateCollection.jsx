@@ -1,12 +1,8 @@
+import { Button, theme } from '@heetch/flamingo-react'
+import { motion } from 'framer-motion'
 import React from 'react'
 import styled from 'styled-components'
-import { motion } from 'framer-motion'
-
-// Hooks
 import useActionsSounds from '../../hooks/useActionsSounds'
-
-// Components
-import { Button, theme } from '@heetch/flamingo-react'
 import CollectionForm from './CollectionForm'
 
 const StyledCreateCollection = styled.div`

@@ -1,23 +1,19 @@
-import React from 'react'
-import styled from 'styled-components'
+import { theme } from '@heetch/flamingo-react'
 import { motion } from 'framer-motion'
-
-// Hooks
-import useProfileFeed from '../hooks/useProfileFeed'
-import { useAuth } from '../contexts/auth'
+import React from 'react'
 import { useHistory } from 'react-router-dom'
-import useCollections from '../hooks/useCollections'
-import useRelations from '../hooks/useRelations'
-
-// Components
-import ProfileForm from '../components/profile/ProfileForm'
-import Page from '../components/layout/Page'
-import ProfileHeader from '../components/profile/ProfileHeader'
+import styled from 'styled-components'
 import Collections from '../components/collections/Collections'
 import BackButton from '../components/layout/BackButton'
+import Page from '../components/layout/Page'
+import ProfileForm from '../components/profile/ProfileForm'
+import ProfileHeader from '../components/profile/ProfileHeader'
 import Followers from '../components/relations/Followers'
 import Followings from '../components/relations/Followings'
-import { theme } from '@heetch/flamingo-react'
+import { useAuth } from '../contexts/auth'
+import useCollections from '../hooks/useCollections'
+import useProfileFeed from '../hooks/useProfileFeed'
+import useRelations from '../hooks/useRelations'
 
 const StyledProfile = styled.div`
   position: relative;

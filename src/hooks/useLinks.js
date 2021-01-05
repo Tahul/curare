@@ -1,11 +1,7 @@
-import { useState, useCallback, useEffect } from 'react'
-
-// API
-import { destroy, index, preview, store, update, click } from '../api/links'
-
-// Hooks
-import useIsMounted from './useIsMounted'
+import { useCallback, useEffect, useState } from 'react'
+import { click, destroy, index, preview, store, update } from '../api/links'
 import useActionsSounds from './useActionsSounds'
+import useIsMounted from './useIsMounted'
 
 const useLinks = ({ userId = null, collectionId = null }) => {
   const { playSuccess, playError } = useActionsSounds()

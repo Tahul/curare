@@ -1,9 +1,7 @@
-import React from 'react'
-import toast from 'toasted-notes'
-import styled from 'styled-components'
-
-// Components
 import { Alert, theme } from '@heetch/flamingo-react'
+import React from 'react'
+import styled from 'styled-components'
+import toast from 'toasted-notes'
 
 const defaultOptions = {
   position: 'bottom',

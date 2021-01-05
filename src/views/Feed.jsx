@@ -1,14 +1,10 @@
+import { Text } from '@heetch/flamingo-react'
 import React from 'react'
 import styled from 'styled-components'
-
-// Hooks
-import useFeed from '../hooks/useFeed'
-
-// Components
-import Page from '../components/layout/Page'
 import FeedItem from '../components/feed/FeedItem'
+import Page from '../components/layout/Page'
 import Loader from '../components/utils/Loader'
-import { Text } from '@heetch/flamingo-react'
+import useFeed from '../hooks/useFeed'
 
 const StyledFeed = styled.div``
 

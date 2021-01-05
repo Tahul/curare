@@ -1,19 +1,13 @@
-import React from 'react'
-import styled from 'styled-components'
-import numeral from 'numeral'
-import { randomIntFromInterval } from '../../plugins/random'
-
-// Components
 import { Item, Text, theme, UiText } from '@heetch/flamingo-react'
-
-// Hooks
-import { useHistory } from 'react-router-dom'
-import useActionsSounds from '../../hooks/useActionsSounds'
-import { useInView } from 'react-intersection-observer'
 import { motion, useAnimation } from 'framer-motion'
-
-// Assets
+import numeral from 'numeral'
+import React from 'react'
+import { useInView } from 'react-intersection-observer'
+import { useHistory } from 'react-router-dom'
+import styled from 'styled-components'
 import Fill from '../../assets/images/fill.png'
+import useActionsSounds from '../../hooks/useActionsSounds'
+import { randomIntFromInterval } from '../../plugins/random'
 
 const StyledUserProfile = styled.li`
   position: relative;

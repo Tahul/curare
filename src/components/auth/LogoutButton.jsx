@@ -1,15 +1,9 @@
+import { Button } from '@heetch/flamingo-react'
 import React from 'react'
-
-// Hooks
-import useActionsSounds from '../../hooks/useActionsSounds'
 import { useHistory } from 'react-router-dom'
-
-// Contexts
 import { useAuthDispatch, useAuthState } from '../../contexts/auth'
 import { logoutAction } from '../../contexts/auth/actions'
-
-// Components
-import { Button } from '@heetch/flamingo-react'
+import useActionsSounds from '../../hooks/useActionsSounds'
 
 const LogoutButton = () => {
   const { playBack } = useActionsSounds()

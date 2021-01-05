@@ -1,15 +1,11 @@
-import React from 'react'
-import styled from 'styled-components'
+import { Button, IconButton, theme } from '@heetch/flamingo-react'
 import { motion } from 'framer-motion'
-
-// Hooks
+import React from 'react'
+import { NavLink } from 'react-router-dom'
+import styled from 'styled-components'
 import { useAuth, useAuthState } from '../../contexts/auth'
 import useActionsSounds from '../../hooks/useActionsSounds'
-
-// Components
-import { Button, IconButton, theme } from '@heetch/flamingo-react'
 import IconButtonOverwrite from '../utils/IconButtonOverwrite'
-import { NavLink } from 'react-router-dom'
 
 const StyledActions = styled.div`
   height: 100%;

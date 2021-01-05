@@ -1,9 +1,5 @@
 import { useCallback, useState } from 'react'
-
-// API
-import { follow, unfollow, followings, followers } from '../api/relations'
-
-// Hooks
+import { follow, followers, followings, unfollow } from '../api/relations'
 import useActionsSounds from './useActionsSounds'
 import useIsMounted from './useIsMounted'
 

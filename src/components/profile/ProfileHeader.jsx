@@ -1,16 +1,10 @@
-import React from 'react'
-import styled from 'styled-components'
-import numeral from 'numeral'
-
-// Hooks
-import useActionsSounds from '../../hooks/useActionsSounds'
-
-// Assets
-import Fill from '../../assets/images/fill.png'
-
-// Components
 import { Card, IconButton, Text, theme, UiText } from '@heetch/flamingo-react'
+import numeral from 'numeral'
+import React from 'react'
 import { Img } from 'react-image'
+import styled from 'styled-components'
+import Fill from '../../assets/images/fill.png'
+import useActionsSounds from '../../hooks/useActionsSounds'
 import FollowButton from '../relations/FollowButton'
 
 const StyledHeader = styled.div`

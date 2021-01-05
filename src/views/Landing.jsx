@@ -1,8 +1,6 @@
+import { Card, Text } from '@heetch/flamingo-react'
 import React from 'react'
 import styled from 'styled-components'
-
-// Components
-import { Card, Text } from '@heetch/flamingo-react'
 import Page from '../components/layout/Page'
 
 const StyledLanding = styled.div``

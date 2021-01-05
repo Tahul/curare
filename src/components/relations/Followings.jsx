@@ -1,10 +1,8 @@
+import { theme } from '@heetch/flamingo-react'
 import React from 'react'
 import styled from 'styled-components'
-import { theme } from '@heetch/flamingo-react'
-
-// Components
-import BackButton from '../layout/BackButton'
 import UserProfile from '../explore/UserProfile'
+import BackButton from '../layout/BackButton'
 
 const StyledFollowings = styled.div`
   margin-bottom: ${theme.space.xl};

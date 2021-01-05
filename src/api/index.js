@@ -1,6 +1,6 @@
 import axios from 'axios'
-import Toasts from '../plugins/toasts'
 import { history } from '../index'
+import Toasts from '../plugins/toasts'
 
 const API = axios.create({
   baseURL:

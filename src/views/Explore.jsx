@@ -1,15 +1,10 @@
 import { Text } from '@heetch/flamingo-react'
-import { AnimatePresence, motion } from 'framer-motion'
 import React from 'react'
 import styled from 'styled-components'
 import UserProfile from '../components/explore/UserProfile'
-
-// Components
 import Page from '../components/layout/Page'
 import Loader from '../components/utils/Loader'
 import Tabs from '../components/utils/Tabs'
-
-// Hooks
 import useExplore from '../hooks/useExplore'
 
 const ExploreStyled = styled.div``

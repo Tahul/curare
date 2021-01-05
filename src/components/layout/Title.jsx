@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
 import { theme } from '@heetch/flamingo-react'
-import { Link, useLocation } from 'react-router-dom'
-
-// Assets
-import Logo from '../../assets/images/logo.svg'
-import { Img } from 'react-image'
-import { useAuthState } from '../../contexts/auth'
 import { AnimatePresence, motion } from 'framer-motion'
+import React, { useEffect, useState } from 'react'
+import { Img } from 'react-image'
+import { Link, useLocation } from 'react-router-dom'
+import styled from 'styled-components'
+import Logo from '../../assets/images/logo.svg'
+import { useAuthState } from '../../contexts/auth'
 
 const StyledTitle = styled.div`
   position: relative;

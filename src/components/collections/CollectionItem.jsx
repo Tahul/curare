@@ -1,16 +1,10 @@
+import { Button, Item, Text, theme, UiText } from '@heetch/flamingo-react'
+import { motion } from 'framer-motion'
 import React from 'react'
 import styled from 'styled-components'
-import { motion } from 'framer-motion'
-
-// Components
-import { Button, Item, Text, theme, UiText } from '@heetch/flamingo-react'
-
-// Hooks
-import useIsMounted from '../../hooks/useIsMounted'
-import useActionsSounds from '../../hooks/useActionsSounds'
-
-// Assets
 import Fill from '../../assets/images/fill.png'
+import useActionsSounds from '../../hooks/useActionsSounds'
+import useIsMounted from '../../hooks/useIsMounted'
 
 const StyledCollectionItem = styled.div`
   position: relative;

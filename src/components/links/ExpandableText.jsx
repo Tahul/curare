@@ -1,10 +1,8 @@
+import { Text } from '@heetch/flamingo-react'
 import { motion } from 'framer-motion'
 import React from 'react'
 import styled from 'styled-components'
 import renderHtml from '../../plugins/renderHtml'
-
-// Components
-import { Text } from '@heetch/flamingo-react'
 
 const StyledExpandableText = styled.div``
 

@@ -1,19 +1,15 @@
-import React from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
 import { theme } from '@heetch/flamingo-react'
-import styled from 'styled-components'
-
-// Hooks
-import useLinks from '../../hooks/useLinks'
-import useIsMounted from '../../hooks/useIsMounted'
+import { AnimatePresence, motion } from 'framer-motion'
+import React from 'react'
 import { useHistory } from 'react-router-dom'
-
-// Components
-import CollectionItem from './CollectionItem'
+import styled from 'styled-components'
+import useIsMounted from '../../hooks/useIsMounted'
+import useLinks from '../../hooks/useLinks'
+import BackButton from '../layout/BackButton'
+import AddLink from '../links/AddLink'
 import LinkItem from '../links/LinkItem'
 import CollectionForm from './CollectionForm'
-import AddLink from '../links/AddLink'
-import BackButton from '../layout/BackButton'
+import CollectionItem from './CollectionItem'
 
 const StyledSelectedCollection = styled.div`
   margin-bottom: ${theme.space.l};

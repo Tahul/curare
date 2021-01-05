@@ -1,13 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
-
-// Contexts
-import { useAuthState } from '../contexts/auth'
-
-// Components
 import { Redirect } from 'react-router-dom'
+import styled from 'styled-components'
 import LogoutButton from '../components/auth/LogoutButton'
 import Page from '../components/layout/Page'
+import { useAuthState } from '../contexts/auth'
 
 const StyledSettings = styled.div``
 

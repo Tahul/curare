@@ -1,13 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
-
-// Contexts
-import { useAuthState } from '../contexts/auth'
-
-// Components
+import styled from 'styled-components'
 import LoginForm from '../components/auth/LoginForm'
 import Page from '../components/layout/Page'
+import { useAuthState } from '../contexts/auth'
 
 const StyledLogin = styled.div``
 

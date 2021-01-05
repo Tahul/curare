@@ -1,6 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
-
-// API
+import { useCallback, useEffect, useState } from 'react'
 import {
   destroy,
   index,
@@ -9,11 +7,7 @@ import {
   update,
   updateImage as updateRemoteImage,
 } from '../api/collections'
-
-// Hooks
 import useActionsSounds from './useActionsSounds'
-
-// Hooks
 import useIsMounted from './useIsMounted'
 
 const useCollections = (userId = null) => {

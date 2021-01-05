@@ -1,6 +1,4 @@
 import React from 'react'
-
-// Reducer
 import authReducer from './reducer'
 
 // Data from localStorage

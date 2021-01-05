@@ -1,16 +1,10 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import styled from 'styled-components'
-
-// Hooks
-import useActionsSounds from '../../hooks/useActionsSounds'
-import { useHistory } from 'react-router-dom'
-
-// Components
 import { Item, Text, theme, UiText } from '@heetch/flamingo-react'
-
-// Assets
+import { motion } from 'framer-motion'
+import React from 'react'
+import { useHistory } from 'react-router-dom'
+import styled from 'styled-components'
 import Fill from '../../assets/images/fill.png'
+import useActionsSounds from '../../hooks/useActionsSounds'
 
 const StyledUser = styled.div`
   position: relative;
