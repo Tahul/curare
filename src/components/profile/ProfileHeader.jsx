@@ -3,7 +3,7 @@ import numeral from 'numeral'
 import React from 'react'
 import { Img } from 'react-image'
 import styled from 'styled-components'
-import Fill from '../../assets/images/fill.png'
+import Fill from '../../assets/images/fill.svg'
 import useActionsSounds from '../../hooks/useActionsSounds'
 import FollowButton from '../relations/FollowButton'
 
