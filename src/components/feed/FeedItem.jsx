@@ -2,11 +2,9 @@ import { Icon, Text, theme, UiText } from '@heetch/flamingo-react'
 import { formatDistanceToNow } from 'date-fns'
 import { motion, useAnimation } from 'framer-motion'
 import React from 'react'
-import { Img } from 'react-image'
 import { useInView } from 'react-intersection-observer'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
-import Fill from '../../assets/images/fill.png'
 import { randomIntFromInterval } from '../../plugins/random'
 import LinkItem from '../links/LinkItem'
 
@@ -94,7 +92,11 @@ const FeedItem = ({ item }) => {
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
-        <Img src={item.profile.avatar_url || Fill} />
+        <img
+          alt={item.profile.name}
+          title={item.profile.name}
+          src={item.profile.avatar_url}
+        />
 
         <div className="data">
           <UiText
