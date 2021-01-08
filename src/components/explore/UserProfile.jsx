@@ -5,7 +5,7 @@ import React from 'react'
 import { useInView } from 'react-intersection-observer'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
-import Fill from '../../assets/images/fill.png'
+import Fill from '../../assets/images/fill.svg'
 import useActionsSounds from '../../hooks/useActionsSounds'
 import { randomIntFromInterval } from '../../plugins/random'
 
@@ -19,12 +19,17 @@ const StyledUserProfile = styled.li`
     align-items: center;
     margin-bottom: ${theme.space.m};
 
-    img {
+    .profileImage {
       margin-right: ${theme.space.l};
       width: 4rem;
       height: 4rem;
-      object-fit: cover;
-      border-radius: 50%;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+      }
     }
   }
 
@@ -98,11 +103,19 @@ const UserProfile = ({ profile }) => {
       <StyledUserProfile>
         <Item>
           <div className="profile">
-            <img
-              src={profile.avatar_url || Fill}
-              alt={profile.name}
-              title={profile.name}
-            />
+            <div className="profileImage">
+              {profile.avatar_url && (
+                <img
+                  src={profile.avatar_url}
+                  alt={profile.name}
+                  title={profile.name}
+                />
+              )}
+
+              {!profile.avatar_url && (
+                <img src={Fill} alt={profile.name} title={profile.name} />
+              )}
+            </div>
 
             <div>
               {fullName !== '' ? (
@@ -123,8 +136,8 @@ const UserProfile = ({ profile }) => {
               <Text className="data">
                 <span>
                   <b>
-                    {numeral(profile.followings_count).format(
-                      profile.followings_count >= 1000 ? '0.0a' : '0a',
+                    {numeral(profile.followers_count).format(
+                      profile.followers_count >= 1000 ? '0.0a' : '0a',
                     )}
                   </b>
                   &nbsp;followers
@@ -132,8 +145,8 @@ const UserProfile = ({ profile }) => {
                 <i>&nbsp;·&nbsp;</i>
                 <span>
                   <b>
-                    {numeral(profile.followers_count).format(
-                      profile.followers_count >= 1000 ? '0.0a' : '0a',
+                    {numeral(profile.followings_count).format(
+                      profile.followings_count >= 1000 ? '0.0a' : '0a',
                     )}
                   </b>
                   &nbsp;followings
