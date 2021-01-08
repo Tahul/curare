@@ -16,7 +16,7 @@ export const index = async ({ userId = null, collectionId = null }) => {
 }
 
 /**
- * Create a collection.
+ * Create a link.
  *
  * @param {title} collection
  */
@@ -31,9 +31,9 @@ export const store = async ({ url, ogp, collection_id }) => {
 }
 
 /**
- * Update a collection.
+ * Update a link.
  *
- * @param {string, string} collection
+ * @param {string, string} link
  */
 export const update = async ({ id, url, ogp }) => {
   const request = await API.patch(`/links/${id}`, { url, ogp })
@@ -42,7 +42,7 @@ export const update = async ({ id, url, ogp }) => {
 }
 
 /**
- * Destroy a collection.
+ * Destroy a link.
  *
  * @param {string} id
  */
