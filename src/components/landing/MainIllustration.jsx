@@ -9,7 +9,7 @@ const StyledMainIllustration = styled.div`
   margin-top: ${theme.space.xxl};
   position: relative;
   width: 100%;
-  height: 380px;
+  height: 320px;
   overflow: visible;
 
   svg,
@@ -22,7 +22,7 @@ const MainIllustration = () => {
   return (
     <StyledMainIllustration>
       <Phone
-        style={{ right: '0px', top: '20px', height: '360px' }}
+        style={{ right: '0px', top: '20px', height: '300px' }}
         transition={{ delay: 0.2 }}
       />
 
@@ -31,7 +31,7 @@ const MainIllustration = () => {
       />
 
       <Character
-        style={{ left: '-15px', height: '380px' }}
+        style={{ left: '-15px', height: '320px' }}
         transition={{ delay: 0.1 }}
       />
     </StyledMainIllustration>
