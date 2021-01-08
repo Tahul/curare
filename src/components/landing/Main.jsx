@@ -29,8 +29,6 @@ const StyledMain = styled.div`
   }
 
   .f-Card {
-    margin-top: ${theme.space.xxl};
-
     p {
       &:not(:first-child) {
         margin-top: ${theme.space.m};
