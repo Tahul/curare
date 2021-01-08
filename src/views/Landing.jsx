@@ -1,6 +1,6 @@
-import { Card, Text } from '@heetch/flamingo-react'
 import React from 'react'
 import styled from 'styled-components'
+import Main from '../components/landing/Main'
 import Page from '../components/layout/Page'
 
 const StyledLanding = styled.div``
@@ -8,9 +8,7 @@ const StyledLanding = styled.div``
 const Landing = () => (
   <Page>
     <StyledLanding>
-      <Card>
-        <Text>Landing page</Text>
-      </Card>
+      <Main />
     </StyledLanding>
   </Page>
 )
