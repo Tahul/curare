@@ -2,7 +2,7 @@ import { Button, Item, Text, theme, UiText } from '@heetch/flamingo-react'
 import { motion } from 'framer-motion'
 import React from 'react'
 import styled from 'styled-components'
-import Fill from '../../assets/images/fill.png'
+import Fill from '../../assets/images/fill.svg'
 import useActionsSounds from '../../hooks/useActionsSounds'
 import useIsMounted from '../../hooks/useIsMounted'
 
@@ -15,12 +15,18 @@ const StyledCollectionItem = styled.div`
     justify-content: center;
     align-items: center;
 
-    img {
+    .itemImage {
       margin-right: ${theme.space.l};
       width: 3rem;
       height: 3rem;
-      object-fit: cover;
-      border-radius: 50%;
+
+      img,
+      svg {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+      }
     }
   }
 
@@ -115,11 +121,23 @@ const CollectionItem = ({
           value={valueText}
         >
           <div className="itemContent">
-            <img
-              src={collection?.image_url || Fill}
-              alt={collection.title}
-              title={collection.title}
-            />
+            <div className="itemImage">
+              {collection.image_url && (
+                <img
+                  src={collection.image_url}
+                  alt={collection.title}
+                  title={collection.title}
+                />
+              )}
+
+              {!collection.image_url && (
+                <img
+                  src={Fill}
+                  alt={collection.title}
+                  title={collection.title}
+                />
+              )}
+            </div>
 
             <div className="textContent">
               <UiText variant="contentBold">{collection.title}</UiText>
