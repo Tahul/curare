@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
-import Fill from '../../assets/images/fill.png'
+import Fill from '../../assets/images/fill.svg'
 import useActionsSounds from '../../hooks/useActionsSounds'
 
 const StyledUser = styled.div`
@@ -16,12 +16,15 @@ const StyledUser = styled.div`
     justify-content: center;
     align-items: center;
 
-    img {
+    .userImage {
       margin-right: ${theme.space.l};
       width: 3rem;
       height: 3rem;
-      object-fit: cover;
-      border-radius: 50%;
+
+      img {
+        object-fit: cover;
+        border-radius: 50%;
+      }
     }
   }
 `
@@ -65,12 +68,19 @@ const User = ({ i = 0, profile }) => {
       <StyledUser>
         <Item>
           <div className="itemContent">
-            <img
-              src={profile?.avatar_url || Fill}
-              alt={profile.name}
-              title={profile.name}
-            />
+            <div className="userImage">
+              {profile.avatar_url && (
+                <img
+                  src={profile.avatar_url}
+                  alt={profile.name}
+                  title={profile.name}
+                />
+              )}
 
+              {!profile.avatar_url && (
+                <img src={Fill} alt={profile.name} title={profile.name} />
+              )}
+            </div>
             <div>
               {fullName !== '' ? (
                 <UiText
