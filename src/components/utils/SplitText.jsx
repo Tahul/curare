@@ -7,7 +7,12 @@ export function SplitText({ children, ...rest }) {
     return (
       <span
         key={children + i}
-        style={{ display: 'inline-block', overflow: 'hidden' }}
+        style={{
+          display: 'inline-block',
+          overflow: 'hidden',
+          lineHeight: '38px',
+          height: '38px',
+        }}
       >
         <motion.span
           {...rest}
