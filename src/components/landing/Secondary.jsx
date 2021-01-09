@@ -1,4 +1,4 @@
-import { Text } from '@heetch/flamingo-react'
+import { Card, Text } from '@heetch/flamingo-react'
 import { motion, useAnimation } from 'framer-motion'
 import React from 'react'
 import styled from 'styled-components'
@@ -35,7 +35,7 @@ const Secondary = ({ onPrevious, onNext }) => {
                 }),
               }}
             >
-              Bookmarks are not
+              Bookmarks should be
             </SplitText>
           </Text>
 
@@ -58,6 +58,26 @@ const Secondary = ({ onPrevious, onNext }) => {
         </div>
 
         <SecondaryIllustration />
+
+        <motion.div
+          initial={{ y: 75, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.25 }}
+        >
+          <Card>
+            <Text>
+              <b>Recommendations</b> are a major social contact.
+            </Text>
+
+            <Text>
+              What <b>we love</b> is who <b>we are</b>.
+            </Text>
+
+            <Text>
+              <b>Curare</b> is the best place to <b>keep track</b> of both.
+            </Text>
+          </Card>
+        </motion.div>
       </StyledSecondary>
     </motion.div>
   )
