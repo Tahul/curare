@@ -14,13 +14,13 @@
     "lint": "prettier --check \"src/**/*.{js,jsx}\""
   },
   "dependencies": {
-    "@heetch/flamingo-react": "^3.0.1",
+    "@heetch/flamingo-react": "^3.0.2",
     "@lemoncode/fonk": "^1.5.1",
     "@lemoncode/fonk-final-form": "^2.3.4",
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "date-fns": "^2.16.1",
     "final-form": "^4.20.1",
-    "framer-motion": "^2.9.5",
+    "framer-motion": "^3.2.0",
     "numeral": "^2.0.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -39,8 +39,8 @@
     "@snowpack/app-scripts-react": "^1.12.6",
     "@snowpack/plugin-dotenv": "^2.0.5",
     "@snowpack/plugin-react-refresh": "^2.3.9",
-    "@testing-library/jest-dom": "^5.11.6",
-    "@testing-library/react": "^11.2.2",
+    "@testing-library/jest-dom": "^5.11.8",
+    "@testing-library/react": "^11.2.3",
     "@typescript-eslint/eslint-plugin": "4.x",
     "@typescript-eslint/parser": "4.x",
     "babel-eslint": "10.x",
@@ -53,7 +53,7 @@
     "eslint-plugin-react-hooks": "4.x",
     "jest": "^26.6.3",
     "prettier": "^2.2.1",
-    "snowpack": "^2.18.4"
+    "snowpack": "^2.18.5"
   },
   "eslintConfig": {
     "extends": [
