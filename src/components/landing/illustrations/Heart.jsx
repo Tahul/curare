@@ -47,7 +47,17 @@ const Heart = ({ style, ...rest }) => {
   })
 
   return (
-    <motion.div animate={heartControls} style={style}>
+    <motion.div
+      animate={heartControls}
+      style={style}
+      initial={{
+        x: 0,
+        y: 0,
+        rotate: 0,
+        scale: 0,
+        opacity: 0,
+      }}
+    >
       <svg
         viewBox="437 229 839 667"
         xmlns="http://www.w3.org/2000/svg"
