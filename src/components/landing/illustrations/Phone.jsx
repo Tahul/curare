@@ -38,9 +38,7 @@ const Phone = ({ style, ...rest }) => {
       if (isMounted) startAnimation()
     }
 
-    startAnimation()
-
-    return () => groupControls.stop()
+    if (isMounted) startAnimation()
   })
 
   return (
