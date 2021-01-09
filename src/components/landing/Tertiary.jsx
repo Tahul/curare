@@ -1,4 +1,4 @@
-import { Text } from '@heetch/flamingo-react'
+import { Card, Text } from '@heetch/flamingo-react'
 import { motion, useAnimation } from 'framer-motion'
 import React from 'react'
 import styled from 'styled-components'
@@ -35,7 +35,7 @@ const Tertiary = ({ onPrevious, onNext }) => {
                 }),
               }}
             >
-              We are all
+              Let's grow
             </SplitText>
           </Text>
 
@@ -52,12 +52,32 @@ const Tertiary = ({ onPrevious, onNext }) => {
                 }),
               }}
             >
-              Content Curators
+              together
             </SplitText>
           </Text>
         </div>
 
         <TertiaryIllustration />
+
+        <motion.div
+          initial={{ y: 75, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.25 }}
+        >
+          <Card>
+            <Text>
+              Discover <b>new content</b> from people you love.
+            </Text>
+
+            <Text>
+              Join a <b>growing community</b> of passionnate people.
+            </Text>
+
+            <Text>
+              Join a <b>growing community</b> of passionnate people.
+            </Text>
+          </Card>
+        </motion.div>
       </StyledTertiary>
     </motion.div>
   )
