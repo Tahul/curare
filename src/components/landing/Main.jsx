@@ -1,60 +1,32 @@
 import { Card, Text, theme } from '@heetch/flamingo-react'
-import { motion } from 'framer-motion'
+import { motion, useAnimation } from 'framer-motion'
 import React from 'react'
 import styled from 'styled-components'
+import useDraggablePage from '../../hooks/useDraggablePage'
 import { SplitText } from '../utils/SplitText'
-import MainIllustration from './MainIllustration'
+import MainIllustration from './illustrations/MainIllustration'
 
 const StyledMain = styled.div`
   position: relative;
-
-  .catchLine {
-    width: 100%;
-    text-align: center;
-
-    p {
-      font-size: ${theme.fontSize.xxl};
-      line-height: ${theme.fontSize.xxl};
-      font-weight: ${theme.fontWeight.bold};
-      color: ${theme.color.text.primary};
-    }
-
-    p:first-child {
-      margin-top: ${theme.space.xxl};
-    }
-
-    p:nth-child(2) {
-      margin-top: ${theme.space.m};
-    }
-  }
-
-  .f-Card {
-    p {
-      &:not(:first-child) {
-        margin-top: ${theme.space.m};
-      }
-    }
-  }
 `
 
-const Main = () => {
-  const onDrag = (event, info) => {
-    if (info.velocity.x > 100) {
-      console.log('right!')
-    }
-
-    if (info.velocity.x < -100) {
-      console.log('left')
-    }
-  }
+const Main = ({ onPrevious, onNext }) => {
+  const controls = useAnimation()
+  const { onDrag, onDragEnd } = useDraggablePage({
+    onPrevious,
+    onNext,
+    controls,
+  })
 
   return (
     <motion.div
+      animate={controls}
       drag="x"
       dragConstraints={{ left: 0, right: 0 }}
       onDrag={onDrag}
+      onDragEnd={onDragEnd}
     >
-      <StyledMain>
+      <StyledMain className="landingPart">
         <div className="catchLine">
           <Text>
             <SplitText
