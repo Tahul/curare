@@ -1,4 +1,7 @@
+import useIsMounted from './useIsMounted'
+
 const useDraggablePage = ({ onPrevious, onNext, controls } = {}) => {
+  const isMounted = useIsMounted()
   const OFFSET = 400
 
   const onDrag = (event, info) => {
@@ -21,7 +24,7 @@ const useDraggablePage = ({ onPrevious, onNext, controls } = {}) => {
   }
 
   const onDragEnd = (event, info) => {
-    if (controls) {
+    if (controls && isMounted) {
       controls.start({
         opacity: 1,
       })
