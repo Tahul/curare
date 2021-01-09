@@ -24,7 +24,6 @@ const Heart = ({ style, ...rest }) => {
           rotate: -12,
           transition: {
             delay: 1,
-            duration: 0.5,
           },
         })
 
