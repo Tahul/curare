@@ -1,4 +1,4 @@
-import { Card, Text, theme } from '@heetch/flamingo-react'
+import { Card, Text } from '@heetch/flamingo-react'
 import { motion, useAnimation } from 'framer-motion'
 import React from 'react'
 import styled from 'styled-components'
@@ -78,11 +78,10 @@ const Main = ({ onPrevious, onNext }) => {
             <Text>This is done mostly through Instant Messaging.</Text>
 
             <Text>
-              Sadly, instant messaging is{' '}
+              Instant Messaging is{' '}
               <motion.span
                 style={{
                   display: 'inline-block',
-                  fontWeight: theme.fontWeight.bold,
                 }}
                 initial={{ x: -1, y: -1 }}
                 animate={{ x: 0, y: 0 }}
@@ -90,7 +89,7 @@ const Main = ({ onPrevious, onNext }) => {
               >
                 fuzzy
               </motion.span>
-              .
+              , <b>Curare</b> is not.
             </Text>
           </Card>
         </motion.div>
