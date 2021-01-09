@@ -1,10 +1,10 @@
 import { theme } from '@heetch/flamingo-react'
 import React from 'react'
 import styled from 'styled-components'
-import Bush from './illustrations/Bush'
-import Character from './illustrations/Character'
-import Heart from './illustrations/Heart'
-import Phone from './illustrations/Phone'
+import Bush from './Bush'
+import Character from './Character'
+import Heart from './Heart'
+import Phone from './Phone'
 
 const StyledMainIllustration = styled.div`
   margin-top: ${theme.space.xxl};
