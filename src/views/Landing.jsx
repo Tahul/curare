@@ -23,10 +23,6 @@ const StyledLanding = styled.div`
       p:first-child {
         margin-top: ${theme.space.xxl};
       }
-
-      p:nth-child(2) {
-        margin-top: ${theme.space.m};
-      }
     }
 
     .f-Card {
