@@ -1,7 +1,11 @@
 import { theme } from '@heetch/flamingo-react'
 import React from 'react'
 import styled from 'styled-components'
-import Bush from './Bush'
+import Couch from './Couch'
+import FourthCharacter from './FourthCharacter'
+import Monstera from './Monstera'
+import Particle from './Particle'
+import Window from './Window'
 
 const StyledTertiaryIllustration = styled.div`
   margin-top: ${theme.space.xxl};
@@ -19,7 +23,56 @@ const StyledTertiaryIllustration = styled.div`
 const TertiaryIllustration = () => {
   return (
     <StyledTertiaryIllustration>
-      <Bush style={{ height: '320px' }} transition={{ delay: 0.2 }} />
+      <Window
+        style={{ height: '300px', bottom: '40px', left: '10%' }}
+        transition={{ delay: 0.1 }}
+      />
+
+      <Couch
+        style={{ height: '180px', bottom: '10px', left: '20%' }}
+        transition={{ delay: 0.3 }}
+      />
+
+      <Monstera
+        style={{ height: '120px', bottom: '0', left: '30px' }}
+        transition={{ delay: 0.2 }}
+      />
+
+      <Particle
+        style={{ width: '48px', right: '43%', bottom: '50%' }}
+        transition={{ delay: 1 }}
+      >
+        🔊
+      </Particle>
+
+      <Particle
+        particle="gamepad"
+        style={{ width: '48px', right: '36%', bottom: '62%' }}
+        transition={{ delay: 2 }}
+      >
+        📚
+      </Particle>
+
+      <Particle
+        particle="book"
+        style={{ width: '48px', right: '54%', bottom: '48%' }}
+        transition={{ delay: 3 }}
+      >
+        🌱
+      </Particle>
+
+      <Particle
+        particle="sound"
+        style={{ width: '48px', right: '43%', bottom: '50%' }}
+        transition={{ delay: 4 }}
+      >
+        📸
+      </Particle>
+
+      <FourthCharacter
+        style={{ height: '220px', bottom: '0px', left: '40%' }}
+        transition={{ delay: 0.4 }}
+      />
     </StyledTertiaryIllustration>
   )
 }
