@@ -75,10 +75,12 @@ const Main = ({ onPrevious, onNext }) => {
               Daily, we <b>share content</b> with people around us.
             </Text>
 
-            <Text>This is done mostly through Instant Messaging.</Text>
+            <Text>
+              This is done mostly through <b>I</b>nstant <b>M</b>essaging.
+            </Text>
 
             <Text>
-              Instant Messaging is{' '}
+              Sadly, <b>IM</b> apps are{' '}
               <motion.span
                 style={{
                   display: 'inline-block',
@@ -89,7 +91,7 @@ const Main = ({ onPrevious, onNext }) => {
               >
                 fuzzy
               </motion.span>
-              , <b>Curare</b> is not.
+              , but <b>Curare</b> is not.
             </Text>
           </Card>
         </motion.div>
