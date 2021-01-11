@@ -38,9 +38,15 @@ const SecondaryIllustration = () => {
         transition={{ delay: 0.2 }}
       />
 
-      <SecondCharacter style={{ height: '320px', left: '35%' }} />
+      <SecondCharacter
+        style={{ height: '320px', left: '35%' }}
+        transition={{ delay: 0.2 }}
+      />
 
-      <ThirdCharacter style={{ height: '320px', left: '60%' }} />
+      <ThirdCharacter
+        style={{ height: '320px', left: '60%' }}
+        transition={{ delay: 0.2 }}
+      />
 
       <Post style={{ width: '80%', left: '10%', top: '-10%' }} />
     </StyledSecondaryIllustration>
