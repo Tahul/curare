@@ -41,33 +41,32 @@ const TertiaryIllustration = () => {
       <Particle
         style={{ width: '48px', right: '43%', bottom: '50%' }}
         transition={{ delay: 1 }}
-      >
-        🔊
-      </Particle>
+        particle="sound"
+      />
 
       <Particle
-        particle="gamepad"
         style={{ width: '48px', right: '36%', bottom: '62%' }}
         transition={{ delay: 2 }}
-      >
-        📚
-      </Particle>
+        particle="book"
+      />
 
       <Particle
-        particle="book"
         style={{ width: '48px', right: '54%', bottom: '48%' }}
         transition={{ delay: 3 }}
-      >
-        🌱
-      </Particle>
+        particle="plant"
+      />
 
       <Particle
-        particle="sound"
         style={{ width: '48px', right: '43%', bottom: '50%' }}
         transition={{ delay: 4 }}
-      >
-        📸
-      </Particle>
+        particle="podcast"
+      />
+
+      <Particle
+        style={{ width: '48px', right: '32%', bottom: '54%' }}
+        transition={{ delay: 0 }}
+        particle="podcast"
+      />
 
       <FourthCharacter
         style={{ height: '220px', bottom: '0px', left: '40%' }}
