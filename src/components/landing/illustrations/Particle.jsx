@@ -1,15 +1,25 @@
 import { motion, useAnimation } from 'framer-motion'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import useIsMounted from '../../../hooks/useIsMounted'
 
 const availableParticles = ['book', 'art', 'podcasts', 'plants', 'music']
 
-const Particle = ({ particle = 'book', children, style, ...rest }) => {
+const randomParticle = () =>
+  availableParticles[Math.floor(Math.random() * availableParticles.length)]
+
+const Particle = ({ particle = 'random', children, style, ...rest }) => {
+  const [currentParticle, setCurrentParticle] = useState(
+    particle === 'random' ? randomParticle() : particle,
+  )
   const isMounted = useIsMounted()
   const controls = useAnimation()
 
   useEffect(() => {
     const startAnimation = async () => {
+      if (particle === 'random') {
+        setCurrentParticle(randomParticle())
+      }
+
       if (isMounted)
         await controls.set({
           scale: 0.25,
@@ -58,7 +68,7 @@ const Particle = ({ particle = 'book', children, style, ...rest }) => {
       style={{ ...style, zIndex: '999' }}
       {...rest}
     >
-      {particle === 'podcast' && (
+      {currentParticle === 'podcast' && (
         <>
           <path
             fill="#9fa8da"
@@ -77,7 +87,7 @@ const Particle = ({ particle = 'book', children, style, ...rest }) => {
         </>
       )}
 
-      {particle === 'music' && (
+      {currentParticle === 'music' && (
         <>
           <path
             fill="#f44336"
@@ -90,7 +100,7 @@ const Particle = ({ particle = 'book', children, style, ...rest }) => {
         </>
       )}
 
-      {particle === 'book' && (
+      {currentParticle === 'book' && (
         <>
           <path
             fill="#7E57C2"
@@ -112,7 +122,7 @@ const Particle = ({ particle = 'book', children, style, ...rest }) => {
         </>
       )}
 
-      {particle === 'plants' && (
+      {currentParticle === 'plants' && (
         <>
           <path
             fill="#8bc34a"
@@ -138,7 +148,7 @@ const Particle = ({ particle = 'book', children, style, ...rest }) => {
         </>
       )}
 
-      {particle === 'art' && (
+      {currentParticle === 'art' && (
         <>
           <path
             fill="#FFC107"

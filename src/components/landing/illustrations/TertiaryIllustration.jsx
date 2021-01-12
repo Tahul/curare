@@ -39,27 +39,28 @@ const TertiaryIllustration = () => {
       />
 
       <Particle
-        style={{ width: '48px', right: '43%', bottom: '50%' }}
+        style={{ width: '48px', right: '24%', bottom: '62%' }}
         transition={{ delay: 1 }}
-        particle="music"
       />
 
       <Particle
         style={{ width: '48px', right: '36%', bottom: '62%' }}
         transition={{ delay: 2 }}
-        particle="book"
       />
 
       <Particle
-        style={{ width: '48px', right: '54%', bottom: '48%' }}
+        style={{ width: '48px', right: '54%', bottom: '52%' }}
         transition={{ delay: 3 }}
-        particle="plants"
       />
 
       <Particle
-        style={{ width: '48px', right: '43%', bottom: '50%' }}
+        style={{ width: '48px', right: '43%', bottom: '48%' }}
         transition={{ delay: 4 }}
-        particle="podcast"
+      />
+
+      <Particle
+        style={{ width: '48px', right: '68%', bottom: '68%' }}
+        transition={{ delay: 5 }}
       />
 
       <FourthCharacter
