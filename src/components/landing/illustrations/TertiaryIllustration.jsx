@@ -41,7 +41,7 @@ const TertiaryIllustration = () => {
       <Particle
         style={{ width: '48px', right: '43%', bottom: '50%' }}
         transition={{ delay: 1 }}
-        particle="sound"
+        particle="music"
       />
 
       <Particle
@@ -59,12 +59,6 @@ const TertiaryIllustration = () => {
       <Particle
         style={{ width: '48px', right: '43%', bottom: '50%' }}
         transition={{ delay: 4 }}
-        particle="podcast"
-      />
-
-      <Particle
-        style={{ width: '48px', right: '32%', bottom: '54%' }}
-        transition={{ delay: 0 }}
         particle="podcast"
       />
 
