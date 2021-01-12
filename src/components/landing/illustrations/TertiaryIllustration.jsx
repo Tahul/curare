@@ -53,7 +53,7 @@ const TertiaryIllustration = () => {
       <Particle
         style={{ width: '48px', right: '54%', bottom: '48%' }}
         transition={{ delay: 3 }}
-        particle="plant"
+        particle="plants"
       />
 
       <Particle
