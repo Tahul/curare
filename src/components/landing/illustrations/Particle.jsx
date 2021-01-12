@@ -2,6 +2,8 @@ import { motion, useAnimation } from 'framer-motion'
 import React, { useEffect } from 'react'
 import useIsMounted from '../../../hooks/useIsMounted'
 
+const availableParticles = ['book', 'art', 'podcasts', 'plants', 'music']
+
 const Particle = ({ particle = 'book', children, style, ...rest }) => {
   const isMounted = useIsMounted()
   const controls = useAnimation()
@@ -53,7 +55,7 @@ const Particle = ({ particle = 'book', children, style, ...rest }) => {
       viewBox="0 0 64 64"
       initial={{ y: 0, opacity: 0 }}
       animate={controls}
-      style={style}
+      style={{ ...style, zIndex: '999' }}
       {...rest}
     >
       {particle === 'podcast' && (
@@ -132,6 +134,31 @@ const Particle = ({ particle = 'book', children, style, ...rest }) => {
           <path
             fill="#bf360c"
             d="M35,30H13c-0.6,0-1-0.5-1-1v-4h24v4C36,29.5,35.5,30,35,30z"
+          />
+        </>
+      )}
+
+      {particle === 'art' && (
+        <>
+          <path
+            fill="#FFC107"
+            d="M24.639,4c-8.6,0-18.43,4.954-18.43,18.947C6.209,33.108,13.842,44,25.519,44c0.004,0,0.169,0,0.175,0c4.385-0.079,9.105-2.918,9.105-8.959c0-1.157-0.431-2.159-0.809-3.042c-0.102-0.233-0.199-0.462-0.288-0.694c-0.864-2.175,0.089-2.971,2.329-4.565c2.537-1.806,6.013-4.278,5.968-10.819C41.999,12.032,37.756,4,24.639,4z M25.199,39.2c-2.241,0-4.001-1.76-4.001-3.999c0-2.241,1.76-4.001,4.001-4.001c2.238,0,3.998,1.76,3.998,4.001C29.197,37.44,27.438,39.2,25.199,39.2z"
+          />
+          <path
+            fill="#9C27B0"
+            d="M34.5 13A3.5 3.5 0 1 0 34.5 20A3.5 3.5 0 1 0 34.5 13Z"
+          />
+          <path
+            fill="#2196F3"
+            d="M25.5 7A3.5 3.5 0 1 0 25.5 14A3.5 3.5 0 1 0 25.5 7Z"
+          />
+          <path
+            fill="#4CAF50"
+            d="M15.5 12A3.5 3.5 0 1 0 15.5 19A3.5 3.5 0 1 0 15.5 12Z"
+          />
+          <path
+            fill="#FF3D00"
+            d="M14.5 23A3.5 3.5 0 1 0 14.5 30A3.5 3.5 0 1 0 14.5 23Z"
           />
         </>
       )}
