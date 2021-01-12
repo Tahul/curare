@@ -74,6 +74,19 @@ const Particle = ({ particle = 'book', children, style, ...rest }) => {
           />
         </>
       )}
+
+      {particle === 'music' && (
+        <>
+          <path
+            fill="#f44336"
+            d="M16,13c0,0,0,23.988,0,24h3V21.583L36,16v17h3V6L16,13z"
+          />
+          <path
+            fill="#f44336"
+            d="M13 31A6 6 0 1 0 13 43 6 6 0 1 0 13 31zM33 27A6 6 0 1 0 33 39 6 6 0 1 0 33 27z"
+          />
+        </>
+      )}
     </motion.svg>
   )
 }
