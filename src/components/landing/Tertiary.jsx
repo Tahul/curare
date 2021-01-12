@@ -68,14 +68,6 @@ const Tertiary = ({ onPrevious, onNext }) => {
             <Text>
               Discover <b>new content</b> from people you love.
             </Text>
-
-            <Text>
-              Join a <b>growing community</b> of passionnate people.
-            </Text>
-
-            <Text>
-              Join a <b>growing community</b> of passionnate people.
-            </Text>
           </Card>
         </motion.div>
       </StyledTertiary>
