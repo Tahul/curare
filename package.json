@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "author": "Yaël GUILLOUX <yael.guilloux@gmail.com>",
   "license": {
-    "url": "https://github.com/Tahul/vue-my-toasts/raw/master/LICENSE",
+    "url": "https://github.com/Tahul/curare/raw/master/LICENSE",
     "type": "MIT"
   },
   "scripts": {
-    "start": "snowpack dev --secure",
+    "dev": "snowpack dev --secure",
     "build": "snowpack build",
     "test": "jest",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
