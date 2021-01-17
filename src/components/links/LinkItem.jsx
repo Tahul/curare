@@ -125,7 +125,6 @@ const LinkItem = ({
   })
   const { playButton, playBack } = useActionsSounds()
   const { ogp } = link
-
   const [full, setFull] = React.useState(false)
 
   const toggleFull = () => {
@@ -180,9 +179,6 @@ const LinkItem = ({
       exit={{
         opacity: 0,
         scale: 0,
-        transition: {
-          duration: 0.2,
-        },
       }}
     >
       <StyledLinkItem editing={editing}>
@@ -243,25 +239,17 @@ const LinkItem = ({
           </div>
 
           <div className="actions">
-            {ogp.description ? (
-              ogp?.description.length > 35 && !full ? (
-                <IconButton
-                  className="expand"
-                  onClick={toggleFull}
-                  icon="IconOption"
-                />
-              ) : (
-                <IconButton
-                  className="expand"
-                  onClick={toggleFull}
-                  icon="IconCross"
-                />
-              )
+            {ogp && ogp.description && ogp.description.length > 35 && !full ? (
+              <IconButton
+                className="expand"
+                onClick={toggleFull}
+                icon="IconOption"
+              />
             ) : (
               <IconButton
                 className="expand"
-                onClick={handleOpen}
-                icon="IconArrowUp"
+                onClick={toggleFull}
+                icon="IconCross"
               />
             )}
 
