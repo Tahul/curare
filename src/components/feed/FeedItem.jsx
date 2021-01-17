@@ -115,11 +115,7 @@ const FeedItem = ({ item }) => {
 
           <div className="open-arrow">
             <motion.div
-              animate={
-                hover
-                  ? { opacity: 1, x: 0 }
-                  : { opacity: 0, x: -100, transition: { duration: 0.05 } }
-              }
+              animate={hover ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
             >
               <Icon icon="IconArrowRight" size="l" />
             </motion.div>
