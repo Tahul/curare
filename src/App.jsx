@@ -7,6 +7,7 @@ import PublicRoute from './components/utils/PrivateRoute'
 import PrivateRoute from './components/utils/PublicRoute'
 import { AuthProvider, useAuthState } from './contexts/auth'
 import useQueryLogout from './hooks/useQueryLogout'
+import Callback from './views/Callback'
 import Explore from './views/Explore'
 import Feed from './views/Feed'
 import Landing from './views/Landing'
@@ -38,6 +39,8 @@ const Routes = () => {
       <PublicRoute restricted={true} path="/login" component={Login} />
 
       <PublicRoute restricted={true} path="/register" component={Register} />
+
+      <PublicRoute restricted={true} path="/callback" component={Callback} />
 
       <PrivateRoute path="/profile/:id/:collectionId" component={Profile} />
 
