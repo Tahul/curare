@@ -1,4 +1,4 @@
-import { Button, InputField } from '@heetch/flamingo-react'
+import { Button, InputField, theme } from '@heetch/flamingo-react'
 import { Validators } from '@lemoncode/fonk'
 import { createFinalFormValidation } from '@lemoncode/fonk-final-form'
 import React from 'react'
@@ -6,6 +6,7 @@ import { Field, Form } from 'react-final-form'
 import { useAuthDispatch, useAuthState } from '../../contexts/auth'
 import { loginAction } from '../../contexts/auth/actions'
 import useActionsSounds from '../../hooks/useActionsSounds'
+import SocialButtons from './SocialButtons'
 
 const validationSchema = {
   field: {
@@ -87,9 +88,19 @@ const LoginForm = () => {
             )}
           </Field>
 
-          <Button isLoading={loading} style={{ width: '100%' }} type="submit">
+          <Button
+            isLoading={loading}
+            style={{
+              width: '100%',
+              marginTop: theme.space.xl,
+              marginBottom: theme.space.xl,
+            }}
+            type="submit"
+          >
             Login
           </Button>
+
+          <SocialButtons />
         </form>
       )}
     />
