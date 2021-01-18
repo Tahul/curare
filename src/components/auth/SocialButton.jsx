@@ -29,9 +29,9 @@ const SocialButton = ({ type = 'twitter' }) => {
   const { loading } = useAuthState()
 
   const handleRedirect = async () => {
-    const redirectUrl = await getSocialRedirect(type)
+    const redirectRequest = await getSocialRedirect(type)
 
-    console.log(redirectUrl)
+    window.open(redirectRequest.redirect_url, '_self')
   }
 
   return (
