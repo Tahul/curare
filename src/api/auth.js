@@ -57,8 +57,10 @@ const redirect_url = import.meta.env.SNOWPACK_PUBLIC_APP_URL + '/callback'
  */
 export const getSocialRedirect = async (type = 'twitter') => {
   const request = await API.get(`/auth/social/redirect`, {
-    type,
-    redirect_url,
+    params: {
+      type,
+      redirect_url,
+    },
   })
 
   return request.data
@@ -71,8 +73,10 @@ export const getSocialRedirect = async (type = 'twitter') => {
  */
 export const getSocialCallback = async (type = 'twitter', parameters = {}) => {
   const request = await API.get('/auth/social/callback', {
-    ...parameters,
-    redirect_url,
+    params: {
+      ...parameters,
+      redirect_url,
+    },
   })
 
   return request.data
