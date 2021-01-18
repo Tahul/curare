@@ -46,3 +46,34 @@ export const logout = async () => {
 
   return request.data
 }
+
+// Set redirect url for both providers methods
+const redirect_url = import.meta.env.SNOWPACK_PUBLIC_APP_URL + '/callback'
+
+/**
+ * Get OAuth social redirection link
+ *
+ * @param {*} type (twitter / github)
+ */
+export const getSocialRedirect = async (type = 'twitter') => {
+  const request = await API.get(`/auth/social/redirect`, {
+    type,
+    redirect_url,
+  })
+
+  return request.data
+}
+
+/**
+ * Get OAuth social callback data
+ *
+ * @param {*} parameters
+ */
+export const getSocialCallback = async (type = 'twitter', parameters = {}) => {
+  const request = await API.get('/auth/social/callback', {
+    ...parameters,
+    redirect_url,
+  })
+
+  return request.data
+}
