@@ -1,6 +1,6 @@
 import { motion, useAnimation } from 'framer-motion'
 import React, { useEffect } from 'react'
-import useIsMounted from '../../../hooks/useIsMounted'
+import useIsMounted from '../../hooks/useIsMounted'
 
 const Heart = ({ style, ...rest }) => {
   const isMounted = useIsMounted()

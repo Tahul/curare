@@ -1,6 +1,6 @@
 import { motion, useAnimation } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
-import useIsMounted from '../../../hooks/useIsMounted'
+import useIsMounted from '../../hooks/useIsMounted'
 
 const availableParticles = ['book', 'art', 'podcasts', 'plants', 'music']
 

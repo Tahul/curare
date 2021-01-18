@@ -3,8 +3,8 @@ import { motion, useAnimation } from 'framer-motion'
 import React from 'react'
 import styled from 'styled-components'
 import useDraggablePage from '../../hooks/useDraggablePage'
+import TertiaryIllustration from '../illustrations/TertiaryIllustration'
 import { SplitText } from '../utils/SplitText'
-import TertiaryIllustration from './illustrations/TertiaryIllustration'
 
 const StyledTertiary = styled.div``
 

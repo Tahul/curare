@@ -3,8 +3,8 @@ import { motion, useAnimation } from 'framer-motion'
 import React from 'react'
 import styled from 'styled-components'
 import useDraggablePage from '../../hooks/useDraggablePage'
+import MainIllustration from '../illustrations/MainIllustration'
 import { SplitText } from '../utils/SplitText'
-import MainIllustration from './illustrations/MainIllustration'
 
 const StyledMain = styled.div`
   position: relative;
